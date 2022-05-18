@@ -1,0 +1,52 @@
+.header{
+    border: 2px;
+    background-color: #EF534F;
+    min-height: 115px;
+    width: 100%;
+    text-align: center;
+}
+.body{
+    border: 3px #ffff;
+    height: 70px;
+    align-items: center;
+    left: 250px;
+    right: 5px;
+    position: absolute;
+    z-index: 890;
+    background-color: transparent;
+    display: flex;
+    padding-left: 30px;
+    color: #f7f7f7;
+}
+
+
+.account{
+    list-style-type: none;
+    text-align: right;
+    position: absolute;
+    right: 0px;
+    margin-right: 30px;
+}
+
+.item-header{
+    display: inline-block;
+    padding: 5px;
+}
+
+img{
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%!important;
+    border-top-left-radius: 50% !important;
+    border-top-right-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+    border-bottom-left-radius: 50% !important;
+    margin-right: .25rem!important;
+}
+.user{
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+}
