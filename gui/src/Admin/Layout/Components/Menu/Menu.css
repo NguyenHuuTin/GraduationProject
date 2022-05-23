@@ -1,16 +1,14 @@
 .wrapper-main{
     width: 250px;
-    display: block;
+    display: inline-block;
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     position: fixed;
     top: 0;
     height: 110%;
     background-color: #fff;
-    z-index: 880;
     left: 0;
     overflow: scroll;
     outline: none;
-    
 }
 
 .sidebar-brand{

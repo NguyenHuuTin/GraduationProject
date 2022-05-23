@@ -1,0 +1,124 @@
+.card-content{
+    background-color: transparent;
+    width: 500px;
+    height: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+}
+
+.card-header{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title{
+    color:  #052a5e;
+    font-weight: 500;
+}
+
+.header-path{
+    background-color: #fff;
+    display: flex;
+    text-decoration: none;
+}
+
+.header-path-item{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.item-content{
+    text-decoration: none;
+    color: black;
+}
+
+.active{
+    color: red;
+}
+
+/* .card-body{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    min-height: 400px;
+} */
+
+.card-statistical{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-statistical-item{
+    width: 380px;
+    height: 80px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    padding: 10px;
+}
+
+.item-icon1{
+    background-color: #47C363;
+    width: 80px;
+    height: 80px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.item-icon2{
+    background-color: #191D21;
+    width: 80px;
+    height: 80px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.item-icon3{
+    background-color: #FFA426;
+    width: 80px;
+    height: 80px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.statistical-item-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 80px;
+    align-items: flex-start;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.icon{
+    margin: auto;
+}
+
+.count{
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+}

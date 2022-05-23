@@ -6,26 +6,24 @@
     text-align: center;
 }
 .body{
-    border: 3px #ffff;
+    border: 3px #fff;
     height: 70px;
+    width: 100%;
     align-items: center;
-    left: 250px;
-    right: 5px;
-    position: absolute;
     z-index: 890;
     background-color: transparent;
     display: flex;
-    padding-left: 30px;
     color: #f7f7f7;
+    justify-content: space-between;
+    padding-left: 30px;
 }
-
 
 .account{
     list-style-type: none;
-    text-align: right;
-    position: absolute;
-    right: 0px;
     margin-right: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .item-header{

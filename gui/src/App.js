@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Menu from './Admin/Layout/Components/Menu/Menu';
+import Content from './Admin/Layout/Components/Content/Content';
+import Header from './Admin/Layout/Components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ĐỒ ÁN TỐT NGHIỆP CUỐI CẤP CỦA UTC2
-        </a>
-      </header>
+      <div className='app-menu'>
+        <Menu/>
+      </div>
+      <div className='App-body'>
+        <Header/>
+        <Content/>
+      </div>
+      
     </div>
   );
 }

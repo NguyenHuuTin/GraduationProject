@@ -62,7 +62,7 @@ function Menu(props) {
                     </div>
                     <div className='item-menu'>
                         <a href='./'>
-                        <i className='fa-solid fa-chalkboard-user'></i>
+                            <i className='fa-solid fa-chalkboard-user'></i>
                             <p className='content-item'>Instructor</p>
                         </a>
                     </div>
@@ -74,13 +74,13 @@ function Menu(props) {
                     </div>
                     <div className='item-menu'>
                         <a href='./'>
-                            <i className='fa-solid fa-book'></i>
+                            <i className='fa-solid fa-hand-holding-dollar'></i>
                             <p className='content-item'>Payout</p>
                         </a>
                     </div>
                     <div className='item-menu'>
                         <a href='./'>
-                            <i className='fa-brands fa-paypal'></i>
+                            <i className='fa-solid fa-book'></i>
                             <p className='content-item'>Course</p>
                         </a>
                     </div>
@@ -113,15 +113,11 @@ function Menu(props) {
                     </div>
                     <div className='item-menu'>
                         <a href='./'>
-                            <i className='fa-solid fa-question'></i>
+                            <i className='fa-solid fa-circle-question'></i>
                             <p className='content-item'>FAQ</p>
                         </a>
                     </div>
                 </div>
-                {/* <div className='nicescroll-rails nicescroll-rails-vr item1'>
-                    <div className='nicescroll-cursors item2'>
-                    </div>
-                </div> */}
                 <div className='force-overflow'></div>
             </aside>
             

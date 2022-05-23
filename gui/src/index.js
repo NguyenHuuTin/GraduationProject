@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Header from './components/Header/Header';
+import App from './App';
+
 import reportWebVitals from './reportWebVitals';
-import Menu from './components/Menu/Menu';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <div className='main-wrapper'>
-      <Header/>
-      <Menu/>
+      <App/>
     </div>
   </React.StrictMode>
 );
