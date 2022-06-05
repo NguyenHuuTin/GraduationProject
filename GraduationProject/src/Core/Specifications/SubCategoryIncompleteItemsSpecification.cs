@@ -24,7 +24,7 @@ namespace Core.Specifications
     {
         public SubCategoryIncompleteIsDeleteSpecificationv()
         {
-            Query.Where(item => item.IsDeleted == false);
+            Query.Where(item => item.IsDeleted == false).Include(x => x.Category);
         }
     }
 }

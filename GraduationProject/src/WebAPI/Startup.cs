@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 namespace Web
 {
@@ -153,6 +154,17 @@ namespace Web
             }
 
             services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
+
+            // cofig header api
+            services.AddAuthentication(
+                CertificateAuthenticationDefaults.AuthenticationScheme)
+               .AddCertificate();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("https://localhost:3000", "http://localhost:3000")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -177,6 +189,7 @@ namespace Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

@@ -11,6 +11,8 @@ namespace WebAPI.Endpoints.Instructor
 
         public string Name { get; set; }
 
+        public string Email { get; set; }
+
         public string Professional { get; set; }
 
         public string FacebookLink { get; set; }
@@ -28,5 +30,9 @@ namespace WebAPI.Endpoints.Instructor
         public int  CountStudent { get; set; }
 
         public int CountCourse { get; set; }
+
+        public bool IsStatus { get; set; }
+
+        public string RegisterDate { get; set; }
     }
 }

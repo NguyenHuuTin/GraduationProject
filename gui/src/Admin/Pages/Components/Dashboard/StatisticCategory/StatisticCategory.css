@@ -1,0 +1,66 @@
+.statistic-category-body{
+    padding-bottom: 50px;
+}
+
+.card-statistic-category{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-statistic-category-item{
+    width: 360px;
+    height: 60px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    padding: 10px;
+}
+
+.item-icon-category1{
+    background-color: #47C363;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.item-icon-category2{
+    background-color: #191D21;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.item-icon-category3{
+    background-color: #1DA1F2;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.statistic-category-item-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 60px;
+    align-items: flex-start;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.icon-category{
+    margin: auto;
+}
+
+.count-statistic-category{
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}

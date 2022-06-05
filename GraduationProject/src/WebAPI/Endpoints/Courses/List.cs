@@ -37,7 +37,7 @@ namespace WebAPI.Endpoints.Courses
                     Price = item.OriginPrice,
                     Title = item.Title,
                     Status = item.Status,
-                    UpdateAt = item.UpdateAt,
+                    UpdateAt = Convert.ToDateTime(item.UpdateAt).ToString("dd MMMM yyyy"),
                     Category = item.SubCategory.Name
                 });
 

@@ -1,0 +1,145 @@
+.wrapperMain{
+    width: 250px;
+    display: inline-block;
+    box-shadow: 8px 8px 8px rgb(0 0 0 / 3%);
+    position: fixed;
+    top: 60;
+    height: 110%;
+    background-color: white;
+    left: 0;
+    overflow: scroll;
+    outline: none;
+    z-index: 995;
+}
+
+
+.sidebarBrand{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    margin-top: 5px;
+}
+.asideMenu{
+    display: inline;
+
+}
+.logo{
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #051121;
+    
+}
+
+.menu{
+    display: inline;
+    align-content: center;
+}
+.menuTitle{
+    color: #a1a8ae;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-left: 1rem;
+}
+
+.itemMenu{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    padding-left: 2rem;
+}
+
+.dropdownReport{
+    display: flex;
+    flex-direction: column;
+    background-color: #d8cdea;
+    
+}
+
+.iconDropdownClick{
+    padding-right: 20px;
+}
+
+.iconDropdown{
+    transform: rotate(90deg);
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.itemReport{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.itemReportClick{
+    display: flex;
+    flex-direction: row;
+    padding-left: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.iconReport{
+    color: #551A8B;
+}
+.dropdownItem{
+    font-size: 14px;
+    padding-left: 4rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #551A8B;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.dropdownItem:hover{
+    background-color: white;
+}
+
+.itemMenuClick{
+    flex-direction: column;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #d8cdea;
+}
+
+.itemMenu:hover{
+    display: flex;
+    font-size: 14px;
+    padding-left: 2rem;
+    background-color: #d8cdea;
+}
+
+.contentItem{
+    display: inline-block;
+    color: #551A8B;
+    margin-left: 30px;
+    font-weight: bold;
+    flex: 3;
+}
+.forceOverflow {
+    min-height: 90px;
+}
+
+.wrapperMain::-webkit-scrollbar{
+    width: 3px;
+    background-color: #F5F5F5;
+}
+
+.wrapperMain::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+.wrapperMain::-webkit-scrollbar-thumb {
+    background-color:#052a5e;
+}

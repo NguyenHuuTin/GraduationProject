@@ -92,7 +92,39 @@ namespace Core.Services
                 return Result<List<Course>>.Error(new[] { ex.Message });
             }
         }
-        
+
+        public async Task<List<Course>> GetBlockCourse<Course>()
+        {
+            var incompleteSpec = new GetBlockItem();
+            try
+            {
+                var items = await _repository.ListAsync(incompleteSpec);
+
+                return new List<Course>((IEnumerable<Course>)items);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<List<Course>>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<List<Course>> GetActiveCourse<Course>()
+        {
+            var incompleteSpec = new GetActiveItem();
+            try
+            {
+                var items = await _repository.ListAsync(incompleteSpec);
+
+                return new List<Course>((IEnumerable<Course>)items);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<List<Course>>.Error(new[] { ex.Message });
+            }
+        }
+
         /// <summary>
         /// Update Course's Status to Waiting for approval
         /// </summary>
@@ -220,7 +252,7 @@ namespace Core.Services
                     if (course.IsFeatured || course.IsBestSeller)
                         course.Status = "Active";
                     else if (course.IsRejected)
-                        course.Status = "Draff";
+                        course.Status = "Reject";
                     else
                         course.Status = "No Data";
                 }
@@ -292,7 +324,8 @@ namespace Core.Services
         public async Task<Course> CreateCourse(Course course)
         {
             course.CreateAt = DateTime.Now;
-            course.Status = "No Data";
+            course.UpdateAt = DateTime.Now;
+            course.Status = "Waiting for approved";
 
             return await _repository.AddAsync<Course>(course);
         }

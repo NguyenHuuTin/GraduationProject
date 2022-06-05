@@ -30,7 +30,7 @@ namespace WebAPI.Endpoints.Payout
             OperationId = "Payout.Insert",
             Tags = new[] { "PayoutEndpoints" })
         ]
-        public async Task<ActionResult<PayoutInstructorResponse>> GetAllAsync(double amount, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<PayoutInstructorResponse>> AddPayout(double amount, CancellationToken cancellationToken = default)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace WebAPI.Endpoints.Payout
                         Price = amount,
                         CreateAt = DateTime.Now,
                         Update = DateTime.Now,
-                        Status = "Panđing"
+                        Status = "Pandding"
                     };
 
                     var result = await _payoutService.InsertPayout(newPayout);

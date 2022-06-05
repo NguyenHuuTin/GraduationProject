@@ -1,0 +1,67 @@
+.cardContentInstructorRegistration{
+    background-color: transparent;
+    width: 500px;
+    height: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+}
+
+.cardHeaderInstructorRegistration{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitleInstructorRegistration{
+    color:  #052a5e;
+    font-weight: 500;
+}
+
+.headerPathInstructorRegistration{
+    background-color: #fff;
+    display: flex;
+    text-decoration: none;
+}
+
+.headerPathItemInstructorRegistration{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.itemContentInstructorRegistrationActive{
+    text-decoration: none;
+    color: red;
+}
+
+.itemContentInstructorRegistration{
+    text-decoration: none;
+    color: black;
+}
+
+.topFiveBodyInstructorRegistration{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.InstructorRegistrationMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.InstructorRegistrationMainInstructorRegistrationList{
+    flex: 1;
+}

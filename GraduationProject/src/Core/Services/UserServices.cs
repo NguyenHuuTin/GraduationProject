@@ -49,7 +49,7 @@ namespace Core.Services
         public Task<List<User>> GetAll()
         {
             var query = new ListUserNotDeleteSpecification();
-            return _userRepository.ListAsync<User>(query);
+            return _userRepository.ListAsync(query);
         }
 
         // Add User
@@ -119,7 +119,8 @@ namespace Core.Services
 
         public async Task<User> Login(string email, string password)
         {
-            var user = await _userManager.FindByEmailAsync(email) ?? await _userManager.FindByNameAsync(email);
+            var user = _userRepository.List<User>().Where(u => u.Email == email && u.IsDeleted == false).SingleOrDefault();
+            //var user = await _userManager.FindByEmailAsync(email) ?? await _userManager.FindByNameAsync(email);
             var checkPass = await _userManager.CheckPasswordAsync(user, password);
 
             /*PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
@@ -140,7 +141,7 @@ namespace Core.Services
             var claims = new List<Claim>() {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-                new Claim("Name", user.LastName.ToString())
+                new Claim("Name", user.UserName.ToString())
             };
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -261,6 +262,12 @@ namespace Core.Services
                 IsSuccess = true,
                 Message = "Comfirm email URL has been sent to the email successfully!"
             };
+        }
+
+        public string GetNameUser(Guid id)
+        {
+            var result = _userRepository.List<User>().Where(u => u.Id == id && u.IsDeleted == false).SingleOrDefault().UserName;
+            return result;
         }
     }
 }

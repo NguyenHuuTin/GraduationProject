@@ -13,6 +13,6 @@ namespace WebAPI.Endpoints.Courses
         public decimal Price { get; set; }
         public string Category { get; set; }
         public string Status { get; set; }
-        public DateTime? UpdateAt { get; set; }
+        public string? UpdateAt { get; set; }
     }
 }

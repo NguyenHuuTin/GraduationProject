@@ -47,6 +47,24 @@ namespace Core.Specifications
         }
     }
 
+    public class GetBlockItem : Specification<Course>
+    {
+        public GetBlockItem()
+        {
+            Query.Where(item => item.IsBlocked == true).Include(item => item.SubCategory);
+
+        }
+    }
+
+    public class GetActiveItem : Specification<Course>
+    {
+        public GetActiveItem()
+        {
+            Query.Where(item => item.IsBlocked == false && item.Status == "Active").Include(item => item.SubCategory);
+
+        }
+    }
+
     public class GetCourseByUser : Specification<Course>
     {
         public GetCourseByUser(Guid Id)
@@ -116,7 +134,6 @@ namespace Core.Specifications
         }
     }
 
-
     public class SearchPayout : Specification<Payout>
     {
         public SearchPayout(string input)
@@ -157,13 +174,26 @@ namespace Core.Specifications
         {
             Query.Where(item => item.PurchasedDay.Year == year && item.PurchasedDay.Month == month && item.Course.UserId == id).Include(item => item.Course);
         }
+
+        public GetOrderDetail()
+        {
+            Query.Where(item => true).Include(item => item.Course);
+        }
+    }
+
+    public class GetAllSubscription : Specification<Subscription>
+    {
+        public GetAllSubscription()
+        {
+            Query.Where(item => true).Include(item => item.Subscriper);
+        }
     }
 
     public class GetEarning : Specification<OrderDetail>
     {
         public GetEarning(Guid id)
         {
-            Query.Where(item => item.Course.UserId == id).Include(item => item.Course).ThenInclude(item => item.User);
+            Query.Where(item => item.Course.UserId == id).Include(item => item.Course);
         }
     }
 }

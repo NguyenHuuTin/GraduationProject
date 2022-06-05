@@ -1,0 +1,75 @@
+.statistic-course-body{
+    margin-bottom: 30px;
+}
+
+.card-statistic-course{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-statistic-course-item{
+    width: 260px;
+    height: 60px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    padding: 15px 10px 0px 10px;
+}
+
+.course-icon1{
+    background-color: #1DA1F2;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.course-icon2{
+    background-color: #FD8103;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.course-icon3{
+    background-color: black;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.course-icon4{
+    background-color: #ED2A26;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+}
+
+.statistic-course-item-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 60px;
+    align-items: flex-start;
+    margin-left: 10px;
+    
+}
+
+.icon-course{
+    margin: auto;
+}
+
+.count-course{
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}

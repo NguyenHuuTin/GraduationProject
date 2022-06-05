@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebAPI.Endpoints.Users
 {
@@ -20,6 +21,7 @@ namespace WebAPI.Endpoints.Users
             this._userServices = userServices;
         }
 
+        [EnableCors("MyPolicy")]
         [HttpGet("/Users")]
         [SwaggerOperation(
             Summary = "Gets a list of all Users",
@@ -34,7 +36,8 @@ namespace WebAPI.Endpoints.Users
                 {
                     Id = item.Id,
                     UserName = item.UserName,
-                    RoleName = item.Role.Name
+                    RoleName = item.Role.Name,
+                    Email = item.Email
                 });
             return Ok(items);
         }

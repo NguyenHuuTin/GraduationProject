@@ -34,6 +34,7 @@ namespace WebAPI.Endpoints.SubCategories
                {
                    Id = item.Id,
                    CategoryId = item.CategoryId,
+                   CategoryName = item.Category.Name,
                    Name = item.Name,
                    Status = item.Status
                });

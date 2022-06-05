@@ -54,6 +54,10 @@ namespace Infrastructure
                 .InstancePerLifetimeScope();
             builder.RegisterType<UserServices>().As<IUserServices>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<OrderDetailService>().As<IOrderDetailService>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<SubscriptionService>().As<ISubscriptionService>()
+                .InstancePerLifetimeScope();
             builder.RegisterType<StudentRepository>().As<IStudentReponsitory>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>()
             .InstancePerLifetimeScope();
@@ -62,6 +66,8 @@ namespace Infrastructure
             builder.RegisterType<IntructorRepository>().As<IInstructorRepository>()
                 .InstancePerLifetimeScope();
             builder.RegisterType<OrderDetailRepository>().As<IOrderDetailRepository>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<SubscriptionRepository>().As<ISubscriptionRepository>()
                 .InstancePerLifetimeScope();
             builder.RegisterType<DashboardRepository>().As<IDashboardRepository>()
                 .InstancePerLifetimeScope();

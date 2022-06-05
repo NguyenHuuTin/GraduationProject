@@ -1,0 +1,195 @@
+.cardLanguageList{
+    height: 700px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.LanguageListTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.LanguageListButtonSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.LanguageListButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.LanguageButton{
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 7px 5px 7px 5px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.LanguageListSearch{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.LanguageTitleSearch{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+}
+
+.LanguageInputSearch{
+    min-width: 30px;
+    width: 150px;
+    font-size: 14px;
+    height: 20px;
+}
+
+.LanguageList{
+    display: flex;
+    flex-direction: column;
+}
+
+.LanguageListAll{
+    flex: 1;
+    margin-right: 15px;
+}
+
+.headerLanguageList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 30px;
+    line-height: 30px;
+}
+
+.headerID{
+    flex: 1;
+    margin-left: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.headerName{
+    flex: 4;
+    color: black;
+    font-weight: 600;
+}
+
+.headerStatus{
+    flex: 2;
+    color: black;
+    font-weight: 600;
+}
+
+.headerAction{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+.itemLanguageList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 40px;
+    background-color: #F7F7F7;
+}
+
+.itemID{
+    flex: 1;
+    margin-left: 10px;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+.itemName{
+    flex: 4;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+.itemStatus{
+    flex: 2;
+}
+
+.itemAction{
+    flex: 3;
+    margin-top: 7px;
+}
+
+.tagStatusActive{
+    width: max-content;
+    height: 20px;
+    background-color: darkgreen;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.tagStatusDeActive{
+    width: max-content;
+    height: 20px;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.buttonActionEdit{
+    border: 1px solid #1E90FF;
+    border-radius: 3px;
+    color: blue;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.buttonActionEdit:hover{
+    border: 1px solid #1E90FF;
+    border-radius: 3px;
+    color: white;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #1E90FF;
+}
+
+.buttonActionDelete{
+    border: 1px solid red;
+    border-radius: 3px;
+    color: red;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.buttonActionDelete:hover{
+    border: 1px solid red;
+    border-radius: 3px;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: red;
+}

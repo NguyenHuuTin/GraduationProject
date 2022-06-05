@@ -37,7 +37,7 @@ namespace Core.Services
             _cloudinary = cloudinary;
         }
 
-        public async Task<Result<List<User>>> GetAllIntructor(string searhString = null)
+        public async Task<List<User>> GetAllIntructor(string searhString = null)
         {
             try
             {

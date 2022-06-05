@@ -1,0 +1,142 @@
+.top-instructor-body{
+    width: 580px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.title-instructor{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 2px;
+    padding-left: 10px;
+}
+
+.top-instructor-main{
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.overflow{
+    height: 10px;
+}
+
+.top-instructor-main::-webkit-scrollbar{
+    width: 3px;
+    background-color: #F5F5F5;
+}
+
+.top-instructor-main::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+.top-instructor-main::-webkit-scrollbar-thumb {
+    background-color:#052a5e;
+}
+
+.top-instructor-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.top-instructor-content-item{
+    display: flex;
+    flex-direction: row;
+}
+
+.top-instructor-content-image{
+    flex: 1;
+}
+
+.image-instructor{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%!important;
+    border-top-left-radius: 50% !important;
+    border-top-right-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+    border-bottom-left-radius: 50% !important;
+}
+
+.top-instructor-content-main{
+    flex: 5;
+}
+
+.top-instructor-count-sale{
+    flex: 1;
+}
+
+.instructor-title{
+    margin-top: -15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.instructor-status-instructor-earning{
+    display: flex;
+    flex-direction: row;
+    max-height: 20px;
+    align-items: center;
+}
+
+.status-earning{
+    height: 3px;
+    width: 70%;
+    background-color: red;
+    margin-right: 7px;
+}
+
+.instructor-status-admin-commission{
+    display: flex;
+    flex-direction: row;
+    max-height: 20px;
+    align-items: center;
+}
+
+.status-commission{
+    height: 3px;
+    width: 40%;
+    background-color: green;
+    margin-right: 7px;
+}
+
+.instructor-note{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-top: 20px;
+}
+
+.note-earning{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.note-commission{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.status-note-earning{
+    height: 3px;
+    width: 20px;
+    background-color: red;
+    margin-right: 7px;
+}
+
+.status-note-commission{
+    height: 3px;
+    width: 20px;
+    background-color: green;
+    margin-right: 7px;
+}
+
+.note{
+    font-size: 12px;
+}

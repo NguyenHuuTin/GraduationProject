@@ -28,10 +28,26 @@ namespace WebAPI.Endpoints.Instructor
             OperationId = "Instructor.List",
             Tags = new[] { "InstructorEndpoints" })
         ]
-        public async Task<ActionResult<List<User>>> GetAllAsync(string searchString, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<List<InstructorResponse>>> GetAllAsync(string searchString, CancellationToken cancellationToken = default)
         {
-            var items = (await _instructorService.GetAllIntructor(searchString)).Value.ToList<User>();
-               
+            var items = (await _instructorService.GetAllIntructor(searchString))
+            .Select(item => new InstructorResponse
+            {
+                Id = item.Id,
+                Name = item.UserName,
+                Email = item.Email,
+                Professional = item.Professional,
+                FacebookLink = item.FacebookLink,
+                YoutubeLink = item.YoutubeLink,
+                LinkedLink = item.LinkedLink,
+                TwitterLink = item.TwitterLink,
+                ProfileLink = item.ProfileLink,
+                Avatar = item.Avatar,
+                CountStudent = 2,
+                CountCourse = 2,
+                IsStatus = item.IsStatus,
+                RegisterDate = Convert.ToDateTime(item.CreateAt).ToString("dd MMMM yyyy")
+            });
             return Ok(items);
         }
     }

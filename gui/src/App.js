@@ -1,19 +1,18 @@
-import './App.css';
-import Menu from './Admin/Layout/Components/Menu/Menu';
-import Content from './Admin/Layout/Components/Content/Content';
-import Header from './Admin/Layout/Components/Header/Header';
+import "./App.css";
+import Admin from "./Admin/Admin";
+// import { Route, Routes } from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <div className='app-menu'>
-        <Menu/>
-      </div>
-      <div className='App-body'>
-        <Header/>
-        <Content/>
-      </div>
-      
+    // <Routes>
+    //   <Route index element={<Admin />}>
+        
+    //   </Route>
+    //   {/* <Route path="/instructor" element={<InstructorPage />} /> */}
+    // </Routes>
+    <div>
+      <Admin/>
     </div>
   );
 }

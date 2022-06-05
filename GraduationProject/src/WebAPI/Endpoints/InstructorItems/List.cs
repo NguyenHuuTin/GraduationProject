@@ -35,7 +35,7 @@ namespace WebAPI.Endpoints.InstructorItems
         public override async Task<ActionResult<Result<List<IntructorListReadDto>>>> HandleAsync(string searchString, CancellationToken cancellationToken)
         {
             var items = await _instructorService.GetAllIntructor(searchString);
-            var values = _mapper.Map<List<IntructorListReadDto>>(items.Value);
+            var values = _mapper.Map<List<IntructorListReadDto>>(items);
 
             var modelsToReturn = new Result<List<IntructorListReadDto>> (values);
             return Ok(modelsToReturn);

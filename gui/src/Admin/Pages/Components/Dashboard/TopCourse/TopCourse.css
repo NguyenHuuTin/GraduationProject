@@ -1,0 +1,136 @@
+.top-course-body{
+    width: 580px;
+    height: 500px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.title-course{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 2px;
+    padding-left: 10px;
+}
+
+.top-course-main{
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.overflow{
+    height: 10px;
+}
+
+.top-course-main::-webkit-scrollbar{
+    width: 3px;
+    background-color: #F5F5F5;
+}
+
+.top-course-main::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+.top-course-main::-webkit-scrollbar-thumb {
+    background-color:#052a5e;
+}
+
+.top-course-content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.top-course-content-item{
+    display: flex;
+    flex-direction: row;
+}
+
+.top-course-content-image{
+    flex: 1;
+}
+
+.image-course{
+    width: 65px;
+    height: 40px;
+}
+
+.top-course-content-main{
+    flex: 5;
+}
+
+.top-course-count-sale{
+    flex: 1;
+}
+
+.course-title{
+    margin-top: -15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.course-status-instructor-earning{
+    display: flex;
+    flex-direction: row;
+    max-height: 20px;
+    align-items: center;
+}
+
+.status-earning{
+    height: 3px;
+    width: 70%;
+    background-color: red;
+    margin-right: 7px;
+}
+
+.course-status-admin-commission{
+    display: flex;
+    flex-direction: row;
+    max-height: 20px;
+    align-items: center;
+}
+
+.status-commission{
+    height: 3px;
+    width: 40%;
+    background-color: green;
+    margin-right: 7px;
+}
+
+.course-note{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-top: 20px;
+}
+
+.note-earning{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.note-commission{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.status-note-earning{
+    height: 3px;
+    width: 20px;
+    background-color: red;
+    margin-right: 7px;
+}
+
+.status-note-commission{
+    height: 3px;
+    width: 20px;
+    background-color: green;
+    margin-right: 7px;
+}
+
+.note{
+    font-size: 12px;
+}

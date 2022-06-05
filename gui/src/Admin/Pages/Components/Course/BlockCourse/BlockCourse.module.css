@@ -1,0 +1,189 @@
+.CourseListAll{
+    flex: 1;
+    margin-right: 15px;
+}
+
+.headerCourseList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 30px;
+    line-height: 30px;
+}
+
+.headerID{
+    flex: 1;
+    margin-left: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.headerTitle{
+    flex: 8.5;
+    color: black;
+    font-weight: 600;
+}
+
+.headerCategory{
+    flex: 2.5;
+    color: black;
+    font-weight: 600;
+}
+
+.headerPrice{
+    flex: 1.7;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerUpdate{
+    flex: 2.5;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerStatus{
+    flex: 2;
+    color: black;
+    font-weight: 600;
+}
+
+.headerAction{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+.itemCourseList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 50px;
+    background-color: #F7F7F7;
+}
+
+.itemID{
+    flex: 1;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemTitle{
+    flex: 8.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemCategory{
+    flex: 2.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemPrice{
+    flex: 1.7;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemUpdate{
+    flex: 2.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemStatus{
+    flex: 2;
+    height: 20px;
+    color: rgb(226, 83, 83);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.itemAction{
+    flex: 3;
+    margin-top: 10px;
+}
+
+.itemActionInput{
+    font-size: 14px;
+    height: 20px;
+}
+
+.itemActionSelect{
+    font-size: 14px;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.buttonActionView{
+    border: 1px solid #17A2B8;
+    border-radius: 3px;
+    color: #17A2B8;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    background-color: white;
+}
+
+.buttonActionView:hover{
+    border: 1px solid #17A2B8;
+    color: white;
+    background-color: #17A2B8;
+}
+
+.buttonActionActive{
+    border: 1px solid #1ab817;
+    border-radius: 3px;
+    color: #1ab817;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    background-color: white;
+}
+
+.buttonActionActive:hover{
+    border: 1px solid #1ab817;
+    color: white;
+    background-color: #1ab817;
+}
+
+.buttonActionReject{
+    border: 1px solid #b84517;
+    border-radius: 3px;
+    color: #b84517;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: white;
+}
+
+.buttonActionReject:hover{
+    border: 1px solid #b84517;
+    color: white;
+    background-color: #b84517;
+}
+
+.buttonActionBlock{
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: white;
+}
+
+.buttonActionBlock:hover{
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+}

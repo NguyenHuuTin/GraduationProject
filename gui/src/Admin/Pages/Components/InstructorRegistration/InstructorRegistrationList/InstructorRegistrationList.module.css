@@ -1,0 +1,176 @@
+.cardInstructorRegistrationList{
+    height: 700px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.InstructorRegistrationListTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.InstructorRegistrationListButtonSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.InstructorRegistrationListButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.InstructorRegistrationButton{
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 7px 5px 7px 5px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.InstructorRegistrationListSearch{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.InstructorRegistrationTitleSearch{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+}
+
+.InstructorRegistrationInputSearch{
+    min-width: 30px;
+    width: 150px;
+    font-size: 14px;
+    height: 20px;
+}
+
+.InstructorRegistrationList{
+    display: flex;
+    flex-direction: column;
+}
+
+.InstructorRegistrationListAll{
+    flex: 1;
+    margin-right: 15px;
+}
+
+.headerInstructorRegistrationList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 30px;
+    line-height: 30px;
+}
+
+.headerID{
+    flex: 1;
+    margin-left: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.headerName{
+    flex: 4;
+    color: black;
+    font-weight: 600;
+}
+
+.headerEmail{
+    flex: 5;
+    color: black;
+    font-weight: 600;
+}
+
+.headerDate{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerStatus{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+
+.itemInstructorRegistrationList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 50px;
+    background-color: #F7F7F7;
+}
+
+.itemID{
+    flex: 1;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemName{
+    flex: 4;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemEmail{
+    flex: 5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemDate{
+    flex: 3;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemStatus{
+    flex: 3;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.tagStatusActive{
+    width: max-content;
+    height: 20px;
+    background-color: darkgreen;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.tagStatusDeActive{
+    width: max-content;
+    height: 20px;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}

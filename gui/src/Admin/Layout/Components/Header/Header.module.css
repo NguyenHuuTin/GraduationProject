@@ -1,0 +1,91 @@
+.header {
+  border: 2px;
+  background-color: #75307e;
+  min-height: 115px;
+  width: 100%;
+  text-align: center;
+}
+.body {
+  border: 3px #fff;
+  height: 70px;
+  width: 97%;
+  align-items: center;
+  z-index: 890;
+  background-color: transparent;
+  display: flex;
+  color: #f7f7f7;
+  justify-content: space-between;
+  padding-left: 30px;
+}
+
+.account {
+  list-style-type: none;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.itemHeader {
+  display: inline-block;
+  padding: 5px;
+}
+
+.imageUser {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% !important;
+  border-top-left-radius: 50% !important;
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+  margin-right: 0.25rem !important;
+  margin-left: 20px;
+}
+.user {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.dropdownContentClick {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  left: auto;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin-right: 40px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.itemLogout{
+    text-decoration: none;
+    padding: 10px 5px 10px 5px;
+    text-align: left;
+    color: black;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+.linkLog{
+    text-decoration: none;
+    color: red;
+}
+
+.itemLogout:hover{
+    background-color: rgb(221, 221, 221);
+}

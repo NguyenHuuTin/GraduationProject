@@ -1,0 +1,56 @@
+.edit-user{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.edit-user-title{
+    color: red;
+    font-weight: bold;
+}
+
+.edit-user-input{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.edit-user-input-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    flex: 1;
+}
+
+.edit-user-title-input{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.edit-user-style-input{
+    height: 30px;
+}
+
+.edit-user-button{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: auto;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.edit-user-submit{
+   text-align: right;
+   position: relative;
+   bottom: 0px;
+   padding-top: 50px;
+   padding-bottom: 20px;
+}

@@ -1,4 +1,4 @@
-.card-content{
+.card-content-dashboard{
     background-color: transparent;
     width: 500px;
     height: 500px;
@@ -8,7 +8,7 @@
     border: 0px solid #052a5e;
 }
 
-.card-header{
+.card-header-dashboard{
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     background-color: #fff;
     border-radius: 5px;
@@ -22,23 +22,23 @@
     justify-content: space-between;
 }
 
-.header-title{
+.header-title-dashboard{
     color:  #052a5e;
     font-weight: 500;
 }
 
-.header-path{
+.header-path-dashboard{
     background-color: #fff;
     display: flex;
     text-decoration: none;
 }
 
-.header-path-item{
+.header-path-item-dashboard{
     padding-left: 5px;
     padding-right: 5px;
 }
 
-.item-content{
+.item-content-dashboard{
     text-decoration: none;
     color: black;
 }
@@ -47,78 +47,9 @@
     color: red;
 }
 
-/* .card-body{
-    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
-    background-color: #fff;
-    border-radius: 5px;
-    border: none;
-    position: relative;
-    margin-bottom: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    align-items: center;
-    min-height: 400px;
-} */
-
-.card-statistical{
+.top-five-body{
     display: flex;
     justify-content: space-between;
-}
-
-.card-statistical-item{
-    width: 380px;
-    height: 80px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
-    background-color: #fff;
-    border-radius: 5px;
-    border: none;
-    display: flex;
-    padding: 10px;
-}
-
-.item-icon1{
-    background-color: #47C363;
-    width: 80px;
-    height: 80px;
-    color: white;
-    font-size: 25px;
-    display: flex;
-}
-
-.item-icon2{
-    background-color: #191D21;
-    width: 80px;
-    height: 80px;
-    color: white;
-    font-size: 25px;
-    display: flex;
-}
-
-.item-icon3{
-    background-color: #FFA426;
-    width: 80px;
-    height: 80px;
-    color: white;
-    font-size: 25px;
-    display: flex;
-}
-
-.statistical-item-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 80px;
-    align-items: flex-start;
-    margin-left: 10px;
-    padding: 10px;
-}
-
-.icon{
-    margin: auto;
-}
-
-.count{
-    text-align: left;
-    font-size: 22px;
-    font-weight: bold;
+    flex-direction: row;
+    margin-bottom: 30px;
 }

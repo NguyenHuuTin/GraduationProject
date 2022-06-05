@@ -36,7 +36,7 @@ namespace WebAPI.Endpoints.Payout
                     Amount = item.Price,
                     CreateAt = item.CreateAt,
                     Remark = item.Remark,
-                    Update = item.Update,
+                    Update = Convert.ToDateTime(item.Update).ToString("dd MMMM yyyy"),
                     Status = item.Status
                 });
             return Ok(items);

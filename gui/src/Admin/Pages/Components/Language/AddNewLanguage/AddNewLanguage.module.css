@@ -1,0 +1,57 @@
+.addNewLanguage{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.addLanguageTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.addLanguageButton{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: auto;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.addNewLanguageSubmit{
+   text-align: right;
+   margin-right: 15px;
+   position: relative;
+   bottom: 0px;
+   padding-top: 50px;
+   padding-bottom: 20px;
+}
+
+.editLanguageInput{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.editLanguageInputGroup{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    flex: 1;
+}
+
+.editLanguageTitleInput{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.editLanguageStyleInput{
+    height: 30px;
+}

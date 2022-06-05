@@ -1,0 +1,67 @@
+.cardContentPayout{
+    background-color: transparent;
+    width: 500px;
+    height: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+}
+
+.cardHeaderPayout{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitlePayout{
+    color:  #052a5e;
+    font-weight: 500;
+}
+
+.headerPathPayout{
+    background-color: #fff;
+    display: flex;
+    text-decoration: none;
+}
+
+.headerPathItemPayout{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.itemContentPayoutActive{
+    text-decoration: none;
+    color: red;
+}
+
+.itemContentPayout{
+    text-decoration: none;
+    color: black;
+}
+
+.topFiveBodyPayout{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.PayoutMain{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.PayoutMainPayoutList{
+    flex: 1;
+}

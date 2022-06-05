@@ -1,0 +1,277 @@
+.cardPayoutList{
+    height: 700px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.PayoutListTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.PayoutListButtonSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.PayoutListButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.PayoutButton{
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 7px 5px 7px 5px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.PayoutListSearch{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.PayoutTitleSearch{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+}
+
+.PayoutInputSearch{
+    min-width: 30px;
+    width: 150px;
+    font-size: 14px;
+    height: 20px;
+}
+
+.PayoutList{
+    display: flex;
+    flex-direction: column;
+}
+
+.PayoutListAll{
+    flex: 1;
+    margin-right: 15px;
+}
+
+.headerPayoutList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 30px;
+    line-height: 30px;
+}
+
+.headerID{
+    flex: 1;
+    margin-left: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.headerName{
+    flex: 4;
+    color: black;
+    font-weight: 600;
+}
+
+.headerAmount{
+    flex: 2;
+    color: black;
+    font-weight: 600;
+}
+
+.headerRemark{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerUpdate{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerStatus{
+    flex: 2;
+    color: black;
+    font-weight: 600;
+}
+
+.headerAction{
+    flex: 7;
+    color: black;
+    font-weight: 600;
+}
+
+.itemPayoutList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 50px;
+    background-color: #F7F7F7;
+}
+
+.itemID{
+    flex: 1;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemName{
+    flex: 4;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemAmount{
+    flex: 2;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemRemark{
+    flex: 3;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemUpdate{
+    flex: 3;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemStatus{
+    flex: 2;
+}
+
+.itemAction{
+    flex: 7;
+    margin-top: 10px;
+}
+
+.itemStatusAndAction{
+    display: flex;
+    flex-direction: row;
+    flex: 5;
+}
+
+.tagStatusPanding{
+    width: max-content;
+    height: 20px;
+    background-color: #FFC107;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.tagStatusPaid{
+    width: max-content;
+    height: 20px;
+    background-color: darkgreen;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.tagStatusReject{
+    width: max-content;
+    height: 20px;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.tagStatusDeActive{
+    width: max-content;
+    height: 20px;
+    background-color: red;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.buttonActionEdit{
+    border: 1px solid #1E90FF;
+    border-radius: 3px;
+    color: blue;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.buttonActionEdit:hover{
+    border: 1px solid #1E90FF;
+    border-radius: 3px;
+    color: white;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #1E90FF;
+}
+
+.itemActionInput{
+    font-size: 14px;
+    height: 20px;
+}
+
+.itemActionSelect{
+    font-size: 14px;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.buttonActionSubmit{
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: white;
+}
+
+.buttonActionSubmit:hover{
+    border: 1px solid black;
+    border-radius: 3px;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: black;
+}

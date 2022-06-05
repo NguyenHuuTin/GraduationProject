@@ -1,0 +1,57 @@
+.addNewCategory{
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.addCategoryTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.addCategoryButton{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: auto;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.addNewCategorySubmit{
+   text-align: right;
+   margin-right: 15px;
+   position: relative;
+   bottom: 0px;
+   padding-top: 50px;
+   padding-bottom: 20px;
+}
+
+.editCategoryInput{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.editCategoryInputGroup{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    flex: 1;
+}
+
+.editCategoryTitleInput{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.editCategoryStyleInput{
+    height: 30px;
+}

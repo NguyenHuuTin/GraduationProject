@@ -1,0 +1,17 @@
+.app {
+    display: flex;
+    flex-direction: row;
+  }
+ 
+  .AppBody{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    z-index: 1;
+  }
+  
+  .appMenu{
+    width: 250px;
+    height: 100%;
+  }
+  
