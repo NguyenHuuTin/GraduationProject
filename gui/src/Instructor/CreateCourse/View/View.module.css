@@ -1,0 +1,109 @@
+.container{
+    background-color: transparent;
+    width: 95%;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.title{
+    padding: 20px;
+    border-bottom: 2px solid #efefef;
+    border-top: 2px solid #efefef;
+}
+
+.main{
+    background-color: white;
+    min-height: 350px;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonNext{
+    text-align: left;
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+
+.btn{
+    background-color: #75307E;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+.image{
+    width: 460px;
+    height: 260px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.contentTitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contentBody{
+    font-size: 15px;
+    padding-top: 20px;
+}
+
+.inputFile{
+    z-index: 2;
+    height: calc(1.5em + .75rem + 2px);
+    overflow: hidden;
+    text-align: left;
+}
+
+
+.customFile{
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-weight: 400;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    text-align: left;
+    padding-top: 20px;
+}
+
+.customFileLabel{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    /* z-index: 1; */
+    height: calc(1.5em + .75rem + 2px);
+    padding: 1.3rem 2rem;
+    font-weight: 400;
+    line-height: 0;
+    color: #686f7a;
+    background-color: #fff;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    margin-bottom: 0;
+    box-shadow: inset 0px 1px 4px rgb(0 0 0 / 10%) !important;
+}
+
+.labelBtn{
+    width: 50px;
+    height: 70px;
+    color: white;
+    background-color: red;
+}

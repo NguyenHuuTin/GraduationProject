@@ -52,6 +52,12 @@ namespace Core.Services
             return _userRepository.ListAsync(query);
         }
 
+        public Task<List<User>> GetAllAdmin()
+        {
+            var query = new ListUserAdminSpecification();
+            return _userRepository.ListAsync(query);
+        }
+
         // Add User
         public async Task<User> AddUser(User user)
         {

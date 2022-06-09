@@ -20,7 +20,7 @@ namespace Web.Endpoints.Courses
             _courseService = courseService;
         }
 
-        [HttpPut("/Courses/Reject")]
+        [HttpPut("/Courses/Reject/{id}")]
         [SwaggerOperation(
             Summary = "Updates a Course",
             Description = "Updates a Course with status as Draff",
@@ -44,7 +44,7 @@ namespace Web.Endpoints.Courses
             return await _courseService.BestSeller(id);
         }
         
-        [HttpPut("/Courses/BlockedCourse")]
+        [HttpPut("/Courses/Block/{id}")]
         [SwaggerOperation(
             Summary = "Updates a Course",
             Description = "Updates a Course with status as blocked or last status",
@@ -56,7 +56,7 @@ namespace Web.Endpoints.Courses
             return await _courseService.BlockedCourse(id);
         }
         
-        [HttpPut("/Courses/Approval")]
+        [HttpPut("/Courses/Active/{id}")]
         [SwaggerOperation(
             Summary = "Updates a Course",
             Description = "Updates a Course with status as approval",

@@ -1,0 +1,78 @@
+.container{
+    background-color: transparent;
+    width: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textTitle{
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.stepContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 75px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.stepItem{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    text-align: center;
+}
+
+.stepOne{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    line-height: 50px;
+    align-items: center;
+}
+
+.stepStatusActive{
+    height: 10px;
+    width: 50%;
+    background-color: #75307E;
+}
+
+.stepStatus{
+    height: 10px;
+    width: 50%;
+    background-color: #EDEDED;
+}
+
+.stepStatusHidden{
+    height: 10px;
+    width: 50%;
+    background-color: transparent;
+}
+.stepPoint{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #D5D5D2;
+}
+
+.stepPointActive{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color:#75307E;
+}

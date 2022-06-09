@@ -27,7 +27,7 @@ namespace WebAPI.Endpoints.Students
             OperationId = "Student.Update",
             Tags = new[] { "StudentEndpoints" })
         ]
-        public async Task<ActionResult<StudentResponse>> UpdateAsync(StudentRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<StudentResponse>> UpdateAsync([FromBody]StudentRequest request, CancellationToken cancellationToken)
         {
 
             var existingItem = await _studentService.GetByIdAsync(request.Id);

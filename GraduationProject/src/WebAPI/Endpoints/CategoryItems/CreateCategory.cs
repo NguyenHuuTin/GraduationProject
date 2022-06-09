@@ -25,7 +25,7 @@ namespace WebAPI.Endpoints.CategoryItems
             OperationId = "Category.Create",
             Tags = new[] { "CategoryEndpoints" })
         ]
-        public override async Task<ActionResult<CategoryResponse>> HandleAsync(NewCategory request, CancellationToken cancellationToken)
+        public override async Task<ActionResult<CategoryResponse>> HandleAsync([FromBody]NewCategory request, CancellationToken cancellationToken)
         {
             //Check value Name already exists in the data
             var checkName = await _categoryService.IsCategoryNameExisted(request.Name);

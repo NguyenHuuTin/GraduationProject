@@ -1,0 +1,113 @@
+.courseBody{
+    background-color: transparent;
+    width: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textTitle{
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.bodyCreate{
+    height: 100px;
+    width: 100%;
+    background: #fff;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.iconCourse{
+    flex: 1;
+    margin-left: 20px;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.createTitle{
+    flex: 15;
+    text-align: left;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 500;
+}
+.createBtn{
+    flex: 5;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background: #75307E;
+    border-radius: 3px;
+    border: 0;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.listBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item{
+    min-width: 300px;
+    min-height: 55px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height: 55px;
+    flex: 1;
+    border-radius: 5px;
+}
+
+.itemClick{
+    min-width: 300px;
+    min-height: 55px;
+    background-color: #75307E;
+    color: white;
+    text-align: center;
+    line-height: 55px;
+    flex: 1;
+    border-radius: 5px;
+}
+
+.itemBtn{
+    text-decoration: none;
+}
+
+.item:hover{
+    background-color: #75307E;
+    color: white;
+}
+
+.contentBtn{
+    margin-left: 20px;
+}
+
+.courseList{
+    width: 100%;
+    margin-top: 30px;
+}

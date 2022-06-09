@@ -67,7 +67,7 @@
 }
 
 .cardStudentList{
-    height: 700px;
+    height: 650px;
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     background-color: white;
     border-radius: 5px;
@@ -261,5 +261,85 @@
     padding-bottom: 3px;
     background-color: red;
 }
+.buttonActionActive{
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: white;
+}
 
+.buttonActionActive:hover{
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+}
+
+.listPaging{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    margin-bottom: 30px;
+    margin-left: 3px;
+}
+
+.showPage{
+    box-shadow: 0 8px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border: 1px rgb(145, 204, 231) solid;
+    padding: 10px;
+}
+
+.btnPage{
+    display: flex;
+    flex-direction: row;  
+}
+
+.btnPrev{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 70%;
+    border-radius: 5px;
+    background-color: #eaecf2;
+    border: none;
+    color: #75307e;
+    font-weight: 550;
+    margin-right: 5px;
+}
+
+.btnPrev:hover{
+    background-color: #75307e;
+    color: white;
+}
+
+.btnNext{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 70%;
+    border-radius: 5px;
+    background-color: #eaecf2;
+    border: none;
+    color: #75307e;
+    font-weight: 550;
+    margin-left: 5px;
+    
+}
+.btnNext:hover{
+    background-color: #75307e;
+    color: white;
+}
+
+.btnNext:disabled{
+    color: #bebec8;
+    background-color: #eaecf2;
+}
+
+.btnPrev:disabled{
+    color: #bebec8;
+    background-color: #eaecf2;
+}
 

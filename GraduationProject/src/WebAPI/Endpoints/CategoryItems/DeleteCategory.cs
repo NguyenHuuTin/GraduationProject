@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Endpoints
 {
-    public class DeleteCategory : BaseAsyncEndpoint<ChangeDelToCategoryRequest, CategoryResponse>
+    public class DeleteCategory : BaseAsyncEndpoint
     {
         private readonly ICategoryService _categoryService;
 
@@ -21,16 +21,16 @@ namespace WebAPI.Endpoints
             _categoryService = categoryService;
         }
 
-        [HttpPut("/DeleteCategory")]
+        [HttpDelete("/DeleteCategory/{id}")]
         [SwaggerOperation(
             Summary = "Delete a category",
             Description = "Delete a category with a longer description",
             OperationId = "Category.Delete",
             Tags = new[] { "CategoryEndpoints" })
         ]
-        public override  async Task<ActionResult<CategoryResponse>> HandleAsync(ChangeDelToCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<CategoryResponse>> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            var existingItem =  await _categoryService.GetCategoryById(request.Id);
+            var existingItem =  await _categoryService.GetCategoryById(id);
             if (existingItem == null) return BadRequest();
             else
             {

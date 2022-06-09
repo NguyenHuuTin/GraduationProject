@@ -42,15 +42,20 @@
     height: 20px;
 }
 
+.add-user-style-select{
+    width: 150px;
+    height: 27px;
+}
+
 .add-user-button{
     background-color: red;
     color: white;
     border: none;
-    padding: auto;
+    padding: 10px;
     text-align: center;
     margin: 5px;
     border-radius: 5px;
-    height: 20px;
+    margin-right: 10px;
 }
 
 .add-new-user-submit{

@@ -1,0 +1,128 @@
+.container{
+    background-color: transparent;
+    width: 100%;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.title{
+    padding: 20px;
+    border-bottom: 2px solid #efefef;
+    border-top: 2px solid #efefef;
+}
+
+.main{
+    background-color: white;
+    min-height: 600px;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.courseTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.inputTitle{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    border-radius: 5px;
+}
+
+.inputID{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-radius: 5px;
+}
+
+.inputPrice{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border-radius: 5px;
+}
+
+.inputIsFree{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    border-radius: 5px;
+}
+
+.name{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.inputText{
+    height: 35px;
+    width: 100%;
+    box-shadow: thistle 10px;
+}
+
+.inputDes{
+    width: 99%;
+    min-height: 100px;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.coursePriceInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+
+.coursePrice{
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #efefef;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+
+.priceTitle{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textPriceTitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.buttonNext{
+    text-align: left;
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+
+.btn{
+    background-color: #75307E;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}

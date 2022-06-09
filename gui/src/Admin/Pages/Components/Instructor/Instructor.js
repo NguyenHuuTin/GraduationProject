@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Instructor.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function Instructor(props) {
+  const [status, setStatus] = useState(false);
   const [instructorList, setInstructorList] = useState([]);
   useEffect(() => {
     axios
@@ -15,7 +21,67 @@ function Instructor(props) {
       .catch(() => {
         setInstructorList([]);
       });
-  }, []);
+  }, [status]);
+
+  const handleChangeStatus = (id) => {
+    axios
+      .put(`http://localhost:57678/instructor/change-block/${id}`)
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Failed!");
+      });
+  };
+
+  // Hook action Search
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(instructorList);
+
+  useEffect(() => {
+    if (search === "") {
+      setFilter(instructorList);
+    } else {
+      var filterList = instructorList.filter((object) => {
+        return (
+          object.name.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
+          object.email.toLowerCase().indexOf(search.toLowerCase()) > -1
+        );
+      });
+      setFilter(filterList);
+    }
+  }, [search, instructorList]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const [firstIndex, setFirstIndex] = useState(1);
+  const [lastIndex, setLastIndex] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
+  const count = 10;
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  // Hook action paging
+  useEffect(() => {
+    var mod = filter.length % count;
+    if (mod === 0) {
+      setTotalPage(filter.length / count);
+    } else {
+      setTotalPage(Math.floor(filter.length / count) + 1);
+    }
+    setLastIndex(currentPage * count);
+    setFirstIndex(lastIndex - count);
+  }, [filter.length, currentPage, lastIndex]);
   return (
     <div className={styles.cardContentInstructor}>
       <div className={styles.cardHeaderInstructor}>
@@ -51,6 +117,8 @@ function Instructor(props) {
                   <div className={styles.InstructorTitleSearch}>Search:</div>
                   <div>
                     <input
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       className={styles.InstructorInputSearch}
                       placeholder="Search..."
                     />
@@ -65,7 +133,7 @@ function Instructor(props) {
                   <div className={styles.headerStatus}>Status</div>
                   <div className={styles.headerAction}>Action</div>
                 </div>
-                {instructorList?.map((element, index) => {
+                {filter.slice(firstIndex, lastIndex)?.map((element, index) => {
                   return (
                     <div className={styles.itemInstructorList} key={element.id}>
                       <div className={styles.itemID}>{index + 1}</div>
@@ -77,12 +145,20 @@ function Instructor(props) {
                             <div className={styles.tagStatusActive}>Active</div>
                           </div>
                           <div className={styles.itemAction}>
-                            <button className={styles.buttonActionDelete}>
+                            <button
+                              className={styles.buttonActionDelete}
+                              onClick={() => {
+                                handleChangeStatus(element.id);
+                              }}
+                            >
                               Block
                             </button>
-                            <button className={styles.buttonActionView}>
-                              <i className="fa-solid fa-eye"/>
-                            </button>
+                            <NotificationContainer />
+                            <Link to={`${element.id}`}>
+                              <button className={styles.buttonActionView}>
+                                <i className="fa-solid fa-eye"/>
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       ) : (
@@ -93,10 +169,15 @@ function Instructor(props) {
                             </div>
                           </div>
                           <div className={styles.itemAction}>
-                            <button className={styles.buttonActionDelete}>
+                            <button
+                              className={styles.buttonActionActive}
+                              onClick={() => {
+                                handleChangeStatus(element.id);
+                              }}
+                            >
                               Un-Block
                             </button>
-
+                            <NotificationContainer />
                           </div>
                         </div>
                       )}
@@ -105,7 +186,27 @@ function Instructor(props) {
                 })}
               </div>
             </div>
-            <div className={styles.InstructorListPaging}></div>
+            <div className={styles.listPaging}>
+              <div className={styles.showPage}>
+                Showing page {currentPage} of {totalPage}
+              </div>
+              <div className={styles.btnPage}>
+                <button
+                  disabled={currentPage === 1}
+                  className={styles.btnPrev}
+                  onClick={handlePrev}
+                >
+                  Prev
+                </button>
+                <button
+                  disabled={currentPage === totalPage}
+                  className={styles.btnNext}
+                  onClick={handleNext}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Instructorlist */}

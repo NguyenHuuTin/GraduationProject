@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Category.module.css";
 import CategoryList from "./CategoryList/CategoryList";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import AddNewCategory from "./AddNewCategory/AddNewCategory";
+import EditCategory from "./EditCategory/EditCategory";
+import axios from "axios";
 
 function Category(props) {
+  const [categoryList, setCategoryList] = useState([]);
+  const [status, setStatus] = useState(false);
+
+  const handleStatus = () => {
+    setStatus((prev) => !prev);
+  };
+  useEffect(() => {
+    axios
+      .get("http://localhost:57678/Category")
+      .then((res) => {
+        setCategoryList(res.data);
+        console.log(res.data);
+      })
+      .catch(() => {
+        setCategoryList([]);
+      });
+  }, [status]);
   return (
     <div className={styles.cardContentCategory}>
       <div className={styles.cardHeaderCategory}>
@@ -24,10 +44,13 @@ function Category(props) {
       </div>
       <div className={styles.CategoryMain}>
         <div className={styles.CategoryMainCategoryList}>
-          <CategoryList />
+          <CategoryList handleStatus={handleStatus} list={categoryList}/>
         </div>
         <div className={styles.CategoryMainAddNewCategory}>
-          <Outlet />
+          <Routes>
+            <Route index element={<AddNewCategory handleStatus={handleStatus} />} />
+            <Route path="edit/:id" element={<EditCategory handleStatus={handleStatus}/>} />
+          </Routes>
         </div>
       </div>
     </div>

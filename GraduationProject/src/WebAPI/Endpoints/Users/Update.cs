@@ -27,7 +27,7 @@ namespace WebAPI.Endpoints.Users
             OperationId = "User.Update",
             Tags = new[] { "UserEndpoints" })
         ]
-        public override async Task<ActionResult<UserResponse>> HandleAsync([FromForm]UpdateUserRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<UserResponse>> HandleAsync([FromBody]UpdateUserRequest request, CancellationToken cancellationToken = default)
         {
             if (_userServices.IsUserNameExisted(request.UserName) == true)
             {

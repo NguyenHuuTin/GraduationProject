@@ -13,4 +13,12 @@ namespace Core.Specifications
             Query.Where(item => item.IsDeleted == false).Include(item =>item.Role);
         }
     }
+
+    public class ListUserAdminSpecification : Specification<User>
+    {
+        public ListUserAdminSpecification()
+        {
+            Query.Where(item => !item.IsDeleted && item.Role.Name == "Admin").Include(item => item.Role);
+        }
+    }
 }

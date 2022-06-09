@@ -121,7 +121,7 @@ namespace Core.Services
                 }
 
                 //update Status
-                item.Status = !item.Status;
+                item.IsStatus = !item.IsStatus;
                 //update entity in database
                 await _instructorRepository.UpdateInstructorAsync(item);
                 return new Result<bool>(true);

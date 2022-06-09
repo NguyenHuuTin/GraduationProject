@@ -1,0 +1,262 @@
+.container{
+    background-color: transparent;
+    width: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textTitle{
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.itemTotal{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 100px;
+    background: #fff;
+    margin-top: 30px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    padding: 20px;
+}
+
+.itemTotal:hover{
+    padding: 25px;
+    border: 2px solid #efefef;
+}
+
+.itemContent{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    justify-content: space-between;
+}
+
+.itemTitle{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+}
+.itemCount{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.itemTagToday{
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    width: 50%;
+    background-color: orange;
+    color: white;
+}
+
+.itemTagTodays{
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    width: 50%;
+    background-color: rgb(193,130,249);
+    color: white;
+}
+
+.itemImg{
+    height: 100px;
+    line-height: 100px;
+    margin-left: 20px;
+}
+
+.img{
+    height: 70px;
+    flex: 1;
+    line-height: 70px;
+    margin-top: 10px;
+}
+
+.bodyCreate{
+    height: 100px;
+    width: 100%;
+    background: #fff;
+    margin-top: 30px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.iconCourse{
+    flex: 1;
+    margin-left: 20px;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.createTitle{
+    flex: 15;
+    text-align: left;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 500;
+}
+.createBtn{
+    flex: 5;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background: #75307E;
+    border-radius: 3px;
+    border: 0;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.profileAnalytics{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #fff;
+    margin-bottom: 30px;
+}
+
+.profileAnalytics:hover{
+    margin-top: 27px;
+    border: 2px solid #efefef;
+}
+
+.currentSub{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    border-bottom: 2px solid #efefef;
+    padding-bottom: 20px;
+}
+
+.viewSell{
+    display: flex;
+    flex-direction: column;
+    border: 1 blanchedalmond solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 20px;
+
+}
+
+.currentSubTitle{
+    font-size: 15px;
+}
+
+.view{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.gotoProfile{
+    margin-left: 20px;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;
+}
+
+.gotoProfile:hover{
+    text-decoration: underline;
+    color: black;
+    
+}
+
+.currentSubCount{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.submitCourse{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 150px;
+    margin-top: 30px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #fff;
+    margin-bottom: 30px;
+}
+
+.infoCourse{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.courseName{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.courseStatus{
+    padding: 3px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #efefef;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.timeSubmit{
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.linkDelete{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.linkDelete:hover{
+    text-decoration: underline;
+}

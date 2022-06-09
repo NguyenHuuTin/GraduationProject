@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^34.1.0",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -12,10 +14,15 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "babel-plugin-macros": "^3.1.0",
+    "html-react-parser": "^1.4.14",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-html-parser": "^2.0.2",
+    "react-notifications": "^1.7.3",
+    "react-quill": "^2.0.0-beta.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

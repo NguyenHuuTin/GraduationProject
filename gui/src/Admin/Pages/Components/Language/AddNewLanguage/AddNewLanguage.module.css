@@ -18,11 +18,10 @@
     background-color: red;
     color: white;
     border: none;
-    padding: auto;
+    padding: 10px;
     text-align: center;
     margin: 5px;
     border-radius: 5px;
-    height: 20px;
 }
 
 .addNewLanguageSubmit{

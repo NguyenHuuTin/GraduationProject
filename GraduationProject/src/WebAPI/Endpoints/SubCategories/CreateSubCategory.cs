@@ -25,7 +25,7 @@ namespace WebAPI.Endpoints.SubCategories
             OperationId = "SubCategory.Create",
             Tags = new[] { "SubCategoryEndpoints" })
         ]
-        public override async Task<ActionResult<SubCategoryResponse>> HandleAsync(NewSubCategory request, CancellationToken cancellationToken)
+        public override async Task<ActionResult<SubCategoryResponse>> HandleAsync([FromBody]NewSubCategory request, CancellationToken cancellationToken)
         {
             //Check value Name already exists in the data
             var checkName = await _subCategoryService.IsSubCategoryNameExisted(request.Name);

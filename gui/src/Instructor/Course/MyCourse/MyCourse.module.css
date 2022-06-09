@@ -1,0 +1,335 @@
+.cardCourseList{
+    min-height: 750px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.CourseListTitle{
+    color: red;
+    font-weight: bold;
+}
+
+.CourseListButtonSearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.CourseListButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.CourseButton{
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 7px 5px 7px 5px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.CourseListSearch{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.CourseTitleSearch{
+    font-size: 14px;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+}
+
+.CourseInputSearch{
+    min-width: 30px;
+    width: 150px;
+    font-size: 14px;
+    height: 20px;
+}
+
+.CourseList{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.CourseListAll{
+    flex: 1;
+    margin-right: 15px;
+}
+
+.headerCourseList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 30px;
+    line-height: 30px;
+}
+
+.headerID{
+    flex: 1;
+    margin-left: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.headerTitle{
+    flex: 8.5;
+    color: black;
+    font-weight: 600;
+}
+
+.headerCategory{
+    flex: 2.5;
+    color: black;
+    font-weight: 600;
+}
+
+.headerPrice{
+    flex: 1.7;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerUpdate{
+    flex: 2.5;
+    color: black;
+    font-weight: 600;
+}
+
+
+.headerStatus{
+    flex: 2;
+    color: black;
+    font-weight: 600;
+}
+
+.headerAction{
+    flex: 3;
+    color: black;
+    font-weight: 600;
+}
+
+.itemCourseList{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px rgb(198, 189, 189) solid;
+    border-top: 1px  rgb(198, 189, 189) solid;
+    height: 50px;
+    background-color: #F7F7F7;
+}
+
+.itemID{
+    flex: 1;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemTitle{
+    flex: 8.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemCategory{
+    flex: 2.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemPrice{
+    flex: 1.7;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemUpdate{
+    flex: 2.5;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.itemStatus{
+    flex: 2;
+    height: 20px;
+    color: rgb(226, 83, 83);
+    padding-left: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.itemStatusActive{
+    flex: 2;
+    height: 20px;
+    color: rgb(83, 226, 116);
+    padding-left: 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.itemAction{
+    flex: 3;
+    margin-top: 10px;
+}
+
+.itemActionInput{
+    font-size: 14px;
+    height: 20px;
+}
+
+.itemActionSelect{
+    font-size: 14px;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.buttonActionView{
+    border: 1px solid #17A2B8;
+    border-radius: 3px;
+    color: #17A2B8;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    background-color: white;
+}
+
+.buttonActionView:hover{
+    border: 1px solid #17A2B8;
+    color: white;
+    background-color: #17A2B8;
+}
+
+.buttonActionActive{
+    border: 1px solid #1ab817;
+    border-radius: 3px;
+    color: #1ab817;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    background-color: white;
+}
+
+.buttonActionActive:hover{
+    border: 1px solid #1ab817;
+    color: white;
+    background-color: #1ab817;
+}
+
+.buttonActionReject{
+    border: 1px solid #b84517;
+    border-radius: 3px;
+    color: #b84517;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: white;
+}
+
+.buttonActionReject:hover{
+    border: 1px solid #b84517;
+    color: white;
+    background-color: #b84517;
+}
+
+.buttonActionBlock{
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    padding-top: 3px;
+    margin-right: 5px;
+    padding-bottom: 3px;
+    background-color: white;
+}
+
+.buttonActionBlock:hover{
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+}
+
+.listPaging{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    margin-bottom: 30px;
+    margin-left: 3px;
+}
+
+.showPage{
+    box-shadow: 0 8px 8px rgb(0 0 0 / 3%);
+    background-color: #fff;
+    border: 1px rgb(145, 204, 231) solid;
+    padding: 10px;
+}
+
+.btnPage{
+    display: flex;
+    flex-direction: row;  
+}
+
+.btnPrev{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 70%;
+    border-radius: 5px;
+    background-color: #eaecf2;
+    border: none;
+    color: #75307e;
+    font-weight: 550;
+    margin-right: 5px;
+}
+
+.btnPrev:hover{
+    background-color: #75307e;
+    color: white;
+}
+
+.btnNext{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 70%;
+    border-radius: 5px;
+    background-color: #eaecf2;
+    border: none;
+    color: #75307e;
+    font-weight: 550;
+    margin-left: 5px;
+    
+}
+.btnNext:hover{
+    background-color: #75307e;
+    color: white;
+}
+
+.btnNext:disabled{
+    color: #bebec8;
+    background-color: #eaecf2;
+}
+
+.btnPrev:disabled{
+    color: #bebec8;
+    background-color: #eaecf2;
+}

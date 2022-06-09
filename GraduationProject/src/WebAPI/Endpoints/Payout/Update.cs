@@ -28,7 +28,7 @@ namespace WebAPI.Endpoints.Payout
             OperationId ="Payout.Update",
             Tags = new[] { "PayoutEndpoints" })
         ]
-        public async Task<ActionResult<bool>> UpdatePayout(PayoutRequest payoutRequest, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<bool>> UpdatePayout([FromBody]PayoutRequest payoutRequest, CancellationToken cancellationToken = default)
         {
             // Get Payout with Id
             var existingItem = await _payoutService.GetById(payoutRequest.Id);

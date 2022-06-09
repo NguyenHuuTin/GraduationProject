@@ -17,6 +17,53 @@ function InstructorRegistrationList(props) {
         setInstructorRegistrationList([]);
       });
   }, []);
+
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(instructorRegistrationList);
+
+  useEffect(() => {
+    if (search === "") {
+      setFilter(instructorRegistrationList);
+    } else {
+      var filterList = instructorRegistrationList.filter((object) => {
+        return (
+          object.name.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
+          object.email.toLowerCase().indexOf(search.toLowerCase()) > -1
+        );
+      });
+      setFilter(filterList);
+    }
+  }, [search, instructorRegistrationList]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const [firstIndex, setFirstIndex] = useState(1);
+  const [lastIndex, setLastIndex] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
+  const count = 10;
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  // Hook action paging
+  useEffect(() => {
+    var mod = filter.length % count;
+    if (mod === 0) {
+      setTotalPage(filter.length / count);
+    } else {
+      setTotalPage(Math.floor(filter.length / count) + 1);
+    }
+    setLastIndex(currentPage * count);
+    setFirstIndex(lastIndex - count);
+  }, [filter.length, currentPage, lastIndex]);
   return (
     <div className={styles.cardInstructorRegistrationList}>
       <div className={styles.InstructorRegistrationListTitle}>
@@ -42,6 +89,8 @@ function InstructorRegistrationList(props) {
             </div>
             <div>
               <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className={styles.InstructorRegistrationInputSearch}
                 placeholder="Search..."
               />
@@ -56,7 +105,7 @@ function InstructorRegistrationList(props) {
             <div className={styles.headerDate}>Register Date</div>
             <div className={styles.headerStatus}>Status</div>
           </div>
-          {instructorRegistrationList?.map((element, index) => {
+          {filter.slice(firstIndex, lastIndex)?.map((element, index) => {
             return (
               <div
                 className={styles.itemInstructorRegistrationList}
@@ -80,7 +129,27 @@ function InstructorRegistrationList(props) {
           })}
         </div>
       </div>
-      <div className={styles.InstructorRegistrationListPaging}></div>
+      <div className={styles.listPaging}>
+        <div className={styles.showPage}>
+          Showing page {currentPage} of {totalPage}
+        </div>
+        <div className={styles.btnPage}>
+          <button
+            disabled={currentPage === 1}
+            className={styles.btnPrev}
+            onClick={handlePrev}
+          >
+            Prev
+          </button>
+          <button
+            disabled={currentPage === totalPage}
+            className={styles.btnNext}
+            onClick={handleNext}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

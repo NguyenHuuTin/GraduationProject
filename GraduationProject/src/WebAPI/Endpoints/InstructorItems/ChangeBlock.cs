@@ -25,7 +25,7 @@ namespace WebAPI.Endpoints.InstructorItems
         }
 
 
-        [HttpPut("/instructor/change-block/{id:Guid}")]
+        [HttpPut("/instructor/change-block/{id}")]
         [SwaggerOperation(
             Summary = "Gets a single InstructorItem",
             Description = "Gets a single InstructorItem by Id",

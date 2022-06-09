@@ -29,7 +29,7 @@ namespace WebAPI.Endpoints.Users
             OperationId = "User.Create",
             Tags = new[] { "UserEndpoints" })
          ]
-        public override async Task<ActionResult<UserResponse>> HandleAsync([FromForm] NewUserRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<UserResponse>> HandleAsync([FromBody] NewUserRequest request, CancellationToken cancellationToken = default)
         {
             if (_userServices.IsUserNameExisted(request.UserName) == true)
             {

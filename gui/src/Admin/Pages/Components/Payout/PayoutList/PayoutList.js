@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./PayoutList.module.css";
 import axios from "axios";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function PayoutList(props) {
+  const [status, setStatus] = useState(false);
   const [payoutList, setPayoutList] = useState([]);
   useEffect(() => {
     axios
@@ -14,7 +20,75 @@ function PayoutList(props) {
       .catch(() => {
         setPayoutList([]);
       });
-  }, []);
+  }, [status]);
+
+  const [remark, setRemark] = useState("");
+  const [paid, setPaid] = useState("Paid");
+  const handleSubmit = (id) => {
+    axios
+      .put(`http://localhost:57678/Payout`, {
+        id: id,
+        remark: remark,
+        status: paid,
+      })
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Failed!");
+      });
+  };
+
+  // Hook action Search
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(payoutList);
+
+  useEffect(() => {
+    if (search === "") {
+      setFilter(payoutList);
+    } else {
+      var filterList = payoutList.filter((object) => {
+        return (
+          object.name.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
+          object.update.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
+          object.status.toLowerCase().indexOf(search.toLowerCase()) > -1
+        );
+      });
+      setFilter(filterList);
+    }
+  }, [search, payoutList]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const [firstIndex, setFirstIndex] = useState(1);
+  const [lastIndex, setLastIndex] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
+  const count = 10;
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  // Hook action paging
+  useEffect(() => {
+    var mod = filter.length % count;
+    if (mod === 0) {
+      setTotalPage(filter.length / count);
+    } else {
+      setTotalPage(Math.floor(filter.length / count) + 1);
+    }
+    setLastIndex(currentPage * count);
+    setFirstIndex(lastIndex - count);
+  }, [filter.length, currentPage, lastIndex]);
   return (
     <div className={styles.cardPayoutList}>
       <div className={styles.PayoutListTitle}>Payout List</div>
@@ -30,6 +104,8 @@ function PayoutList(props) {
             <div className={styles.PayoutTitleSearch}>Search:</div>
             <div>
               <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className={styles.PayoutInputSearch}
                 placeholder="Search..."
               />
@@ -46,7 +122,7 @@ function PayoutList(props) {
             <div className={styles.headerUpdate}>Last Update</div>
             <div className={styles.headerAction}>Action</div>
           </div>
-          {payoutList?.map((element, index) => {
+          {filter.slice(firstIndex, lastIndex)?.map((element, index) => {
             return (
               <div className={styles.itemPayoutList} key={element.id}>
                 <div className={styles.itemID}>{index + 1}</div>
@@ -83,14 +159,30 @@ function PayoutList(props) {
                       name="remark"
                       required=""
                       placeholder="Remark please"
+                      value={remark}
+                      onChange={(e) => {
+                        setRemark(e.target.value);
+                      }}
                     />
-                    <select name="status" className={styles.itemActionSelect}>
-                      <option value="1">Paid</option>
-                      <option value="2">Reject</option>
+                    <select
+                      name="status"
+                      className={styles.itemActionSelect}
+                      onChange={(e) => {
+                        setPaid(e.target.value);
+                      }}
+                    >
+                      <option value="Paid">Paid</option>
+                      <option value="Reject">Reject</option>
                     </select>
-                    <button className={styles.buttonActionSubmit}>
+                    <button
+                      className={styles.buttonActionSubmit}
+                      onClick={() => {
+                        handleSubmit(element.id);
+                      }}
+                    >
                       Submit
                     </button>
+                    <NotificationContainer/>
                   </div>
                 ) : (
                   <div className={styles.itemAction}></div>
@@ -100,7 +192,27 @@ function PayoutList(props) {
           })}
         </div>
       </div>
-      <div className={styles.PayoutListPaging}></div>
+      <div className={styles.listPaging}>
+        <div className={styles.showPage}>
+          Showing page {currentPage} of {totalPage}
+        </div>
+        <div className={styles.btnPage}>
+          <button
+            disabled={currentPage === 1}
+            className={styles.btnPrev}
+            onClick={handlePrev}
+          >
+            Prev
+          </button>
+          <button
+            disabled={currentPage === totalPage}
+            className={styles.btnNext}
+            onClick={handleNext}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './Course.module.css';
-import {Link} from 'react-router-dom';
-import CourseList from './CourseList/CourseList';
+import {Link, Route, Routes} from 'react-router-dom';
+import AllCourse from './AllCourse/AllCourse';
+import WaitingForApproveCourse from './WaitingForApproveCourse/WaitingForApproveCourse';
+import ActiveCourse from './ActiveCourse/ActiveCourse';
+import BlockCourse from './BlockCourse/BlockCourse';
+import RejectCourse from './RejectCourse/RejectCourse';
 
 function Course(props) {
     return (
@@ -24,7 +28,13 @@ function Course(props) {
       </div>
       <div className={styles.CourseMain}>
         <div className={styles.CourseMainCourseList}>
-          <CourseList/>
+         <Routes>
+            <Route index element={<AllCourse />} />
+            <Route path="wait" element={<WaitingForApproveCourse />} />
+            <Route path="active" element={<ActiveCourse />} />
+            <Route path="block" element={<BlockCourse />} />
+            <Route path="reject" element={<RejectCourse />} />
+         </Routes>
         </div>
       </div>
     </div>

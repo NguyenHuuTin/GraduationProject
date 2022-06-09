@@ -14,19 +14,19 @@ function Menu(props) {
             </Link>
           </div>
           <div className={styles.itemMenu}>
-            <Link to={"."}>
+            <Link to={"course"}>
               <i className="fa-solid fa-book"></i>
               <p className={styles.contentItem}>Courses</p>
             </Link>
           </div>
           <div className={styles.itemMenu}>
-            <a href=".">
+            <Link to={"analytic"}>
               <i className="fa-solid fa-chart-line"></i>
-              <p className={styles.contentItem}>Analyics</p>
-            </a>
+              <p className={styles.contentItem}>Analysis</p>
+            </Link>
           </div>
           <div className={styles.itemMenu}>
-            <Link to={"."}>
+            <Link to={"createCourse"}>
               <i className="fa-solid fa-circle-plus"></i>
               <p className={styles.contentItem}>Create Course</p>
             </Link>
@@ -81,7 +81,7 @@ function Menu(props) {
           </div>
           <div className={styles.itemMenu}>
             <a href=".">
-              <i class="fa-solid fa-circle-question"></i>
+              <i className="fa-solid fa-circle-question"></i>
               <p className={styles.contentItem}>Help</p>
             </a>
           </div>

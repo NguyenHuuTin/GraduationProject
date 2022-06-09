@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Endpoints
 {
-    public class DeleteSubCategory : BaseAsyncEndpoint<UpdateSubCategoryRequest, SubCategoryResponse>
+    public class DeleteSubCategory : BaseAsyncEndpoint
     {
         private readonly ISubCategoryService _subCategoryService;
 
@@ -21,16 +21,16 @@ namespace WebAPI.Endpoints
             _subCategoryService = subCategoryService;
         }
 
-        [HttpPut("/DeleteSubCategory")]
+        [HttpDelete("/DeleteSubCategory/{id}")]
         [SwaggerOperation(
             Summary = "Delete a subcategory",
             Description = "Delete a subcategory with a longer description",
             OperationId = "SubCategory.Delete",
             Tags = new[] { "SubCategoryEndpoints" })
         ]
-        public override  async Task<ActionResult<SubCategoryResponse>> HandleAsync(UpdateSubCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<SubCategoryResponse>> DeleteSubCate(Guid id, CancellationToken cancellationToken)
         {
-            var existingItem =  await _subCategoryService.GetSubCategoryById(request.Id);
+            var existingItem =  await _subCategoryService.GetSubCategoryById(id);
             if (existingItem == null) return BadRequest();
             else
             {

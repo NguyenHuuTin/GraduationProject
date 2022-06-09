@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Student.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function Student(props) {
+  const [status, setStatus] = useState(false);
   const [studentList, setStudentList] = useState([]);
   useEffect(() => {
     axios
@@ -15,7 +21,82 @@ function Student(props) {
       .catch(() => {
         setStudentList([]);
       });
-  }, []);
+  }, [status]);
+
+  const handleActive = (id) => {
+    axios
+      .put(`http://localhost:57678/Student`,{
+        id: id,
+        isStatus: true
+      })
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Active student successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Active student failed!");
+      });
+  };
+
+  const handleBlock = (id) => {
+    axios
+      .put(`http://localhost:57678/Student`,{
+        id: id,
+        isStatus: false
+      })
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Block student successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Block student failed!");
+      });
+  };
+
+  // Hook action Search
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(studentList);
+
+  useEffect(() => {
+    if (search === "") {
+      setFilter(studentList);
+    } else {
+      var filterList = studentList.filter((object) => {
+        return (object.userName.toLowerCase().indexOf(search.toLowerCase()) > -1) || (object.email.toLowerCase().indexOf(search.toLowerCase()) > -1);
+      });
+      setFilter(filterList);
+    }
+  }, [search, studentList]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const [firstIndex, setFirstIndex] = useState(1);
+  const [lastIndex, setLastIndex] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
+  const count = 10;
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  // Hook action paging
+  useEffect(() => {
+    var mod = filter.length % count;
+    if (mod === 0) {
+      setTotalPage(filter.length / count);
+    } else {
+      setTotalPage(Math.floor(filter.length / count) + 1);
+    }
+    setLastIndex(currentPage * count);
+    setFirstIndex(lastIndex - count);
+  }, [filter.length, currentPage, lastIndex]);
   return (
     <div className={styles.cardContentStudent}>
       <div className={styles.cardHeaderStudent}>
@@ -51,6 +132,8 @@ function Student(props) {
                   <div className={styles.StudentTitleSearch}>Search:</div>
                   <div>
                     <input
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       className={styles.StudentInputSearch}
                       placeholder="Search..."
                     />
@@ -65,7 +148,7 @@ function Student(props) {
                   <div className={styles.headerStatus}>Status</div>
                   <div className={styles.headerAction}>Action</div>
                 </div>
-                {studentList?.map((element, index) => {
+                {filter.slice(firstIndex, lastIndex)?.map((element, index) => {
                   return (
                     <div className={styles.itemStudentList} key={element.id}>
                       <div className={styles.itemID}>{index + 1}</div>
@@ -77,9 +160,15 @@ function Student(props) {
                             <div className={styles.tagStatusActive}>Active</div>
                           </div>
                           <div className={styles.itemAction}>
-                            <button className={styles.buttonActionDelete}>
+                            <button
+                              className={styles.buttonActionDelete}
+                              onClick={() => {
+                                handleBlock(element.id);
+                              }}
+                            >
                               Block
                             </button>
+                            <NotificationContainer />
                           </div>
                         </div>
                       ) : (
@@ -90,9 +179,15 @@ function Student(props) {
                             </div>
                           </div>
                           <div className={styles.itemAction}>
-                            <button className={styles.buttonActionDelete}>
+                            <button
+                              className={styles.buttonActionActive}
+                              onClick={() => {
+                                handleActive(element.id);
+                              }}
+                            >
                               Un-Block
                             </button>
+                            <NotificationContainer />
                           </div>
                         </div>
                       )}
@@ -101,7 +196,27 @@ function Student(props) {
                 })}
               </div>
             </div>
-            <div className={styles.StudentListPaging}></div>
+            <div className={styles.listPaging}>
+              <div className={styles.showPage}>
+                Showing page {currentPage} of {totalPage}
+              </div>
+              <div className={styles.btnPage}>
+                <button
+                  disabled={currentPage === 1}
+                  className={styles.btnPrev}
+                  onClick={handlePrev}
+                >
+                  Prev
+                </button>
+                <button
+                  disabled={currentPage === totalPage}
+                  className={styles.btnNext}
+                  onClick={handleNext}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* studentlist */}

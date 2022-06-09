@@ -56,14 +56,8 @@ function Menu(props) {
           </div>
           <div className={styles.menuTitle}>STARTER</div>
           <div className={styles.itemMenu}>
-            <a href="./">
-              <i className="fa-solid fa-address-book"></i>
-              <p className={styles.contentItem}>Role</p>
-            </a>
-          </div>
-          <div className={styles.itemMenu}>
             <Link to={"user"}>
-              <i className="fa-regular fa-user"></i>
+              <i className="fa-solid fa-users"></i>
               <p className={styles.contentItem}>User</p>
             </Link>
           </div>
@@ -98,12 +92,6 @@ function Menu(props) {
               <i className="fa-solid fa-chalkboard-user"></i>
               <p className={styles.contentItem}>Instructor</p>
             </Link>
-          </div>
-          <div className={styles.itemMenu}>
-            <a href="./">
-              <i className="fa-solid fa-certificate"></i>
-              <p className={styles.contentItem}>Verification</p>
-            </a>
           </div>
           <div className={styles.itemMenu}>
             <Link to={"payout"}>
@@ -161,7 +149,7 @@ function Menu(props) {
           </div>
           <div className={styles.menuTitle}>EXTRA</div>
           <div className={styles.itemMenu}>
-            <a href="./">
+            <a href=".">
               <i className="fa-solid fa-gear"></i>
               <p className={styles.contentItem}>Settings</p>
             </a>

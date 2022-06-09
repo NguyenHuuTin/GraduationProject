@@ -136,12 +136,9 @@ namespace Core.Services
                 //find Course by Id
                 Course course = await _repository.GetByIdAsync<Course>(id);
 
-                //Check status must be "Waiting for approved"
-                if (course.Status.Trim().ToLower().Equals("waiting for approved"))
-                    return false;
-
                 //Updated Course's Status
-                course.Status = "Draff";
+                course.IsRejected = true;
+                course.Status = "Reject";
 
                 //Set updated date
                 course.UpdateAt = DateTime.Now;
@@ -244,24 +241,9 @@ namespace Core.Services
                 //find Course by Id
                 Course course = await _repository.GetByIdAsync<Course>(id);
 
-                //Check Course's Status
-                if (course.IsBlocked)
-                {
-                    course.IsBlocked = false;
+                course.IsBlocked = true;
 
-                    if (course.IsFeatured || course.IsBestSeller)
-                        course.Status = "Active";
-                    else if (course.IsRejected)
-                        course.Status = "Reject";
-                    else
-                        course.Status = "No Data";
-                }
-                else
-                {
-                    course.IsBlocked = true;
-
-                    course.Status = "Block";
-                }
+                course.Status = "Block";
 
                 //Set updated date
                 course.UpdateAt = DateTime.Now;
@@ -293,10 +275,11 @@ namespace Core.Services
                 Course course = await  _repository.GetByIdAsync<Course>(id);
 
                 //Check status must be "Waiting for approved"
-                if (course.Status.Trim().ToLower().Equals("waiting for approved"))
-                    return false;
+                /*if (course.Status.Trim().ToLower().Equals("waiting for approved"))
+                    return false;*/
 
                 //Updated Course's Status
+                course.IsBlocked = false;
                 course.Status = "Active";
 
                 //Set updated date
@@ -325,9 +308,40 @@ namespace Core.Services
         {
             course.CreateAt = DateTime.Now;
             course.UpdateAt = DateTime.Now;
-            course.Status = "Waiting for approved";
+            course.Status = "Draft";
 
             return await _repository.AddAsync<Course>(course);
+        }
+
+        public async Task<Course> CreateCourseWithImg(CourseMain request, Guid id)
+        {
+            var item = new Course
+            {
+                UserId =id,
+                Title = request.Title,
+                Description = request.Description,
+                LanguageId = request.LanguageId,
+                SubCategoryId = request.SubCategoryId,
+                ImageUrl = await UploadImage(request.BackgroupCourse),
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now,
+                Status = "Draft"
+
+            };
+
+            //determine origin price
+            if (!request.IsFree)
+            {
+                item.OriginPrice = request.Price * await GetDiscount(request.PromotionId);
+
+                item.PromotionId = request.PromotionId;
+            }
+            else
+                item.OriginPrice = request.Price; 
+
+         
+
+            return await _repository.AddAsync<Course>(item);
         }
 
         /// <summary>
@@ -394,12 +408,64 @@ namespace Core.Services
                 var results = new List<Dictionary<string, string>>();
 
                 IFormatProvider provider = CultureInfo.CreateSpecificCulture("en-US");
+                var result = await _cloudinary.UploadLargeAsync(new VideoUploadParams
+                {
+                    File = new FileDescription(file.FileName,
+                        file.OpenReadStream()),
+                    Tags = "backend_PhotoAlbum",
+                    PublicId = "samples/Course/Video/" + file.FileName,
+                    EagerTransforms = new List<Transformation>()
+                      {
+                        new EagerTransformation().Width(300).Height(300).Crop("pad").AudioCodec("none")
+                      },
+                        EagerAsync = true
+                }).ConfigureAwait(false);
+
+                //nếu upload thất bại
+                if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    return "";
+                }
+
+                var imageProperties = new Dictionary<string, string>();
+                foreach (var token in result.JsonObj.Children())
+                {
+                    //tìm thuộc tính url để gán cho post
+                    if (token is JProperty prop)
+                    {
+                        if (prop.Name.Equals("url"))
+                            return prop.Value.ToString();
+                    }
+                }
+
+                results.Add(imageProperties);
+                #endregion
+            }
+
+            return "";
+        }
+
+
+        private async Task<string> UploadImage(IFormFile file)
+        {
+            //kiểm tra có ảnh hay không
+            if (file != null)
+            {
+                #region Upload image to Cloudinary
+                var results = new List<Dictionary<string, string>>();
+
+
+
+
+                IFormatProvider provider = CultureInfo.CreateSpecificCulture("en-US");
                 var result = await _cloudinary.UploadAsync(new ImageUploadParams
                 {
                     File = new FileDescription(file.FileName,
                         file.OpenReadStream()),
-                    Tags = "backend_PhotoAlbum"
+                    Tags = "backend_PhotoAlbum",
+                    PublicId = "samples/Course/image/" + file.FileName
                 }).ConfigureAwait(false);
+
 
                 //nếu upload thất bại
                 if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
@@ -439,6 +505,7 @@ namespace Core.Services
             section.CourseId = courseContent.CourseId;
             section.Title = courseContent.CourseContentTitle;
             section.TotalTime = GetTotalTime(courseContent.LessonContents);
+            //section.TotalTime = (int)courseContent.LessonContents.Duration;
             section.CreateAt = DateTime.Now;
 
             //Add new Section and Lesson
@@ -487,6 +554,35 @@ namespace Core.Services
 
                     await _repository.AddAsync<Lesson>(lesson);
                 }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        // add one lesson
+        private async Task<bool> AddLesson(Guid sectionId, LessonContent lessonContent)
+        {
+            try
+            {
+               
+                    Lesson lesson = new Lesson();
+
+                    //Set value for element in Lesson list
+                    lesson.SectionId = sectionId;
+                    lesson.Title = lessonContent.LessonTitle;
+                    lesson.CreateAt = DateTime.Now;
+                    lesson.VideoUrl = await UploadFile(lessonContent.File);
+                    lesson.Volume = lessonContent.Volume;
+                    lesson.Duration = lessonContent.Duration;
+                    lesson.Sort = lessonContent.Sort;
+
+                    await _repository.AddAsync<Lesson>(lesson);
+              
 
                 return true;
             }

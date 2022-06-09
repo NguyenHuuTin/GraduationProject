@@ -1,19 +1,16 @@
 import "./App.css";
 import Admin from "./Admin/Admin";
-// import { Route, Routes } from "react-router-dom";
-
+import InstructorPage from "./Instructor/InstructorPage";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Login/Login";
 
 function App() {
   return (
-    // <Routes>
-    //   <Route index element={<Admin />}>
-        
-    //   </Route>
-    //   {/* <Route path="/instructor" element={<InstructorPage />} /> */}
-    // </Routes>
-    <div>
-      <Admin/>
-    </div>
+    <Routes>
+      <Route path="admin/*" element={<Admin />}/>
+      <Route path="/instructorPage/*" element={<InstructorPage />} />
+      <Route index path="/*" element={<Login/>}/>
+    </Routes>
   );
 }
 

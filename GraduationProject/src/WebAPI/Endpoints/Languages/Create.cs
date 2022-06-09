@@ -28,7 +28,7 @@ namespace WebAPI.Endpoints.Languages
             OperationId = "Language.Create",
             Tags = new[] { "LanguageEndpoints" })
         ]
-        public async Task<ActionResult<Language>> HandleAsync(LanguageRequest language, CancellationToken cancellationToken)
+        public async Task<ActionResult<Language>> HandleAsync([FromBody]LanguageRequest language, CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
             {

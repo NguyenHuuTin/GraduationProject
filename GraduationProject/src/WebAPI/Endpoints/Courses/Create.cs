@@ -24,6 +24,7 @@ namespace WebAPI.Endpoints.Courses
             _courseService = courseService;
         }
 
+        [DisableRequestSizeLimit]
         [HttpPost("/Courses/Information")]
         [SwaggerOperation(
             Summary = "Creates a new Course",
@@ -31,39 +32,24 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "Course.Create",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public async Task<ActionResult<Guid>> CreateGenaralInformationAsync(CourseRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<Guid>> CreateGenaralInformationAsync([FromForm]CourseMain request, CancellationToken cancellationToken)
         {
            
             if (ModelState.IsValid)
             {
-                var item = new Course
-                {
-                    UserId = GetLoggedUserId(),
-                    Title = request.Title,
-                    Description = request.Description,
-                    LanguageId = request.LanguageId,
-                    SubCategoryId = request.SubCategoryId,
-                };
-
-                //determine origin price
-                if (!request.IsFree)
-                {
-                    item.OriginPrice = request.Price * await _courseService.GetDiscount(request.PromotionId);
-
-                    item.PromotionId = request.PromotionId;
-                }
-                else
-                    item.OriginPrice = request.Price;
+                var userID = GetLoggedUserId();
+                //var userID = Guid.Parse("585fc085-a50c-4427-81f9-08da43a4831b");
 
                 //create course
-                var createdItem = await _courseService.CreateCourse(item);
+                var createdItem = await _courseService.CreateCourseWithImg(request, userID);
 
                 return Ok(createdItem.Id);
             }
 
-            return BadRequest();
+            return Ok();
         }
 
+        [DisableRequestSizeLimit]
         [HttpPost("/Courses/Content")]
         [SwaggerOperation(
             Summary = "Creates a Course Content",
@@ -71,7 +57,7 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "CourseContent.Create",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public async Task<ActionResult<Guid>> CreateCourseContentAsync([FromForm] CourseContent request, CancellationToken cancellationToken)
+        public async Task<ActionResult<Guid>> CreateCourseContentAsync([FromBody] CourseContent request, CancellationToken cancellationToken)
         {
             //check Course must be owned by User logged in
             if (await _courseService.CheckCourseOfUser(request.CourseId, GetLoggedUserId()))

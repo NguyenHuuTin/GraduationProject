@@ -1,4 +1,4 @@
-.edit-user{
+.editUser{
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     background-color: white;
     border-radius: 5px;
@@ -9,45 +9,45 @@
     padding-top: 15px;
 }
 
-.edit-user-title{
+.editUserTitle{
     color: red;
     font-weight: bold;
 }
 
-.edit-user-input{
+.editUserInput{
     display: flex;
     flex-direction: column;
     margin-right: 15px;
 }
 
-.edit-user-input-group{
+.editUserInputGroup{
     display: flex;
     flex-direction: column;
     margin-top: 30px;
     flex: 1;
 }
 
-.edit-user-title-input{
+.editUserTitleInput{
     font-size: 12px;
     font-weight: 600;
 }
 
-.edit-user-style-input{
+.editUserStyleInput{
     height: 30px;
 }
 
-.edit-user-button{
+.editUserButton{
     background-color: red;
     color: white;
     border: none;
-    padding: auto;
+    padding: 10px;
     text-align: center;
     margin: 5px;
     border-radius: 5px;
-    height: 20px;
+    margin-right: 10px;
 }
 
-.edit-user-submit{
+.editUserSubmit{
    text-align: right;
    position: relative;
    bottom: 0px;

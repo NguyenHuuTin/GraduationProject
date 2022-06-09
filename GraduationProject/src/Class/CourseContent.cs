@@ -12,6 +12,9 @@ namespace Class
         [Required]
         public string CourseContentTitle { get; set; }
 
+        //[Required]
+        //public List<LessonContent> LessonContents { get; set; }
+
         [Required]
         public List<LessonContent> LessonContents { get; set; }
     }

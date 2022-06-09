@@ -18,6 +18,7 @@ namespace Core.Interfaces
         Task<bool> BestSeller(Guid id);
         Task<bool> Feature(Guid id);
         Task<Course> CreateCourse(Course course);
+        Task<Course> CreateCourseWithImg(CourseMain course, Guid id);
         Task<decimal> GetDiscount(Guid promotionId);
         Task<bool> CheckCourseOfUser(Guid courseId, Guid userId);
         Task<bool> UpdateView(Guid courseId, IFormFile image, IFormFile trailer);
