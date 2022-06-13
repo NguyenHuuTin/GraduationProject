@@ -21,4 +21,17 @@ namespace Core.Specifications
             Query.Where(item => !item.IsDeleted && item.Role.Name == "Admin").Include(item => item.Role);
         }
     }
+
+    public class ListUserInstructorSpecification : Specification<User>
+    {
+        public ListUserInstructorSpecification()
+        {
+            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor").Include(x => x.Courses);
+        }
+
+        public ListUserInstructorSpecification(Guid id)
+        {
+            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor" && item.Id == id).Include(x => x.Courses);
+        }
+    }
 }

@@ -16,6 +16,10 @@ namespace Core.Interfaces
 
         Task<List<User>> GetAllAdmin();
 
+        Task<List<User>> GetAllInstructor();
+
+        Task<User> GetAllInstructorById(Guid id);
+
         string GetNameUser(Guid id);
 
         Task<List<User>> SearchUser(string keyword);

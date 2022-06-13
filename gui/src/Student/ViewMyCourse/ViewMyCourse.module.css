@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 110%;
+  margin-left: -30px;
+}
+
+.bodyVideo {
+  flex: 3;
+  overflow-y: scroll;
+}
+
+.bodyVideo::-webkit-scrollbar{
+    width: 3px;
+    background-color: transparent;
+}
+
+.bodyVideo::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.bodyVideo::-webkit-scrollbar-thumb {
+    background-color:transparent;
+}
+
+.bodyListCourse {
+  flex: 1;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyListCourse::-webkit-scrollbar{
+    width: 3px;
+    background-color: transparent;
+}
+
+.bodyListCourse::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.bodyListCourse::-webkit-scrollbar-thumb {
+    background-color:transparent;
+}
+
+.video {
+  width: 100%;
+  height: 550px;
+}
+
+
+.titleContentCourse{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+.sectionCourse{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lectureCourse{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.titleSection{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 50px;
+    background-color: #F5F5F5;
+    padding-left: 20px;
+    line-height: 50px;
+}
+.titleLecture{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #e6e5e5;
+}
+
+.titleLecture:hover{
+    background-color: #e6e5e5;
+}
+
+.describe{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.comment{
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.myComment{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.imgUser{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.inputComment{
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    width: 70%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.listComment{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.itemComment{
+    display: flex;
+    flex-direction: row;
+}
+
+.infoComment{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.nameUser{
+    font-weight: 500;
+}
+
+.dateComment{
+    font-size: 12px;
+    font-style: italic;
+}
+
+.contentComment{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+}

@@ -30,13 +30,16 @@ namespace Core.Interfaces
         Task<List<Course>> GetRejectedCourse<Course>();
         Task<List<Course>> GetBlockCourse<Course>();
         Task<List<Course>> GetActiveCourse<Course>();
+        Task<List<Course>> GetActiveCourseStudent<Course>();
         Task UpdateCourse(Course request, IFormFile image, IFormFile trailer);
         Task UpdateSection(Section request);
         Task UpdateLesson(Lesson request, IFormFile file);
         Task<bool> CreateCourseContent(CourseContent courseContent);
+        Task<Guid> CreateCourseSection(Section section);
         Task<bool> DeleteSection(Guid sectionId);
         Task<Guid> GetUserIdBySectionId(Guid sectionId);
         Task<bool> UpdateExtra(Guid courseId, string status);
         Course GetCourseCreating(Guid userId);
+        Task<bool> AddLesson(LessonContent lessonContent);
     }
 }

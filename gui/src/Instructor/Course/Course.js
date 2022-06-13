@@ -26,7 +26,7 @@ function Course(props) {
         </div>
         <div className={styles.createTitle}>Jump Into Course Creation</div>
         <div>
-          <button className={styles.createBtn}>Create Your Course</button>
+          <Link to={"/instructorpage/createCourse"}><button className={styles.createBtn}>Create Your Course</button></Link>
         </div>
       </div>
 

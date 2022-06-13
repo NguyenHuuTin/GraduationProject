@@ -46,27 +46,32 @@ function GeneralInfo(props) {
   const handleValue = (e, editor) => {
     const data = editor.getData();
     setDescription(parse(data));
-    console.log(parse(data))
   };
 
   const handleSubmit=()=>{
-    if(description !== "" && title !== ""  && subTitle !=="" && isFree !==""){
-      if(!isFree){
-        if(price !== "" && discount !== ""){
-          props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
-          props.handleStatus(1);
+    if(description !== "" && title !== ""  && subTitle !=="" && isFree !=="" ){
+      if(title.length >=10 && subTitle.length >= 10){
+        if(!isFree){
+          if(price !== "" && discount !== ""){
+            props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
+            props.handleStatus(1);
+          }
+          else{
+            alert("Please fill out the information completely");
+          }
         }
         else{
-          alert("Please fill out the information completely");
+          if(price !==""){
+            props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
+            props.handleStatus(1);
+          }
+          else alert("Please fill out the information completely");
         }
       }
       else{
-        if(price !==""){
-          props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
-          props.handleStatus(1);
-        }
-        else alert("Please fill out the information completely");
+        alert("SubTitle and Title must be a string or array type with a minimum length of '10'");
       }
+      
     }
     else{
       alert("Please fill out the information completely");

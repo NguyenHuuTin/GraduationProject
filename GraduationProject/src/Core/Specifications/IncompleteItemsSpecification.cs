@@ -65,6 +65,15 @@ namespace Core.Specifications
         }
     }
 
+    public class GetActiveItemStudent : Specification<Course>
+    {
+        public GetActiveItemStudent()
+        {
+            Query.Where(item => item.IsBlocked == false && item.Status == "Active").Include(item => item.User);
+
+        }
+    }
+
     public class GetCourseByUser : Specification<Course>
     {
         public GetCourseByUser(Guid Id)
@@ -178,6 +187,11 @@ namespace Core.Specifications
         public GetOrderDetail()
         {
             Query.Where(item => true).Include(item => item.Course);
+        }
+
+        public GetOrderDetail(Guid id)
+        {
+            Query.Where(item => true).Where(x => x.UserId == id).Include(item => item.Course).ThenInclude(item => item.User);
         }
     }
 

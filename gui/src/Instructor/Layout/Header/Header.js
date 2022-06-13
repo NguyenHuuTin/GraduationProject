@@ -8,6 +8,7 @@ function Header(props) {
     setDropdown((prev) => !prev);
   };
 
+  var token = localStorage.token
   return (
     <div className={styles.header}>
       <div className={styles.body}>
@@ -19,9 +20,11 @@ function Header(props) {
         </div>
         <div className={styles.account}>
           <div className={styles.itemHeader}>
-            <button className={styles.btnCreateNewCourse}>
-              Create New Course
-            </button>
+            <Link to={"/instructorpage/createCourse"}>
+              <button className={styles.btnCreateNewCourse}>
+                Create New Course
+              </button>
+            </Link>
           </div>
           <div className={styles.itemHeader}>
             <i className="fa-solid fa-envelope"></i>
@@ -51,9 +54,9 @@ function Header(props) {
                   </Link>
                 </div>
                 <div className={styles.itemLogout}>
-                  <Link to={"login"} className={styles.linkLog}>
+                  <Link to={"/login/signin"} className={styles.linkLog}>
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                    Log out
+                    {token ? "Log out" : "Log in"}
                   </Link>
                 </div>
               </div>

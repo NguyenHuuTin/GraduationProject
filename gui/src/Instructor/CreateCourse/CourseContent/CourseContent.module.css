@@ -1,0 +1,368 @@
+.container {
+  background-color: transparent;
+  width: 100%;
+  border: 1px;
+  right: 0px;
+  flex: 1;
+  border: 0px solid #052a5e;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 20px;
+  border-bottom: 2px solid #efefef;
+  border-top: 2px solid #efefef;
+}
+
+.main {
+  background-color: white;
+  min-height: 600px;
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.courseTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.inputTitle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.titleAddLecture {
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #efefef;
+  margin-left: 20px;
+}
+
+.titleAddCourseContent {
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #efefef;
+  margin-left: 20px;
+}
+
+.inputTextFile {
+  background-color: #e9d7ec;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  border: 1px solid #75307e;
+}
+
+.inputID {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.inputPrice {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.inputIsFree {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  border-radius: 5px;
+}
+
+.btnSaveLecture {
+  color: white;
+  background-color: #75307e;
+  border-radius: 5px;
+  height: 40px;
+  width: 140px;
+  padding: 10px 20px 10px 20px;
+  margin-top: 30px;
+}
+
+.btnSaveCourse {
+  color: white;
+  background-color: #75307e;
+  border-radius: 5px;
+  height: 40px;
+  width: 190px;
+  padding: 10px 20px 10px 20px;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.saveCourse {
+    width: 100%;
+    /* text-align: right; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.progress {
+	background-color: #d8d8d8;
+	border-radius: 20px;
+	position: relative;
+	margin: 15px 0;
+	height: 10px;
+  margin-right: 30px;
+}
+
+.progressDone {
+	background: linear-gradient(to left, #F2709C, #FF9472);
+	box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+	border-radius: 20px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80%;
+	width: 0;
+	opacity: 0;
+	transition: 1s ease 0.3s;
+}
+
+.loading{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.loadStatus{
+  color:  #F2709C;
+  font-style: italic;
+}
+
+.name {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.inputText {
+  height: 35px;
+  width: 100%;
+  box-shadow: thistle 10px;
+}
+
+.inputDes {
+  width: 99%;
+  min-height: 100px;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.coursePriceInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.coursePrice {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid #efefef;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.priceTitle {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  padding: 10px;
+  line-height: 30px;
+}
+.textPriceTitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.buttonNext {
+  text-align: left;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+.btn {
+  background-color: #75307e;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+}
+
+.tableLecture {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.tableCourseContent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.tableHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffecec;
+  height: 50px;
+  line-height: 50px;
+}
+
+.tableContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+  }
+
+.tableStt {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableTile {
+  flex: 5;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableVolume {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableDuration {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableSort {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableFile {
+  flex: 5;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableControl {
+  flex: 2;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.itemStt {
+    flex: 1;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemTile {
+    flex: 5;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemVolume {
+    flex: 1;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemDuration {
+    flex: 1;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemSort {
+    flex: 1;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemFile {
+    flex: 5;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .itemControl {
+    flex: 2;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+.tableSttTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableTileTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableVolumeTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableDurationTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableSortTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableLectureTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.tableControlTotal {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 10px;
+}

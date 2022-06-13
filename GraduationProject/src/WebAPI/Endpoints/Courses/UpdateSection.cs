@@ -27,14 +27,13 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "Course.UpdateSection",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public async Task<ActionResult<Section>> UpdateSectionsync(UpdateSectionRequest request, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<Section>> UpdateSectionsync([FromBody] UpdateSectionRequest request, CancellationToken cancellationToken = default)
         {
             Section item = new Section()
             {
                 Id = request.Id,
                 Title = request.Title,
                 TotalTime = request.TimeTotal,
-                UpdateAt = request.UpdateAt,
 
             };
 

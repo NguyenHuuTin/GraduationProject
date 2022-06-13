@@ -125,6 +125,23 @@ namespace Core.Services
             }
         }
 
+
+        public async Task<List<Course>> GetActiveCourseStudent<Course>()
+        {
+            var incompleteSpec = new GetActiveItemStudent();
+            try
+            {
+                var items = await _repository.ListAsync(incompleteSpec);
+
+                return new List<Course>((IEnumerable<Course>)items);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<List<Course>>.Error(new[] { ex.Message });
+            }
+        }
+
         /// <summary>
         /// Update Course's Status to Waiting for approval
         /// </summary>
@@ -512,12 +529,19 @@ namespace Core.Services
             return await AddListLesson((await _repository.AddAsync<Section>(section)).Id, courseContent.LessonContents);
         }
 
+
+        public async Task<Guid> CreateCourseSection( Section section)
+        {
+            return (await _repository.AddAsync<Section>(section)).Id;
+
+        }
+
         /// <summary>
         /// Get total time of total Lessons
         /// </summary>
         /// <param name="lessons"></param>
         /// <returns>value of Total time</returns>
-        private int GetTotalTime(List<LessonContent> lessons)
+        private int GetTotalTime(LessonContent[] lessons)
         {
             int result = 0;
 
@@ -535,7 +559,7 @@ namespace Core.Services
         /// <param name="sectionId">Id of Section want relationship</param>
         /// <param name="lessonContents">Lesson list</param>
         /// <returns>true if it's success</returns>
-        private async Task<bool> AddListLesson(Guid sectionId, List<LessonContent> lessonContents)
+        private async Task<bool> AddListLesson(Guid sectionId, LessonContent[] lessonContents)
         {
             try
             {
@@ -565,7 +589,7 @@ namespace Core.Services
 
 
         // add one lesson
-        private async Task<bool> AddLesson(Guid sectionId, LessonContent lessonContent)
+        public async Task<bool> AddLesson(LessonContent lessonContent)
         {
             try
             {
@@ -573,7 +597,7 @@ namespace Core.Services
                     Lesson lesson = new Lesson();
 
                     //Set value for element in Lesson list
-                    lesson.SectionId = sectionId;
+                    lesson.SectionId = lessonContent.SectionId;
                     lesson.Title = lessonContent.LessonTitle;
                     lesson.CreateAt = DateTime.Now;
                     lesson.VideoUrl = await UploadFile(lessonContent.File);
@@ -848,5 +872,7 @@ namespace Core.Services
                 return Result<bool>.Error(new[] { ex.Message });
             }
         }
+
+       
     }
 }

@@ -7,7 +7,7 @@
 }
 
 .container {
-  width: 520px;
+  width: 450px;
   height: 600px;
   background-color: white;
   box-shadow: -10px 10px 20px 0 rgba(0, 0, 0, 0.2), 10px 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -64,6 +64,10 @@
   background-color: #ed2a26;
   border-radius: 5px;
   border: none;
+}
+
+.btnLogin:hover{
+  background-color: rgb(54, 52, 77);
 }
 
 .redText {

@@ -11,6 +11,5 @@ namespace WebAPI.Endpoints.Courses
         public string Title { get; set; }
         public int TimeTotal { get; set; }
         public Guid CourseId { get; set; }
-        public DateTime UpdateAt { get; set; }
     }
 }

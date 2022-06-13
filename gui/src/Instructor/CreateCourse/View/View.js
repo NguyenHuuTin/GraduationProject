@@ -18,7 +18,6 @@ function View(props) {
       if(backGround)
       {
         props.handleCreateInfoCourse(backGround)
-        props.handleStatus(2);
       }
       else{
         alert("Please choose photo")
@@ -34,7 +33,7 @@ function View(props) {
         <div className={styles.image}>
           <img
             className={styles.image}
-            src={backGround ? url : url}
+            src={backGround ? URL.createObjectURL(backGround) : url}
             alt=""
           />
         </div>

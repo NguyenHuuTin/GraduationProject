@@ -9,5 +9,6 @@ namespace Core.Interfaces
     public interface IOrderDetailService
     {
         Task<List<OrderDetail>> GetAllOrderDetail();
+        Task<List<OrderDetail>> GetAllOrderDetailWithStudent(Guid id);
     }
 }

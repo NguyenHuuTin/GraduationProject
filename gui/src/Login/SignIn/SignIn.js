@@ -10,17 +10,16 @@ function SignIn(props) {
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const formData = new FormData();
     formData.append("Email", email);
     formData.append("Password", pass);
-    axios
+    await axios
       .post(`http://localhost:57678/Login`, formData)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("token", res.data.token);
         loginUser(res.data.user);
-        navigate("/instructorpage")
+        handleRole(formData);
       })
       .catch((error) => {
         console.log(error);
@@ -32,6 +31,27 @@ function SignIn(props) {
     type: "LOGIN_USER",
     payload: userObj,
   });
+
+  const handleRole = (formData)=>{
+    axios.post('http://localhost:57678/GetRole',{
+      Email: email,
+      Password: pass
+    })
+    .then((res)=>{
+      if(res.data === "Instructor"){
+        navigate("/instructorpage")
+      }
+      if(res.data === "Admin"){
+        navigate("/admin")
+      }
+      if(res.data === "Student"){
+        navigate("/")
+      }
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   return (
     <div className={styles.body} >

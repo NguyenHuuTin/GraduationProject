@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Class
 {
     public class LessonContent
     {
+        [Required]
+        public Guid SectionId { get; set; }
+
         [Required]
         public string LessonTitle { get; set; }
 

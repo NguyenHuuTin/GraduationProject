@@ -1,0 +1,29 @@
+.content{
+    display: flex;
+    position: static;
+    top: 0;
+    bottom: 0;
+    height: 670px;
+    max-width: 100%;
+    width: 20px;
+    padding-left: 30px;
+    flex: 1;
+    margin-right: 20px;
+    margin-left: 120px;
+    margin-top: 10px;
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar{
+    width: 3px;
+    background-color: transparent;
+}
+
+.content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color:transparent;
+}
+

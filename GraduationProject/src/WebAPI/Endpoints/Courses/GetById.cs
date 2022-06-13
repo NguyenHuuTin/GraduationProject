@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Endpoints.Courses
 {
-    public class GetById : BaseAsyncEndpoint<Guid, CourseResponse>
+    public class GetById : BaseAsyncEndpoint
     {
         private readonly ICourseService _courseService;
 
@@ -28,7 +28,7 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "Course.GetById",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public override async Task<ActionResult<CourseResponse>> HandleAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult<CourseResponse>> GetCourseByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             var item = (await _courseService.GetDetailCourse(id));
 
@@ -41,6 +41,31 @@ namespace WebAPI.Endpoints.Courses
             };
             return Ok(response);
         }
+
+
+        [HttpGet("/CourseStudent/{id}")]
+        [SwaggerOperation(
+            Summary = "Gets a single Course",
+            Description = "Gets a single Course by Id",
+            OperationId = "Course.GetCourseById",
+            Tags = new[] { "CourseEndpoints" })
+        ]
+        public async Task<ActionResult<CourseStudentResponse>> GetCourseByIdStudentAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var item = (await _courseService.GetDetailCourse(id));
+
+            var response = new CourseStudentResponse
+            {
+                Id = item.Id,
+                Price = item.OriginPrice,
+                Title = item.Title,
+                Image = item.ImageUrl,
+                Description = item.Description,
+                Section = item.Sections,
+            };
+            return Ok(response);
+        }
+
 
         [HttpGet("/Course/Creating")]
         [SwaggerOperation(

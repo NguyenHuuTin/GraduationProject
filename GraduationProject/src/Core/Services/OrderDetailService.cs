@@ -32,6 +32,20 @@ namespace Core.Services
                 return Result<List<OrderDetail>>.Error(new[] { ex.Message });
             }
         }
+
+        public async Task<List<OrderDetail>> GetAllOrderDetailWithStudent(Guid id)
+        {
+            var incompleteSpec = new GetOrderDetail(id);
+            try
+            {
+                return await _repository.ListAsync<OrderDetail>(incompleteSpec);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<List<OrderDetail>>.Error(new[] { ex.Message });
+            }
+        }
     }
 }
 

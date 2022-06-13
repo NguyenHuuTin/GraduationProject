@@ -57,7 +57,7 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "CourseContent.Create",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public async Task<ActionResult<Guid>> CreateCourseContentAsync([FromBody] CourseContent request, CancellationToken cancellationToken)
+        public async Task<ActionResult<Guid>> CreateCourseContentAsync( [FromForm] CourseContent request, CancellationToken cancellationToken)
         {
             //check Course must be owned by User logged in
             if (await _courseService.CheckCourseOfUser(request.CourseId, GetLoggedUserId()))
@@ -73,6 +73,58 @@ namespace WebAPI.Endpoints.Courses
             }
 
             return Unauthorized();
+        }
+
+
+        [DisableRequestSizeLimit]
+        [HttpPost("/Courses/Section")]
+        [SwaggerOperation(
+            Summary = "Creates a Course Section",
+            Description = "Creates the Sections",
+            OperationId = "CourseSection.Create",
+            Tags = new[] { "CourseEndpoints" })
+        ]
+        public async Task<ActionResult<Guid>> CreateCourseSectionAsync([FromForm] CourseSectionResponse request, CancellationToken cancellationToken)
+        {
+            //check Course must be owned by User logged in
+            if (await _courseService.CheckCourseOfUser(request.CourseId, GetLoggedUserId()))
+            {
+                //check value of request
+                if (ModelState.IsValid)
+                {
+                    Section section = new Section();
+                    section.CourseId = request.CourseId;
+                    section.Title = request.CourseContentTitle;
+                    section.CreateAt = DateTime.Now;
+                    section.UpdateAt = DateTime.Now;
+                    return Ok(await _courseService.CreateCourseSection(section));
+                }
+
+                return BadRequest();
+            }
+
+            return Unauthorized();
+        }
+
+
+        [DisableRequestSizeLimit]
+        [HttpPost("/Courses/Lesion")]
+        [SwaggerOperation(
+            Summary = "Creates a Course Lesion",
+            Description = "Creates the Lesion",
+            OperationId = "CourseLesion.Create",
+            Tags = new[] { "CourseEndpoints" })
+        ]
+        public async Task<ActionResult<Guid>> CreateCourseLesionAsync([FromForm] LessonContent request, CancellationToken cancellationToken)
+        {
+            //check value of request
+            if (ModelState.IsValid)
+            {
+                return Ok(await _courseService.AddLesson(request));
+            }
+
+            return BadRequest();
+
         }
 
         private Guid GetLoggedUserId()

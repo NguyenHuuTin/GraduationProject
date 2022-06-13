@@ -58,6 +58,18 @@ namespace Core.Services
             return _userRepository.ListAsync(query);
         }
 
+        public Task<List<User>> GetAllInstructor()
+        {
+            var query = new ListUserInstructorSpecification();
+            return _userRepository.ListAsync(query);
+        }
+
+        public async Task<User> GetAllInstructorById(Guid id)
+        {
+            var query = new ListUserInstructorSpecification(id);
+            return  (await _userRepository.ListAsync(query)).First();
+        }
+
         // Add User
         public async Task<User> AddUser(User user)
         {

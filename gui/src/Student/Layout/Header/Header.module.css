@@ -1,0 +1,122 @@
+.header {
+  border: 2px;
+  box-shadow: 0px 0.052083333in 11.25pt -9px rgba(5, 5, 5, 0.1);
+  background-color: white;
+  min-height: 60px;
+  width: 100%;
+  text-align: center;
+  z-index: 999;
+  overflow: visible;
+}
+.body {
+  border: 3px #fff;
+  height: 60px;
+  width: 100%;
+  align-items: center;
+  z-index: 890;
+  background-color: transparent;
+  display: flex;
+  color: black;
+  justify-content: space-between;
+}
+
+.account {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.itemHeader {
+  display: inline-block;
+  padding: 15px;
+}
+
+.imageUser {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% !important;
+  border-top-left-radius: 50% !important;
+  border-top-right-radius: 50% !important;
+  border-bottom-right-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+  margin-right: 0.25rem !important;
+  margin-left: 10px;
+}
+.user {
+  display: inline-block;
+  color: black;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.dropdownContentClick {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  left: auto;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin-right: 40px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.itemLogout {
+  text-decoration: none;
+  padding: 10px 5px 10px 5px;
+  text-align: left;
+  color: black;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.linkLog {
+  text-decoration: none;
+  color: red;
+}
+
+.itemLogout:hover {
+  background-color: rgb(221, 221, 221);
+}
+
+.menuBar{
+  width: 60px;
+  height: 60px;
+  background-color: #75307e;
+  line-height: 60px;
+  color: white;
+}
+
+.titleHeader{
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 30px;
+}
+
+.menuTitleBar{
+  display: flex;
+  flex-direction: row;
+}
+
+.btnCreateNewCourse{
+  background-color: #75307e;
+  color: white;
+  padding: 7px;
+  text-decoration: none;
+  border-radius: 5px;
+}

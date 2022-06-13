@@ -7,7 +7,7 @@ function Header(props) {
   const handleDropdown = () => {
     setDropdown((prev) => !prev);
   };
-
+  var token = localStorage.token
   return (
     <div className={styles.header}>
       <div className={styles.body}>
@@ -44,9 +44,9 @@ function Header(props) {
                   </Link>
                 </div>
                 <div className={styles.itemLogout}>
-                  <Link to={"login"} className={styles.linkLog}>
+                  <Link to={"/login/signin"} className={styles.linkLog}>
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                    Log out
+                    {token ? "Log out" : "Log in"}
                   </Link>
                 </div>
               </div>

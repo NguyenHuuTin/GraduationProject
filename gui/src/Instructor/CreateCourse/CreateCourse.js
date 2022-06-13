@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styles from "./CreateCourse.module.css";
 import GeneralInfo from "./GeneralInfo/GeneralInfo";
 import View from "./View/View";
+import CourseContent from "./CourseContent/CourseContent";
+import Finished from "./Finished/Finished";
 
 function CreateCourse(props) {
   const [description, setDescription] = useState("aaaaaaaaaaaaaaaaaaaaaaaa");
@@ -58,13 +60,14 @@ function CreateCourse(props) {
     .then((res)=>{
       console.log(res.data)
       setCourseID(res.data)
+      setStatus(2)
     })
     .catch((error)=>{
       console.log(error)
     })
     }
   }
-
+  console.log(status)
 
   return (
     <div className={styles.container}>
@@ -106,13 +109,15 @@ function CreateCourse(props) {
             <div className={status >= 4 ? styles.stepPointActive : styles.stepPoint}></div>
             <div className={styles.stepStatusHidden}></div>
           </div>
-          <div className={styles.stepTitle}>EXTRA INFORMATION</div>
+          <div className={styles.stepTitle}>FINISHED</div>
         </div>
       </div>
       <div className={styles.content}>
         {
           status === 0 ? <GeneralInfo handleStatus={handleStatus} handleData={handleData}/>
-          : <View handleStatus={handleStatus} handleCreateInfoCourse={handleCreateInfoCourse}/>
+          : status ===1 ? <View handleStatus={handleStatus} handleCreateInfoCourse={handleCreateInfoCourse}/>
+          : status === 2 || status === 3 ? <CourseContent handleStatus={handleStatus} courseID={courseID}/>
+          : <Finished/>
         }
       </div>
     </div>

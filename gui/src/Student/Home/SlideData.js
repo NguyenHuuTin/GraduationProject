@@ -1,0 +1,22 @@
+export const SliderData = [
+    {
+      image:
+        'https://static.vecteezy.com/system/resources/previews/002/294/874/original/e-learning-web-banner-design-students-take-online-tests-during-online-classes-online-education-digital-classroom-e-learning-concept-header-or-footer-banner-free-vector.jpg'
+    },
+    {
+      image:
+        'https://img.freepik.com/free-vector/education-online-concept-web-banner-online-education-e-learning-by-using-smartphone_68971-365.jpg?w=2000'
+    },
+    {
+      image:
+        'https://img.freepik.com/free-vector/education-horizontal-typography-banner-set-with-learning-knowledge-symbols-flat-illustration_1284-29493.jpg?w=2000'
+    },
+    {
+      image:
+        'https://static.vecteezy.com/system/resources/previews/002/294/853/original/education-web-banner-design-free-vector.jpg'
+    },
+    {
+      image:
+        'https://thumbs.dreamstime.com/b/digital-classroom-web-banner-design-student-sitting-stack-book-watching-teacher-screen-online-class-e-learning-216337498.jpg'
+    }
+  ];

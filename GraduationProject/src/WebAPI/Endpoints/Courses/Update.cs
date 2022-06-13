@@ -8,6 +8,7 @@ using Core.Interfaces;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using WebAPI.Endpoints.Courses;
 
 namespace Web.Endpoints.Courses
 {
@@ -104,28 +105,22 @@ namespace Web.Endpoints.Courses
             return Unauthorized();
         }
 
-        [HttpPut("/Courses/Extra")]
+        [HttpPost("/Courses/Extra")]
         [SwaggerOperation(
             Summary = "Updates a Course",
             Description = "Updates a Course to waiting for approved or draff",
             OperationId = "Course.Update",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public async Task<ActionResult> UpdateExtraAsync(Guid courseId, string status, CancellationToken cancellationToken)
+        public async Task<ActionResult> UpdateExtraAsync([FromBody]CouresExtraResponse res, CancellationToken cancellationToken)
         {
-            //check Course must be owned by User logged in
-            if (await _courseService.CheckCourseOfUser(courseId, GetLoggedUserId()))
+            //check value of request
+            if (ModelState.IsValid)
             {
-                //check value of request
-                if (ModelState.IsValid)
-                {
-                    return Ok(await _courseService.UpdateExtra(courseId, status));
-                }
-
-                return BadRequest();
+                return Ok(await _courseService.UpdateExtra(res.id, res.status));
             }
 
-            return Unauthorized();
+            return BadRequest();
         }
 
         private Guid GetLoggedUserId()

@@ -13,9 +13,9 @@ namespace Class
         public string CourseContentTitle { get; set; }
 
         //[Required]
-        //public List<LessonContent> LessonContents { get; set; }
+        //public LessonContent> LessonContents { get; set; }
 
         [Required]
-        public List<LessonContent> LessonContents { get; set; }
+        public LessonContent[] LessonContents { get; set; }
     }
 }
