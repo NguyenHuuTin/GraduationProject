@@ -9,7 +9,7 @@ namespace WebAPI.Endpoints.Earning
     {
         public decimal SalesEarnings { get; set; }
 
-        public decimal YourBalance { get; set; }
+        public decimal YourEarning { get; set; }
 
         public decimal AdminCommission { get; set; }
     }

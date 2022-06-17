@@ -7,16 +7,12 @@ import CourseContent from "./CourseContent/CourseContent";
 import Finished from "./Finished/Finished";
 
 function CreateCourse(props) {
-  const [description, setDescription] = useState("aaaaaaaaaaaaaaaaaaaaaaaa");
+  const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [subTitle, setSubTile] = useState("");
   const [language, setLanguage] = useState("");
   const [subCate, setSubCate] = useState("");
-  const [promotion , setPromotion] = useState("");
-  const [isFree, setIsFree] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
-
+  const [price, setPrice] = useState(0);
   const [backGround, setBackGround] = useState();
   const [courseID, setCourseID] = useState("")
   const [status, setStatus] = useState(0);
@@ -24,15 +20,13 @@ function CreateCourse(props) {
     setStatus(e);
   }
 
-  const handleData = (title, subTitle, description, language, subCate, promotion, isFree, price, discount)=>{
+  const handleData = (title, subTitle, description, language, subCate, price)=>{
     setTitle(title);
     setSubTile(subTitle);
     setLanguage(language);
     setSubCate(subCate);
-    setPromotion(promotion);
-    setIsFree(isFree);
     setPrice(price);
-    setDiscount(discount);
+    setDescription(description);
   }
 
   const handleCreateInfoCourse = async (backGround)=>{
@@ -43,9 +37,7 @@ function CreateCourse(props) {
     formData.append('description', description);
     formData.append('languageId', language);
     formData.append('subCategoryId', subCate);
-    formData.append('isFree', isFree);
     formData.append('price', price);
-    formData.append('discount', discount);
     formData.append('backgroupCourse', backGround);
     const token = localStorage.token;
     console.log(token);

@@ -6,14 +6,16 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Endpoints.Courses
 {
-    public class ListCourseById : BaseAsyncEndpoint<Guid, List<ListResponse>>
+    public class ListCourseById : BaseAsyncEndpoint
     {
         private readonly ICourseService _courseService;
+
 
         public ListCourseById(ICourseService courseService)
         {
@@ -27,7 +29,7 @@ namespace WebAPI.Endpoints.Courses
             OperationId = "Course.ListCourseById",
             Tags = new[] { "CourseEndpoints" })
         ]
-        public override async Task<ActionResult<List<ListResponse>>> HandleAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<ListResponse>>> GetListCourseByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             var items = (await _courseService.GetCourseByUser<Course>(id))
                 .Select(item => new ListResponse
@@ -42,5 +44,8 @@ namespace WebAPI.Endpoints.Courses
 
             return Ok(items);
         }
+
+
+        
     }
 }

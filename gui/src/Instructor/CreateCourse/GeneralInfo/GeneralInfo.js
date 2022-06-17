@@ -11,23 +11,20 @@ function GeneralInfo(props) {
   const [subTitle, setSubTile] = useState("");
   const [language, setLanguage] = useState("");
   const [subCate, setSubCate] = useState("");
-  const [promotion , setPromotion] = useState("");
-  const [isFree, setIsFree] = useState(true);
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [price, setPrice] = useState(0);
   const [languageList, setLanguageList] = useState([]);
 
-  useEffect( () => {
-     axios
+  useEffect(() => {
+    axios
       .get("http://localhost:57678/Languages")
       .then((res) => {
         setLanguageList(res.data);
-        setLanguage(res.data[0].id)
+        setLanguage(res.data[0].id);
       })
       .catch(() => {
         setLanguageList([]);
       });
-  },[]);
+  }, []);
 
   const [categoryList, setCategoryList] = useState([]);
 
@@ -36,7 +33,7 @@ function GeneralInfo(props) {
       .get("http://localhost:57678/subcategory")
       .then((res) => {
         setCategoryList(res.data);
-        setSubCate(res.data[0].id)
+        setSubCate(res.data[0].id);
       })
       .catch(() => {
         setCategoryList([]);
@@ -45,38 +42,30 @@ function GeneralInfo(props) {
 
   const handleValue = (e, editor) => {
     const data = editor.getData();
-    setDescription(parse(data));
+    setDescription(data);
   };
 
-  const handleSubmit=()=>{
-    if(description !== "" && title !== ""  && subTitle !=="" && isFree !=="" ){
-      if(title.length >=10 && subTitle.length >= 10){
-        if(!isFree){
-          if(price !== "" && discount !== ""){
-            props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
-            props.handleStatus(1);
-          }
-          else{
-            alert("Please fill out the information completely");
-          }
-        }
-        else{
-          if(price !==""){
-            props.handleData(title, subTitle, description, language, subCate, promotion, isFree, price, discount)
-            props.handleStatus(1);
-          }
-          else alert("Please fill out the information completely");
-        }
+  const handleSubmit = () => {
+    if (description !== "" && title !== "" && subTitle !== "") {
+      if (title.length >= 10 && subTitle.length >= 10) {
+        props.handleData(
+          title,
+          subTitle,
+          description,
+          language,
+          subCate,
+          price
+        );
+        props.handleStatus(1);
+      } else {
+        alert(
+          "SubTitle and Title must be a string or array type with a minimum length of '10'"
+        );
       }
-      else{
-        alert("SubTitle and Title must be a string or array type with a minimum length of '10'");
-      }
-      
-    }
-    else{
+    } else {
       alert("Please fill out the information completely");
     }
-  }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -94,7 +83,9 @@ function GeneralInfo(props) {
                 maxLength="60"
                 placeholder="Insert your course title."
                 value={title}
-                onChange={(e)=>{setTitle(e.target.value)}}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -107,7 +98,9 @@ function GeneralInfo(props) {
                 maxLength="60"
                 placeholder="Insert your course subtitle."
                 value={subTitle}
-                onChange={(e)=>{setSubTile(e.target.value)}}
+                onChange={(e) => {
+                  setSubTile(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -129,10 +122,16 @@ function GeneralInfo(props) {
                 type={"text"}
                 maxLength="60"
                 placeholder="Insert your course title."
-                onChange={(e)=>{setLanguage(e.target.value)}}
+                onChange={(e) => {
+                  setLanguage(e.target.value);
+                }}
               >
-                {languageList?.map((element)=>{
-                  return(<option key={element.id} value={element.id}>{element.name}</option>)
+                {languageList?.map((element) => {
+                  return (
+                    <option key={element.id} value={element.id}>
+                      {element.name}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -145,30 +144,38 @@ function GeneralInfo(props) {
                 type={"text"}
                 maxLength="60"
                 placeholder="Insert your course subtitle."
-                onChange={(e)=>{setSubCate(e.target.value)}}
+                onChange={(e) => {
+                  setSubCate(e.target.value);
+                }}
               >
-                {categoryList?.map((element)=>{
-                  return(<option key={element.id} value={element.id}>{element.name}</option>)
+                {categoryList?.map((element) => {
+                  return (
+                    <option key={element.id} value={element.id}>
+                      {element.name}
+                    </option>
+                  );
                 })}
               </select>
             </div>
           </div>
 
           <div className={styles.inputID}>
-            <div className={styles.name}>Promotion</div>
+            <div className={styles.name}>Price*</div>
             <div>
-              <select
+              <input
                 className={styles.inputText}
                 type={"text"}
-                maxLength="60"
-                placeholder="Insert your course subtitle."
-                onChange={(e)=>{setPromotion(e.target.value)}}
-              ></select>
+                placeholder="Insert your course price"
+                value={price}
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                }}
+              />
             </div>
           </div>
         </div>
 
-        <div className={styles.coursePrice}>
+        {/* <div className={styles.coursePrice}>
           <div className={styles.priceTitle}>
             <div className={styles.textPriceTitle}>
               <i className="fa-solid fa-dollar-sign"></i>
@@ -179,7 +186,13 @@ function GeneralInfo(props) {
             <div className={styles.inputIsFree}>
               <div className={styles.name}>Is Free*</div>
               <div>
-                <select className={styles.inputText} type={"text"} onChange={(e)=>{setIsFree(e.target.value)}}>
+                <select
+                  className={styles.inputText}
+                  type={"text"}
+                  onChange={(e) => {
+                    setIsFree(e.target.value);
+                  }}
+                >
                   <option value={true}>True</option>
                   <option value={false}>False</option>
                 </select>
@@ -192,7 +205,9 @@ function GeneralInfo(props) {
                   className={styles.inputText}
                   type={"text"}
                   placeholder="Insert your course price"
-                  onChange={(e)=>{setPrice(e.target.value)}}
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -205,18 +220,20 @@ function GeneralInfo(props) {
                   type={"text"}
                   maxLength="60"
                   placeholder="Discount price if have"
-                  onChange={(e)=>{setDiscount(e.target.value)}}
+                  onChange={(e) => {
+                    setDiscount(e.target.value);
+                  }}
                 />
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles.buttonNext}>
         <button
           className={styles.btn}
           onClick={() => {
-            handleSubmit()
+            handleSubmit();
           }}
         >
           Next

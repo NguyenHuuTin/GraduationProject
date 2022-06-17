@@ -96,6 +96,22 @@
   margin-top: 30px;
 }
 
+.btnClearAll{
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  margin-top: 30px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.btnClearAll:hover{
+  color: white;
+  background-color: black;
+}
+
 .btnSaveCourse {
   color: white;
   background-color: #75307e;

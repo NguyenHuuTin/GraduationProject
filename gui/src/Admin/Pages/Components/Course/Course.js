@@ -6,6 +6,7 @@ import WaitingForApproveCourse from './WaitingForApproveCourse/WaitingForApprove
 import ActiveCourse from './ActiveCourse/ActiveCourse';
 import BlockCourse from './BlockCourse/BlockCourse';
 import RejectCourse from './RejectCourse/RejectCourse';
+import ViewCourse from './ViewCourse/ViewCourse';
 
 function Course(props) {
     return (
@@ -30,10 +31,15 @@ function Course(props) {
         <div className={styles.CourseMainCourseList}>
          <Routes>
             <Route index element={<AllCourse />} />
+            <Route path='/:id' element={<ViewCourse/>}/>
             <Route path="wait" element={<WaitingForApproveCourse />} />
+            <Route path='wait/:id' element={<ViewCourse/>}/>
             <Route path="active" element={<ActiveCourse />} />
+            <Route path='active/:id' element={<ViewCourse/>}/>
             <Route path="block" element={<BlockCourse />} />
+            <Route path='block/:id' element={<ViewCourse/>}/>
             <Route path="reject" element={<RejectCourse />} />
+            <Route path='reject/:id' element={<ViewCourse/>}/>
          </Routes>
         </div>
       </div>

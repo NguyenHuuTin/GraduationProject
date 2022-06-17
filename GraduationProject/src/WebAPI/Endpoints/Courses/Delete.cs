@@ -25,7 +25,7 @@ namespace WebAPI.Endpoints.Courses
         [SwaggerOperation(
             Summary = "Delete a Section of a Course",
             Description = "Delete a Section of a Course by SectionId",
-            OperationId = "Course.Delete",
+            OperationId = "CourseSection.Delete",
             Tags = new[] { "CourseEndpoints" })
         ]
         public async Task<ActionResult<bool>> SectionByIdAsync(Guid sectionId, CancellationToken cancellationToken)
@@ -37,6 +37,31 @@ namespace WebAPI.Endpoints.Courses
                 if (ModelState.IsValid)
                 {
                     return Ok( await _courseService.DeleteSection(sectionId));
+                }
+
+                return BadRequest();
+            }
+
+            return Unauthorized();
+        }
+
+
+        [HttpDelete("/Course/{id}")]
+        [SwaggerOperation(
+            Summary = "Delete a Course",
+            Description = "Delete a Course by CourseId",
+            OperationId = "Course.Delete",
+            Tags = new[] { "CourseEndpoints" })
+        ]
+        public async Task<ActionResult<bool>> DeleteCourseAsync(Guid Id, CancellationToken cancellationToken)
+        {
+            //check Section must be owned by User logged in
+            if (GetLoggedUserId() == await _courseService.GetUserIdByCourseId(Id))
+            {
+                //check value of request
+                if (ModelState.IsValid)
+                {
+                    return Ok(await _courseService.DeleteCourse(Id));
                 }
 
                 return BadRequest();

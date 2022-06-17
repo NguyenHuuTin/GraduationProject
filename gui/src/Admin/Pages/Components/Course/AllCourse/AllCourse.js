@@ -65,10 +65,12 @@ function AllCourse(props) {
 
   useEffect(() => {
     if (search === "") {
-      setFilter(CourseList);
+      setFilter(CourseList.filter((obj)=>{
+        return obj.status !== "Draft"
+      }));
     } else {
       var filterList = CourseList.filter((object) => {
-        return object.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
+        return object.title.toLowerCase().indexOf(search.toLowerCase()) > -1 && object.status !== "Draft";
       });
       setFilter(filterList);
     }

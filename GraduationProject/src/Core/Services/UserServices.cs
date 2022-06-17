@@ -42,7 +42,8 @@ namespace Core.Services
         }
         public async Task<User> GetById(Guid id)
         {
-            return await _userRepository.List<User>().Where(u => u.Id == id && u.IsDeleted == false).SingleOrDefaultAsync();
+            var user = await _userRepository.List<User>().Where(u => u.Id == id && u.IsDeleted == false).SingleOrDefaultAsync();
+            return user;
         }
 
         // Get List User by query Specification

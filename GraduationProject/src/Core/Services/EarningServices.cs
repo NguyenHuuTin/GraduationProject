@@ -18,9 +18,9 @@ namespace Core.Services
             _orderDetailRepository = orderDetailRepository;
         }
 
-        public async Task<List<OrderDetail>> GetAllEarningAsync(int month, int year, Guid id)
+        public async Task<List<OrderDetail>> GetAllEarningAsync(Guid id)
         {
-            var incompleteSpec = new GetOrderDetail(month, year, id);
+            var incompleteSpec = new ListEarning(id);
             var item = await _orderDetailRepository.ListAsync(incompleteSpec);
             return item;
         }

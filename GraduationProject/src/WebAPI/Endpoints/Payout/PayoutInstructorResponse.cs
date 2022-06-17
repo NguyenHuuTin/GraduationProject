@@ -15,6 +15,6 @@ namespace WebAPI.Endpoints.Payout
 
         public string Remark { get; set; }
 
-        public DateTime? Update { get; set; }
+        public string? Update { get; set; }
     }
 }

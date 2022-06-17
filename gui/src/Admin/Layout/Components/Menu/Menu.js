@@ -49,7 +49,7 @@ function Menu(props) {
         </div>
         <div className={styles.menu}>
           <div className={styles.itemMenu}>
-            <Link to={"/"}>
+            <Link to={"/admin"}>
               <i className="fa-solid fa-gauge-high"></i>
               <p className={styles.contentItem}>Dashboard</p>
             </Link>

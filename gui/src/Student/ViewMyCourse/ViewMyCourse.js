@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./ViewMyCourse.module.css";
+import parse from "html-react-parser";
 
 function ViewMyCourse(props) {
   const { id } = useParams();
@@ -40,7 +41,7 @@ function ViewMyCourse(props) {
         <div className={styles.describe}>
           <h2>{course && course.section[x].lessons[y].title}</h2>
           <p>
-            {course && course.description}
+            {course && parse(course.description)}
           </p>
           <div className={styles.comment}>
             <h4>6 comments</h4>

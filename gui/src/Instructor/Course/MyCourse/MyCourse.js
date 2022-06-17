@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MyCourse.module.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function MyCourse(props) {
+  const token = localStorage.token
+  const navigate = useNavigate(); 
+  const [status, setStatus] = useState(false);
   const [CourseList, setCourseList] = useState([]);
   useEffect(() => {
     axios
@@ -15,7 +23,62 @@ function MyCourse(props) {
       .catch(() => {
         setCourseList([]);
       });
-  }, []);
+  }, [status]);
+
+  const handleActive = (id) => {
+    axios
+      .put(`http://localhost:57678/Courses/Active/${id}`)
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Active course successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Active course failed!");
+      });
+  };
+
+  const handleBlock = (id) => {
+    axios
+      .put(`http://localhost:57678/Courses/Block/${id}`)
+      .then(() => {
+        setStatus((prev) => !prev);
+        NotificationManager.success("Block course successfully!");
+      })
+      .catch(() => {
+        NotificationManager.error("Block course failed!");
+      });
+  };
+
+  
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:57678/Course/${id}`,{
+        headers:{
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        if(res.data){
+          console.log(res.data)
+          setStatus((prev) => !prev);
+          NotificationManager.success("Delete course successfully!");
+        }
+        else{
+          NotificationManager.error("Delete course failed!");
+        }
+      })
+      .catch((error) => {
+        if(error.response.status === 500){
+          navigate("/login/signin")
+        }
+        else{
+          NotificationManager.error("Delete course failed!");
+        }
+        
+      });
+  };
 
   // Hook action Search
   const [search, setSearch] = useState("");
@@ -23,11 +86,16 @@ function MyCourse(props) {
 
   useEffect(() => {
     if (search === "") {
-      setFilter(CourseList);
+      setFilter(
+        CourseList.filter((obj) => {
+          return obj.status !== "Draft";
+        })
+      );
     } else {
       var filterList = CourseList.filter((object) => {
         return (
-          object.title.toLowerCase().indexOf(search.toLowerCase()) > -1
+          object.title.toLowerCase().indexOf(search.toLowerCase()) > -1 &&
+          object.status !== "Draft"
         );
       });
       setFilter(filterList);
@@ -103,35 +171,62 @@ function MyCourse(props) {
                 <div className={styles.itemTitle}>{element.title}</div>
                 <div className={styles.itemCategory}>{element.category}</div>
                 <div className={styles.itemPrice}>{element.price}</div>
-                {element.status === "Block" ? (
-                  <div className={styles.itemStatus}>{element.status}</div>
-                ) : (
-                  <div className={styles.itemStatusActive}>
-                    {element.status}
-                  </div>
-                )}
+                <div
+                  className={styles.itemStatus}
+                  style={{
+                    color:
+                      element.status === "Block"
+                        ? "Black"
+                        : element.status === "Active"
+                        ? "rgb(83, 226, 116)"
+                        : element.status === "Draft"
+                        ? "orange"
+                        : "rgb(226, 83, 83)",
+                  }}
+                >
+                  {element.status}
+                </div>
 
                 <div className={styles.itemUpdate}>{element.updateAt}</div>
                 {element.status === "Block" ? (
                   <div className={styles.itemAction}>
-                    <Link to={`${element.id}`}>
+                    <Link to={`.`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
 
-                    <button className={styles.buttonActionActive}>
+                    <button
+                      className={styles.buttonActionActive}
+                      onClick={() => {
+                        handleActive(element.id);
+                      }}
+                    >
                       Active
                     </button>
-                    <button className={styles.buttonActionReject}>
-                      Delete
+                    <NotificationContainer />
+                  </div>
+                ) : element.status === "Active" ? (
+                  <div className={styles.itemAction}>
+                    <Link to={`.`}>
+                      <button className={styles.buttonActionView}>Edit</button>
+                    </Link>
+                    <button
+                      className={styles.buttonActionBlock}
+                      onClick={() => {
+                        handleBlock(element.id);
+                      }}
+                    >
+                      Block
                     </button>
+                    <NotificationContainer />
                   </div>
                 ) : (
                   <div className={styles.itemAction}>
-                    <Link to={`${element.id}`}>
+                    <Link to={`.`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
-                    <button className={styles.buttonActionBlock}>Block</button>
-                    <button className={styles.buttonActionReject}>
+                    <button className={styles.buttonActionReject} onClick={()=>{
+                      handleDelete(element.id)
+                    }}>
                       Delete
                     </button>
                   </div>

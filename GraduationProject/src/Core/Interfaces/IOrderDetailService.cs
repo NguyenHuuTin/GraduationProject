@@ -10,5 +10,8 @@ namespace Core.Interfaces
     {
         Task<List<OrderDetail>> GetAllOrderDetail();
         Task<List<OrderDetail>> GetAllOrderDetailWithStudent(Guid id);
+
+        Task<bool> AddOrder(Guid userID, Guid courseId, decimal price);
+
     }
 }

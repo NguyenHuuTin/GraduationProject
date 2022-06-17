@@ -5,6 +5,7 @@ import axios from "axios";
 
 function MyCourse(props) {
   const [course, setCourse] = useState([]);
+  const [filter, setFilter] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.token;
 
@@ -32,11 +33,23 @@ function MyCourse(props) {
     }
   }, []);
 
+  useEffect(()=>{
+    if(course){
+      var filterList = course.filter((object) => {
+        return (
+          object.status !== "Block"
+        );
+      });
+      setFilter(filterList);
+    }
+  })
+
+
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        {course &&
-          course.map((element) => {
+        {filter &&
+          filter.map((element) => {
             return (
               <Link key={element.id} to={`/myCourse/${element.id}`} className={styles.itemCourse}>
                 <img
@@ -62,145 +75,7 @@ function MyCourse(props) {
               </Link>
             );
           })}
-        {/* <Link to={`/myCourse/id`} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>Khóa học Reactjs 2022</div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link>
-
-        <Link to={"."} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>Khóa học Reactjs 2022</div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link>
-
-        <Link to={"."} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>Khóa học Reactjs 2022</div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link>
-
-        <Link to={"."} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>Khóa học Reactjs 2022</div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link>
-
-        <Link to={"."} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>Khóa học Reactjs 2022</div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link>
-
-        <Link to={"."} className={styles.itemCourse}>
-          <img
-            alt="course item"
-            src="https://miro.medium.com/max/720/1*aBQrwweY6-qFVWeizUrTnQ.png"
-            className={styles.imgCourse}
-          ></img>
-          <div className={styles.courseInfo}>
-            <div className={styles.courseName}>
-              Khóa học Reactjs Angularjs Vuejs 2022
-            </div>
-            <div className={styles.infoInstructor}>
-              <img
-                className={styles.imgUser}
-                alt="img_user"
-                src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-              ></img>
-              <div className={styles.userName}>Huu Tin</div>
-              <div className={styles.checkIcon}>
-                <i className="fa-solid fa-circle-check"></i>
-              </div>
-            </div>
-            <div className={styles.coursePrice}>keep studying</div>
-          </div>
-        </Link> */}
+        
       </div>
     </div>
   );

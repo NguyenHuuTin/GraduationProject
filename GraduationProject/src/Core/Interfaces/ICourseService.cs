@@ -37,9 +37,13 @@ namespace Core.Interfaces
         Task<bool> CreateCourseContent(CourseContent courseContent);
         Task<Guid> CreateCourseSection(Section section);
         Task<bool> DeleteSection(Guid sectionId);
+        Task<bool> DeleteCourse(Guid Id);
         Task<Guid> GetUserIdBySectionId(Guid sectionId);
+        Task<Guid> GetUserIdByCourseId(Guid Id);
         Task<bool> UpdateExtra(Guid courseId, string status);
         Course GetCourseCreating(Guid userId);
         Task<bool> AddLesson(LessonContent lessonContent);
+
+        Task<List<OrderDetail>> GetTopCourse(Guid id);
     }
 }

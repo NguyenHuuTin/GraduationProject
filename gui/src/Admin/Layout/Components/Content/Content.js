@@ -14,14 +14,14 @@ import CourseSell from "../../../Pages/Components/CourseSell/CourseSell";
 import Subscription from "../../../Pages/Components/Subscription/Subscription";
 import InstructorRegistration from "../../../Pages/Components/InstructorRegistration/InstructorRegistration";
 import StudentRegistration from "../../../Pages/Components/StudentRegistration/StudentRegistration";
+import ViewInstructor from "../../../Pages/Components/ViewInstructor/ViewInstructor";
 
 function Content(props) {
   return (
     <div className="content">
       <Routes>
         <Route path="user/*" element={<User />}>
-          {/* <Route index element={<AddNewUser />} />
-          <Route path="edit/:id" element={<EditUser />} /> */}
+          
         </Route>
 
         <Route index element={<Dashboard />} />
@@ -41,6 +41,8 @@ function Content(props) {
         <Route path="student" element={<Student />} />
 
         <Route path="instructor" element={<Instructor />} />
+
+        <Route path="instructor/:id" element={<ViewInstructor />} />
 
         <Route path="payout" element={<Payout />} />
 

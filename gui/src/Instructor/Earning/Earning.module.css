@@ -1,0 +1,135 @@
+.container {
+  width: 100%;
+  border: 1px;
+  right: 0px;
+  flex: 1;
+  border: 0px solid #052a5e;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  padding: 10px;
+  line-height: 30px;
+}
+.textTitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.earning {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.itemEarning {
+  width: 30%;
+  height: 160px;
+  background-color: #333333;
+  display: flex;
+  border-radius: 5px;
+}
+
+.earningValue {
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  margin: auto;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.orderDetail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.topCourse {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.headerTopCourse {
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: black;
+  margin-bottom: 30px;
+}
+
+.itemTopCourse {
+  padding-left: 10px;
+  flex: 1;
+}
+
+.itemTopCourseTitle{
+  flex: 5;
+  margin-left: 5px;
+}
+
+.itemTop {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.order {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  background-color: #ffecec;
+  height: 35px;
+  line-height: 35px;
+}
+
+.itemHeader {
+  flex: 1;
+  font-weight: 500;
+}
+
+.itemHeaderTitle{
+  flex: 3;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid black;
+  padding-left: 10px;
+
+}
+
+.itemContent {
+  flex: 1;
+  color: black;
+}

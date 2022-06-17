@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import styles from "./Course.module.css";
 import MyCourse from "./MyCourse/MyCourse";
+import DraftCourse from "./DraftCourse/DraftCourse";
 
 function Course(props) {
   const item = styles.item;
   const itemClick = styles.itemClick;
   const [itemOne, setItemOne] = useState(true);
   const [itemTwo, setItemTwo] = useState(false);
-  const [itemThree, setItemThree] = useState(false);
-  const [itemFour, setItemFour] = useState(false);
+  // const [itemThree, setItemThree] = useState(false);
+  // const [itemFour, setItemFour] = useState(false);
 
   return (
     <div className={styles.courseBody}>
@@ -37,11 +38,11 @@ function Course(props) {
             onClick={() => {
               setItemOne(true);
               setItemTwo(false);
-              setItemThree(false);
-              setItemFour(false);
+              // setItemThree(false);
+              // setItemFour(false);
             }}
           >
-            <i className="fa-solid fa-book"></i>
+            <i className="fa-solid fa-book" style={{marginRight: 10}}></i>
             My Courses
           </div>
         </Link>
@@ -51,41 +52,12 @@ function Course(props) {
             onClick={() => {
                 setItemOne(false);
                 setItemTwo(true);
-                setItemThree(false);
-                setItemFour(false);
+                // setItemThree(false);
+                // setItemFour(false);
             }}
           >
-            <i className="fa-solid fa-download"></i>
+            <i className="fa-solid fa-download" style={{marginRight: 10}}></i>
             Drafts
-          </div>
-        </Link>
-        <Link to={"discount"} className={styles.itemBtn}>
-          <div
-            className={itemThree ? itemClick : item}
-            onClick={() => {
-                setItemOne(false);
-                setItemTwo(false);
-                setItemThree(true);
-                setItemFour(false);
-            }}
-          >
-            <i className="fa-solid fa-tag"></i>
-            Discounts
-          </div>
-        </Link>
-
-        <Link to={"promotion"} className={styles.itemBtn}>
-          <div
-            className={itemFour ? itemClick : item}
-            onClick={() => {
-                setItemOne(false);
-                setItemTwo(false);
-                setItemThree(false);
-                setItemFour(true);
-            }}
-          >
-            <i className="fa-solid fa-bullhorn"></i>
-            Promotions
           </div>
         </Link>
       </div>
@@ -93,9 +65,7 @@ function Course(props) {
       <div className={styles.courseList}>
           <Routes>
               <Route index element={<MyCourse/>}/>
-              <Route path="draft" element={<MyCourse/>}/>
-              <Route path="discount" element={<MyCourse/>}/>
-              <Route path="promotion" element={<MyCourse/>}/>
+              <Route path="draft" element={<DraftCourse/>}/>
           </Routes>
       </div>
     </div>

@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .title{
     display: flex;
     flex-direction: row;
@@ -260,3 +261,29 @@
 .linkDelete:hover{
     text-decoration: underline;
 }
+
+.chartMain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    border: 2px solid #efefef;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .chartTitle{
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 2px solid #efefef;
+      padding: 20px;
+  }
+
+  .chartBody{
+    width: "100%";
+    height: 400px;
+    padding:20px;
+  }
+  

@@ -2,10 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./ViewCourse.module.css";
+import parse from "html-react-parser";
+import {useNavigate } from "react-router-dom";
 
 function ViewCourse(props) {
   const { id } = useParams();
   const [course, setCourse] = useState();
+  const [ip, setIP] = useState("");
+  const [url, setUrl] = useState("");
+  const navigate = useNavigate();
+  const token = localStorage.token;
 
   useEffect(() => {
     axios
@@ -19,12 +25,63 @@ function ViewCourse(props) {
       });
   }, []);
 
+  //creating function to load ip address from the API
+  const getData = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    console.log(res.data);
+    setIP(res.data.IPv4);
+  };
+
+  useEffect(() => {
+    //passing getData method to the lifecycle method
+    getData();
+  }, []);
+
+  const handleBuy = () => {
+    var formData = new FormData();
+    formData.append("ip", ip);
+    formData.append("amount", course.price*100000);
+    axios
+      .post("http://localhost:57678/Payment", formData)
+      .then((res) => {
+        setUrl(res.data);
+        handleAddOrder()
+        window.location = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleAddOrder = async ()=>{
+    if(token){
+      await axios.post('http://localhost:57678/AddOrdeDetail',{
+      courseId: id,
+      price: course.price
+    },{
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res)=>{
+      console.log(res.data);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+    }
+    else{
+      navigate("/login/signin")
+    }
+  }
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.titleCourse}>{course && course.title}</div>
         <div className={styles.descriptionCourse}>
-          {course && course.description}
+          {course && parse(course.description)}
         </div>
         <div className={styles.titleContentCourse}>Nội dung khóa học</div>
         {course &&
@@ -62,7 +119,9 @@ function ViewCourse(props) {
           <i className="fa-solid fa-dollar-sign" style={{ marginLeft: 10 }}></i>
         </div>
         <div className={styles.btnBuy}>
-          <button className={styles.btnBuyCourse}>Buy Course</button>
+          <button className={styles.btnBuyCourse} onClick={handleBuy}>
+            Buy Course
+          </button>
         </div>
       </div>
     </div>

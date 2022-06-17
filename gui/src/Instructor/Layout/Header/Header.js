@@ -54,7 +54,7 @@ function Header(props) {
                   </Link>
                 </div>
                 <div className={styles.itemLogout}>
-                  <Link to={"/login/signin"} className={styles.linkLog}>
+                  <Link to={"/login/signin"} className={styles.linkLog} onClick={()=>{localStorage.removeItem("token")}}>
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
                     {token ? "Log out" : "Log in"}
                   </Link>

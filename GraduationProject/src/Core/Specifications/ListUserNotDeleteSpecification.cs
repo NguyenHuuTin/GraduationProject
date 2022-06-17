@@ -26,12 +26,12 @@ namespace Core.Specifications
     {
         public ListUserInstructorSpecification()
         {
-            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor").Include(x => x.Courses);
+            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor" && item.IsStatus == true).Include(x => x.Courses);
         }
 
         public ListUserInstructorSpecification(Guid id)
         {
-            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor" && item.Id == id).Include(x => x.Courses);
+            Query.Where(item => !item.IsDeleted && item.Role.Name == "Instructor" && item.Id == id && item.IsStatus == true).Include(x => x.Courses);
         }
     }
 }

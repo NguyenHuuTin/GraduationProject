@@ -20,12 +20,14 @@ namespace Core.Services
     public class CourseService : ICourseService
     {
         private readonly IRepository _repository;
+        private readonly IInstructorRepository _instructorRepository;
         private readonly Cloudinary _cloudinary;
 
-        public CourseService(IRepository repository, Cloudinary cloudinary)
+        public CourseService(IRepository repository, Cloudinary cloudinary, IInstructorRepository instructorRepository)
         {
             _repository = repository;
             _cloudinary = cloudinary;
+            _instructorRepository = instructorRepository;
         }
 
         public async Task<Course> GetDetailCourse(Guid id)
@@ -342,21 +344,10 @@ namespace Core.Services
                 ImageUrl = await UploadImage(request.BackgroupCourse),
                 CreateAt = DateTime.Now,
                 UpdateAt = DateTime.Now,
-                Status = "Draft"
+                Status = "Draft",
+                OriginPrice = request.Price
 
-            };
-
-            //determine origin price
-            if (!request.IsFree)
-            {
-                item.OriginPrice = request.Price * await GetDiscount(request.PromotionId);
-
-                item.PromotionId = request.PromotionId;
-            }
-            else
-                item.OriginPrice = request.Price; 
-
-         
+        };
 
             return await _repository.AddAsync<Course>(item);
         }
@@ -572,9 +563,7 @@ namespace Core.Services
                     lesson.Title = lessonContent.LessonTitle;
                     lesson.CreateAt = DateTime.Now;
                     lesson.VideoUrl = await UploadFile(lessonContent.File);
-                    lesson.Volume = lessonContent.Volume;
                     lesson.Duration = lessonContent.Duration;
-                    lesson.Sort = lessonContent.Sort;
 
                     await _repository.AddAsync<Lesson>(lesson);
                 }
@@ -593,21 +582,15 @@ namespace Core.Services
         {
             try
             {
-               
-                    Lesson lesson = new Lesson();
+                Lesson lesson = new Lesson();
 
-                    //Set value for element in Lesson list
-                    lesson.SectionId = lessonContent.SectionId;
-                    lesson.Title = lessonContent.LessonTitle;
-                    lesson.CreateAt = DateTime.Now;
-                    lesson.VideoUrl = await UploadFile(lessonContent.File);
-                    lesson.Volume = lessonContent.Volume;
-                    lesson.Duration = lessonContent.Duration;
-                    lesson.Sort = lessonContent.Sort;
-
-                    await _repository.AddAsync<Lesson>(lesson);
-              
-
+                //Set value for element in Lesson list
+                lesson.SectionId = lessonContent.SectionId;
+                lesson.Title = lessonContent.LessonTitle;
+                lesson.CreateAt = DateTime.Now;
+                lesson.VideoUrl = await UploadFile(lessonContent.File);
+                lesson.Duration = lessonContent.Duration;
+                await _repository.AddAsync<Lesson>(lesson);
                 return true;
             }
             catch
@@ -637,6 +620,28 @@ namespace Core.Services
             }
         }
 
+
+        public async Task<bool> DeleteCourse(Guid Id)
+        {
+            var incompleteSpec = new GetSectionByCourseId(Id);
+            try
+            {
+                var section = await _repository.ListAsync<Section>(incompleteSpec);
+                foreach (var item in section)
+                {
+                    await _repository.DeleteListAsync<Lesson>(x => x.SectionId == item.Id);
+
+                    await _repository.DeleteByIdAsync<Section>(item.Id);
+                }
+                await _repository.DeleteByIdAsync<Course>(Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Get UserId by SectionId
         /// </summary>
@@ -647,6 +652,13 @@ namespace Core.Services
             return (await _repository.Find<Section>(item => item.Id == sectionId)
                 .Include(item => item.Course)
                 .SingleOrDefaultAsync()).Course.UserId;
+        }
+
+
+        public async Task<Guid> GetUserIdByCourseId(Guid Id)
+        {
+            return (await _repository.Find<Course>(item => item.Id == Id)
+                .SingleOrDefaultAsync()).UserId;
         }
 
         /// <summary>
@@ -873,6 +885,13 @@ namespace Core.Services
             }
         }
 
-       
+        public async Task<List<OrderDetail>> GetTopCourse(Guid id)
+        {
+            var lstOrder = await _instructorRepository.GetInstructorByIdAsync<OrderDetail>(id)
+                                                           .Include(c => c.Course)
+                                                           .Where(c => c.Course.UserId.Equals(id))
+                                                           .ToListAsync();
+            return lstOrder;
+        }
     }
 }

@@ -1,0 +1,54 @@
+.container {
+  width: 110%;
+  background-color: #fafcff;
+  margin-left: -30px;
+  display: flex;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  background-color: white;
+  box-shadow: 5px 6px 20px 10px #F2F6FC,
+    5px 6px 20px 10px #F2F6FC;
+  border-radius: 5px;
+  margin-right: 70px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 55%;
+  height: 60%;
+  text-align: center;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    color: #23D39D;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.number{
+    padding-bottom: 40px;
+    border-bottom: 1px black dashed;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 50px;
+}
+
+.itemPay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+

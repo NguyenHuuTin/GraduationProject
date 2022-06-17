@@ -96,6 +96,7 @@
 
 .itemBtn{
     text-decoration: none;
+    width: 48%;
 }
 
 .item:hover{

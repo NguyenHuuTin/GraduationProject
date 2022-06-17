@@ -8,7 +8,7 @@ namespace Core.Interfaces
 {
     public interface IEarningServices
     {
-        Task<List<OrderDetail>> GetAllEarningAsync(int month, int year, Guid id);
+        Task<List<OrderDetail>> GetAllEarningAsync(Guid id);
 
         Task<List<OrderDetail>> GetEarningAsync(Guid id);
 

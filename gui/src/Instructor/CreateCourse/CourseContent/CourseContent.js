@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CourseContent.module.css";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 //import parse from "html-react-parser";
 import axios from "axios";
 import {
@@ -14,48 +12,37 @@ function CourseContent(props) {
   const [lecture, setLecture] = useState([]);
   const [contentTitle, setContentTitle] = useState("");
   const [lectureTitle, setLectureTitle] = useState("");
-  const [sort, setSort] = useState(0);
   const [file, setFile] = useState();
-  const [description, setDescription] = useState("");
-  const [volume, setVolume] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const [arraySection, setArraySection] = useState([]);
+  // const [arraySection, setArraySection] = useState([]);
 
-  const handleValue = (editor) => {
-    const data = editor.getData();
-    setDescription(data);
-    // parse(data)
-  };
+  // const handleValue = (editor) => {
+  //   const data = editor.getData();
+  //   setDescription(data);
+  //   // parse(data)
+  // };
 
   const handleSaveLecture = () => {
     if (
       contentTitle !== "" &&
       lectureTitle !== "" &&
-      sort > 0 &&
       file !== null &&
-      description !== "" &&
-      volume > 0 &&
       duration > 0
-    ){
+    ) {
       const LessonContent = [
         {
           LessonTitle: lectureTitle,
           File: file,
-          Sort: sort,
-          Description: description,
-          Volume: volume,
           Duration: duration,
         },
       ];
-  
+
       setLecture(lecture.concat(LessonContent));
       //setLecture(LessonContent)
+    } else {
+      alert("Please enter all the attributes.");
     }
-    else{
-      alert("Please enter all the attributes.")
-    }
-    
   };
 
   const handleRemove = (index) => {
@@ -64,18 +51,14 @@ function CourseContent(props) {
 
   lecture && console.log(lecture);
 
-
   const handleSaveCourse = async () => {
     if (
       window.confirm(
-        "Are you sure you have completed the content of the lessons?"
+        "Are you sure you have completed the content of the lessons?",
       )
     ) {
       const formDataSection = new FormData();
-      formDataSection.append(
-        "CourseId",
-        props.courseID
-      );
+      formDataSection.append("CourseId", props.courseID);
       formDataSection.append("CourseContentTitle", contentTitle);
 
       const token = localStorage.token;
@@ -106,14 +89,11 @@ function CourseContent(props) {
     const token = localStorage.token;
     let count = 0;
 
-    lecture.forEach(async (element) => {
+    lecture.forEach(async(element) => {
       const formDataLection = new FormData();
       formDataLection.append("SectionId", sectionID);
       formDataLection.append("LessonTitle", element.LessonTitle);
       formDataLection.append("File", element.File);
-      formDataLection.append("Sort", element.Sort);
-      formDataLection.append("Description", element.Description);
-      formDataLection.append("Volume", element.Volume);
       formDataLection.append("Duration", element.Duration);
 
       if (token) {
@@ -131,8 +111,8 @@ function CourseContent(props) {
           .then((res) => {
             console.log(res.data, ++count);
             NotificationManager.success("Add course Successful!");
-            setUploaded(100);
-            props.handleStatus(3)
+            count === lecture.length && setUploaded(100);
+            props.handleStatus(3);
           })
           .catch((error) => {
             console.log(error);
@@ -143,21 +123,22 @@ function CourseContent(props) {
   };
 
   const token = localStorage.token;
-  const handleNext = ()=>{
-    if(token){
-      axios.post(`http://localhost:57678/Courses/Extra`,{
-      id : props.courseID,
-      status : "Waiting for approve"
-    })
-    .then((res)=>{
-      console.log(res.data)
-      props.handleStatus(4)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+  const handleNext = () => {
+    if (token) {
+      axios
+        .post(`http://localhost:57678/Courses/Extra`, {
+          id: props.courseID,
+          status: "Waiting for approve",
+        })
+        .then((res) => {
+          console.log(res.data);
+          props.handleStatus(4);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -205,16 +186,17 @@ function CourseContent(props) {
           </div>
 
           <div className={styles.inputID}>
-            <div className={styles.name}>Sort</div>
+            <div className={styles.name}>Duration*</div>
             <div>
               <input
                 className={styles.inputText}
                 type={"number"}
-                value={sort}
+                placeholder="Insert your course price"
+                value={duration}
                 onChange={(e) => {
-                  setSort(e.target.value);
+                  setDuration(e.target.value);
                 }}
-              ></input>
+              />
             </div>
           </div>
 
@@ -232,49 +214,8 @@ function CourseContent(props) {
           </div>
         </div>
 
-        <div className={styles.description}>
-          <div className={styles.name}>Description*</div>
-          <div className={styles.inputDes}>
-            <CKEditor
-              editor={ClassicEditor}
-              value={description}
-              onChange={(e, editor) => {
-                handleValue(editor);
-              }}
-            />
-          </div>
-        </div>
-
         <div className={styles.coursePrice}>
           <div className={styles.coursePriceInput}>
-            <div className={styles.inputPrice}>
-              <div className={styles.name}>Volume*</div>
-              <div>
-                <input
-                  className={styles.inputText}
-                  type={"number"}
-                  placeholder="Insert your course price"
-                  value={volume}
-                  onChange={(e) => {
-                    setVolume(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-            <div className={styles.inputPrice}>
-              <div className={styles.name}>Duration*</div>
-              <div>
-                <input
-                  className={styles.inputText}
-                  type={"number"}
-                  placeholder="Insert your course price"
-                  value={duration}
-                  onChange={(e) => {
-                    setDuration(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
 
             <button
               className={styles.btnSaveLecture}
@@ -285,6 +226,7 @@ function CourseContent(props) {
             <NotificationContainer />
           </div>
         </div>
+        <button className={styles.btnClearAll} onClick={()=>{setLecture([])}}>Clear All</button>
         <div className={styles.tableLecture}>
           <div className={styles.tableHeader}>
             <div className={styles.tableStt}>Lecture</div>
@@ -295,33 +237,35 @@ function CourseContent(props) {
             <div className={styles.tableFile}>File</div>
             <div className={styles.tableControl}>Control</div>
           </div>
-          {lecture?.map((element, index) => {
-            return (
-              <div className={styles.tableContent} key={index}>
-                <div className={styles.itemStt}>{index}</div>
-                <div className={styles.itemTile}>{element.LessonTitle}</div>
-                <div className={styles.itemVolume}>{element.Volume}</div>
-                <div className={styles.itemDuration}>{element.Duration}</div>
-                <div className={styles.itemSort}>{element.Sort}</div>
-                <div className={styles.itemFile}>
-                  <a href={URL.createObjectURL(element.File)}>Video course</a>
+          {lecture &&
+            lecture?.map((element, index) => {
+              return (
+                <div className={styles.tableContent} key={index}>
+                  <div className={styles.itemStt}>{index+1}</div>
+                  <div className={styles.itemTile}>{element.LessonTitle}</div>
+                  <div className={styles.itemVolume}>{element.Volume}</div>
+                  <div className={styles.itemDuration}>{element.Duration}</div>
+                  <div className={styles.itemSort}>{element.Sort}</div>
+                  <div className={styles.itemFile}>
+                    <a href={URL.createObjectURL(element.File)}>Video course</a>
+                  </div>
+                  <div className={styles.itemControl}>
+                    <i
+                      className="fa-solid fa-trash-can"
+                      onClick={() => {
+                        setLecture(lecture.splice(index, 1));
+                      }}
+                    ></i>
+                  </div>
                 </div>
-                <div className={styles.itemControl}>
-                  <i
-                    className="fa-solid fa-trash-can"
-                    onClick={() => {
-                      handleRemove(index);
-                    }}
-                  ></i>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         <div className={styles.saveCourse}>
-          
           <div className={styles.loading}>
-            <div className={styles.loadStatus}>{uploaded <100 ? "Loading..." : ""}</div>
+            <div className={styles.loadStatus}>
+              {uploaded < 100 && uploaded > 0 ? "Loading..." : ""}
+            </div>
             <div className={styles.progress}>
               <div
                 className={styles.progressDone}
@@ -340,39 +284,7 @@ function CourseContent(props) {
           </button>
         </div>
       </div>
-      {/* <div className={styles.tableCourseContent}>
-        <div className={styles.tableHeader}>
-          <div className={styles.tableSttTotal}>Content</div>
-          <div className={styles.tableTileTotal}>Title</div>
-          <div className={styles.tableLectureTotal}>Lectures</div>
-          <div className={styles.tableVolumeTotal}>Volume</div>
-          <div className={styles.tableDurationTotal}>Duration</div>
-          <div className={styles.tableSortTotal}>Update Date</div>
-          <div className={styles.tableControlTotal}>Control</div>
-        </div>
-        {arraySection?.map((element, index) => {
-            return (
-              <div className={styles.tableContent} key={index}>
-                <div className={styles.itemStt}>{index}</div>
-                <div className={styles.itemTile}>{element.LessonTitle}</div>
-                <div className={styles.itemVolume}>{element.Volume}</div>
-                <div className={styles.itemDuration}>{element.Duration}</div>
-                <div className={styles.itemSort}>{element.Sort}</div>
-                <div className={styles.itemFile}>
-                  <a href={URL.createObjectURL(element.File)}>Video course</a>
-                </div>
-                <div className={styles.itemControl}>
-                  <i
-                    className="fa-solid fa-trash-can"
-                    onClick={() => {
-                      handleRemove(index);
-                    }}
-                  ></i>
-                </div>
-              </div>
-            );
-          })}
-      </div> */}
+    
       <div className={styles.buttonNext}>
         <button className={styles.btn} onClick={handleNext}>
           Next

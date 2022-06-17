@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import { SliderData } from "./SlideData";
 
 function Home(props) {
   const [course, setCourse] = useState([]);
-
+  const [myCourse, setMyCourse] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const navigate = useNavigate();
+  const token = localStorage.token;
   useEffect(() => {
     axios
       .get("http://localhost:57678/ActiveCourseStudentPage")
@@ -18,6 +21,48 @@ function Home(props) {
         setCourse([]);
       });
   }, []);
+
+  useEffect(() => {
+    if(token){
+      axios
+      .get("http://localhost:57678/MyCourseStudentPage",{
+        headers:{
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        console.log(res.data);
+        setMyCourse(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setMyCourse([]);
+      });
+    }
+  }, []);
+
+  const checkMyCourse = (id)=>{
+    var result = false;
+    myCourse.forEach(element => {
+      if(element.id === id){
+        result = true;
+      }
+    });
+    return result;
+  }
+
+  useEffect(()=>{
+    if(course && myCourse){
+      var filterList = course.filter((object) => {
+        return (
+          checkMyCourse(object.id) === false
+        );
+      });
+      setFilter(filterList);
+    }
+  })
 
   const [current, setCurrent] = useState(0);
   const length = props.slides.length;
@@ -65,8 +110,8 @@ function Home(props) {
       </section>
 
       <div className={styles.main}>
-        {course &&
-          course.map((element) => {
+        {filter &&
+          filter.map((element) => {
             return (
               <Link key={element.id} to={`/course/${element.id}`} className={styles.itemCourse}>
                 <img
@@ -88,6 +133,33 @@ function Home(props) {
                     </div>
                   </div>
                   <div className={styles.coursePrice}>{element.price}$</div>
+                </div>
+              </Link>
+            )
+          })}
+         {myCourse &&
+          myCourse.map((element) => {
+            return (
+              <Link key={element.id} to={`/myCourse/${element.id}`} className={styles.itemCourse}>
+                <img
+                  alt="course item"
+                  src={element.image}
+                  className={styles.imgCourse}
+                ></img>
+                <div className={styles.courseInfo}>
+                  <div className={styles.courseName}>{element.title}</div>
+                  <div className={styles.infoInstructor}>
+                    <img
+                      className={styles.imgUser}
+                      alt="img_user"
+                      src={element.avatar}
+                    ></img>
+                    <div className={styles.userName}>{element.user}</div>
+                    <div className={styles.checkIcon}>
+                      <i className="fa-solid fa-circle-check"></i>
+                    </div>
+                  </div>
+                  <div className={styles.courseKeepStudying}>keep studying</div>
                 </div>
               </Link>
             );

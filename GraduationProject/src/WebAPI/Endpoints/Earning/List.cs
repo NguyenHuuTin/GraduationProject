@@ -31,7 +31,7 @@ namespace WebAPI.Endpoints.Earning
             Tags = new[] { "EarningEndpoints" })
         ]
         //get the instructor's Earning list by month
-        public async Task<ActionResult<List<ListEarningResponse>>> GetListEarningAsync(int month, int year, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<ListEarningResponse>>> GetListEarningAsync(CancellationToken cancellationToken)
         {
             //get id usser
             if (!User.Identity.IsAuthenticated)
@@ -41,7 +41,7 @@ namespace WebAPI.Endpoints.Earning
 
             var id = Guid.Parse(userId);
 
-            var items = (await _earningServices.GetAllEarningAsync(month, year, id))
+            var items = (await _earningServices.GetAllEarningAsync(id))
                 .GroupBy(p => p.PurchasedDay)
                 .Select(g => new ListEarningResponse
                 {
@@ -74,7 +74,8 @@ namespace WebAPI.Endpoints.Earning
             var response = new EarningResponse()
             {
                 SalesEarnings = items.Sum(x => x.Price),
-                YourBalance = (await _userService.GetById(id)).AvailableAmount,
+                //YourBalance = (await _userService.GetById(id)).AvailableAmount,
+                YourEarning = items.Sum(x => x.Price) - (items.Sum(x => x.Price * Convert.ToDecimal(0.03))),
                 AdminCommission = (items.Sum(x => x.Price * Convert.ToDecimal(0.03)))
             }; 
 
@@ -89,7 +90,7 @@ namespace WebAPI.Endpoints.Earning
             Tags = new[] { "EarningEndpoints" })
         ]
         //get the list of top courses by month of the instructor
-        public async Task<ActionResult<List<ListTopCourseResponse>>> GetListTopCourseAsync(int month, int year, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<ListTopCourseResponse>>> GetListTopCourseAsync(CancellationToken cancellationToken)
         {
             //get id usser
             if (!User.Identity.IsAuthenticated)
@@ -99,7 +100,7 @@ namespace WebAPI.Endpoints.Earning
 
             var id = Guid.Parse(userId);
 
-            var items = (await _earningServices.GetAllEarningAsync(month, year, id))
+            var items = (await _earningServices.GetAllEarningAsync(id))
                 .GroupBy(p => p.CourseId)
                 .Select(g => new ListTopCourseResponse
                 {

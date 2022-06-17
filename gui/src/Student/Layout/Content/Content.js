@@ -8,6 +8,7 @@ import ListInstructor from "../../ListInstructor/ListInstructor";
 import ViewInstructor from "../../ViewInstructor/ViewInstructor";
 import MyCourse from "../../MyCourse/MyCourse";
 import ViewMyCourse from "../../ViewMyCourse/ViewMyCourse";
+import Payment from "../../Payment/Payment";
 
 function Content(props) {
   return (
@@ -16,9 +17,11 @@ function Content(props) {
       <Route index element={<Home slides={SliderData}/>}/>
       <Route path="/instructorList/*" element={<ListInstructor/>}/>
       <Route path="/instructorList/:id" element={<ViewInstructor/>}/>
-      <Route path="/course/:id" element={<ViewCourse/>}/>
+      <Route path="/course/:id/*" element={<ViewCourse/>}/>
+      <Route path="/payment/*" element={<Payment/>}/>
       <Route path="/myCourse/*" element={<MyCourse/>}/>
       <Route path="/myCourse/:id" element={<ViewMyCourse/>}/>
+      
     </Routes>
     </div>
   );

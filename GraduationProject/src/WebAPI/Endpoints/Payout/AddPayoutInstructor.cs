@@ -30,7 +30,7 @@ namespace WebAPI.Endpoints.Payout
             OperationId = "Payout.Insert",
             Tags = new[] { "PayoutEndpoints" })
         ]
-        public async Task<ActionResult<PayoutInstructorResponse>> AddPayout(double amount, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<PayoutInstructorResponse>> AddPayout([FromForm]string amount, CancellationToken cancellationToken = default)
         {
             if (ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace WebAPI.Endpoints.Payout
                     Core.Entities.Payout newPayout = new Core.Entities.Payout()
                     {
                         InstructorId = id,
-                        Price = amount,
+                        Price = Convert.ToDouble(amount),
                         CreateAt = DateTime.Now,
                         Update = DateTime.Now,
                         Status = "Pandding"
@@ -63,7 +63,7 @@ namespace WebAPI.Endpoints.Payout
                             CreateAt = newPayout.CreateAt,
                             Status = newPayout.Status,
                             Remark = newPayout.Remark,
-                            Update = newPayout.Update
+                            Update = Convert.ToDateTime(newPayout.Update).ToString("dd MMMM yyyy"),
                         };
                         return Ok(response);
                     }

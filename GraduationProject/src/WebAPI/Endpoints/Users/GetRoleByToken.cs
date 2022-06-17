@@ -37,6 +37,23 @@ namespace WebAPI.Endpoints.Users
         }
 
 
+        [HttpGet("/GetRoleByToken")]
+        [SwaggerOperation(
+            Summary = "Get role User",
+            Description = "Get role User",
+            OperationId = "User.getRoleByToken",
+            Tags = new[] { "UserEndpoints" })
+        ]
+        public async Task<ActionResult<string>> GetRoleByTokenAsync(CancellationToken cancellationToken = default)
+        {
+            var userId = GetLoggedUserId();
+            var user = await _userServices.GetById(userId);
+            string roleName = _userServices.GetRoleNameByRoleId(user.RoleId);
+
+            return Ok(roleName);
+        }
+
+
 
         private Guid GetLoggedUserId()
         {

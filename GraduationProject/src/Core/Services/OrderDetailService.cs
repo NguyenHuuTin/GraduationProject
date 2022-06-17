@@ -19,6 +19,25 @@ namespace Core.Services
             _repository = repository;
         }
 
+        public async Task<bool> AddOrder(Guid userID, Guid courseId, decimal price)
+        {
+            try
+            {
+                var item = new OrderDetail();
+                item.CourseId = courseId;
+                item.Price = price;
+                item.UserId = userID;
+                item.Type = "Sales";
+                var result = await _repository.AddAsync<OrderDetail>(item);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
         public async Task<List<OrderDetail>> GetAllOrderDetail()
         {
             var incompleteSpec = new GetOrderDetail();

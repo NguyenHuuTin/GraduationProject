@@ -6,7 +6,7 @@
     margin-bottom: 30px;
 }
 
-.chart-body{
+.chartBody{
     min-height: 600px;
     box-shadow: 0 4px 8px rgb(0 0 0 / 3%);
     background-color: white;
@@ -19,14 +19,15 @@
     
 }
 
-.chart-title{
+.chartTitle{
     color: red;
     font-size: 16px;
     font-weight: bold;
 }
 
-.chart-content{
+.chartContent{
     border: 2px black ;
     background-color: transparent;
     text-align: center;
+    padding-bottom: 20px;
 }

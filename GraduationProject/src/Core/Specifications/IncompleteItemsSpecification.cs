@@ -81,8 +81,16 @@ namespace Core.Specifications
             Query.Where(item => item.UserId == Id).Include(item => item.SubCategory);
         }
     }
-    
-	public class GetUpcomingCourse : Specification<Course>
+
+    public class GetSectionByCourseId : Specification<Section>
+    {
+        public GetSectionByCourseId(Guid Id)
+        {
+            Query.Where(item => item.CourseId == Id);
+        }
+    }
+
+    public class GetUpcomingCourse : Specification<Course>
     {
         public GetUpcomingCourse(Guid id)
         {
@@ -192,6 +200,14 @@ namespace Core.Specifications
         public GetOrderDetail(Guid id)
         {
             Query.Where(item => true).Where(x => x.UserId == id).Include(item => item.Course).ThenInclude(item => item.User);
+        }
+    }
+
+    public class ListEarning : Specification<OrderDetail>
+    {
+        public ListEarning(Guid id)
+        {
+            Query.Where(item => item.Course.UserId == id).Include(item => item.Course);
         }
     }
 

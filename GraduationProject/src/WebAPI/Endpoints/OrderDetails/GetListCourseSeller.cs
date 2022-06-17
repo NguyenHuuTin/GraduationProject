@@ -26,7 +26,7 @@ namespace WebAPI.Endpoints.OrderDetail
             Summary = "Gets a list of all CourseSeller",
             Description = "Gets a list of all CourseSeller",
             OperationId = "CourseSeller.List",
-            Tags = new[] { "CourseSellerEndpoints" })
+            Tags = new[] { "OrderDetailEndpoints" })
         ]
         public async Task<ActionResult<List<CourseSellerResponse>>> GetAllAsync( CancellationToken cancellationToken = default)
         {

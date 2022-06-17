@@ -15,4 +15,11 @@ namespace WebAPI.Endpoints.Courses
         public string Status { get; set; }
         public string? UpdateAt { get; set; }
     }
+
+    public class TopCourse
+    {
+        public Guid id { get; set; }
+        public decimal price { get; set; }
+    }
+
 }

@@ -84,6 +84,32 @@ namespace WebAPI.Endpoints.Courses
             return BadRequest();
         }
 
+        [HttpGet("/Course/TopCourse")]
+        [SwaggerOperation(
+            Summary = "Gets a list of Top Course by Instructor ID",
+            Description = "Gets a list of all Course",
+            OperationId = "Course.TopCourse",
+            Tags = new[] { "CourseEndpoints" })
+        ]
+        public async Task<ActionResult<List<CourseResponse>>> GetTopCourseAsync(CancellationToken cancellationToken)
+        {
+            var userId = GetLoggedUserId();
+            var listOrder = await _courseService.GetTopCourse(userId);
+            List<TopCourse> result = (from p in listOrder
+                                      group p.Price by p.CourseId into g
+                                      select new TopCourse { id = g.Key, price = g.Sum() }).OrderByDescending(x => x.price).ToList();
+
+            var item = (await _courseService.GetDetailCourse(result[0].id));
+            var response = new CourseResponse
+            {
+                Id = item.Id,
+                Price = item.OriginPrice,
+                Title = item.Title,
+                Section = item.Sections,
+            };
+            return Ok(response);
+        }
+
         private Guid GetLoggedUserId()
         {
             if (!User.Identity.IsAuthenticated)
