@@ -57,5 +57,6 @@ namespace Core.Entities
         public virtual ICollection<QuestionAndAnswer> QuestionAndAnswers { get; set; }
         public virtual ICollection<Section> Sections { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

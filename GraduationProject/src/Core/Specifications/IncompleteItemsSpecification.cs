@@ -30,6 +30,14 @@ namespace Core.Specifications
         }
     }
 
+    public class GetAllComment : Specification<Comment>
+    {
+        public GetAllComment()
+        {
+            Query.Where(item => true).Include(item => item.User);
+        }
+    }
+
     public class GetApproveItem : Specification<Course>
     {
         public GetApproveItem()

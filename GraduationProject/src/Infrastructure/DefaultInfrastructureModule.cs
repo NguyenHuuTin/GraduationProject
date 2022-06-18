@@ -111,6 +111,9 @@ namespace Infrastructure
             builder.RegisterType<CategoryService>().As<ICategoryService>()
              .InstancePerLifetimeScope();
 
+            builder.RegisterType<CommentService>().As<ICommentService>()
+             .InstancePerLifetimeScope();
+
             builder.RegisterType<CourseService>().As<ICourseService>()
                 .InstancePerLifetimeScope();
                 

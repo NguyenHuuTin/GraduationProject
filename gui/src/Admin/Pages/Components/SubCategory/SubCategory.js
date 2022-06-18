@@ -27,7 +27,7 @@ function SubCategory(props) {
   return (
     <div className={styles.cardContentCategory}>
       <div className={styles.cardHeaderCategory}>
-        <h2 className={styles.headerTitleCategory}>Category</h2>
+        <h2 className={styles.headerTitleCategory}>SubCategory</h2>
         <div className={styles.headerPathCategory}>
           <div className={styles.headerPathItemCategory}>
             <Link to={".."} className={styles.itemContentCategoryActive}>
@@ -37,7 +37,7 @@ function SubCategory(props) {
           /
           <div className={styles.headerPathItemCategory}>
             <Link to={"/category"} className={styles.itemContentCategory}>
-              Category
+              SubCategory
             </Link>
           </div>
         </div>
