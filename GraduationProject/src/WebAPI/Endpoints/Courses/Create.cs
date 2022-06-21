@@ -127,6 +127,79 @@ namespace WebAPI.Endpoints.Courses
 
         }
 
+
+        [HttpPost("/Courses/Quizz")]
+        [SwaggerOperation(
+                Summary = "Creates a Course Quizz",
+                Description = "Creates the Quizz",
+                OperationId = "CourseQuizz.Create",
+                Tags = new[] { "CourseEndpoints" })
+            ]
+        public async Task<ActionResult<bool>> CreateQuizzAsync([FromBody] QuizzRequest request, CancellationToken cancellationToken)
+        {
+            //check value of request
+            if (ModelState.IsValid)
+            {
+                var quizz = new Quizz();
+                quizz.SectionId = request.id;
+                quizz.Title = request.title;
+                quizz.CreateAt = DateTime.Now;
+                return Ok(await _courseService.AddQuizz(quizz));
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpPost("/Courses/Question")]
+        [SwaggerOperation(
+                Summary = "Creates a Course Question",
+                Description = "Creates the Question",
+                OperationId = "CourseQuestion.Create",
+                Tags = new[] { "CourseEndpoints" })
+            ]
+        public async Task<ActionResult<bool>> CreateQuestionAsync([FromBody] QuestionRequest request, CancellationToken cancellationToken)
+        {
+            //check value of request
+            if (ModelState.IsValid)
+            {
+                var question = new QuizzQuestion();
+                question.QuizzId = request.id;
+                question.HtmlContent = request.htmlContent;
+                question.CreateAt = DateTime.Now;
+                question.Title = "a";
+                return Ok(await _courseService.AddQuestion(question));
+            }
+
+            return BadRequest();
+
+        }
+
+        [HttpPost("/Courses/Answer")]
+        [SwaggerOperation(
+                Summary = "Creates a Course Answer",
+                Description = "Creates the Answer",
+                OperationId = "CourseAnswer.Create",
+                Tags = new[] { "CourseEndpoints" })
+            ]
+        public async Task<ActionResult<Guid>> CreateAnswerAsync([FromBody] AnswerRequest request, CancellationToken cancellationToken)
+        {
+            //check value of request
+            if (ModelState.IsValid)
+            {
+                var answer = new QuizzAnswer();
+                answer.QuestionId = request.id;
+                answer.Content = request.answer;
+                answer.CreateAt = DateTime.Now;
+                answer.ResultDescription = request.answer;
+                var result = await _courseService.AddAnswer(answer);
+                return Ok(result);
+            }
+
+            return BadRequest();
+
+        }
+
         private Guid GetLoggedUserId()
         {
             if (!User.Identity.IsAuthenticated)

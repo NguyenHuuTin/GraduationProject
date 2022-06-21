@@ -136,6 +136,7 @@
 .itemComment{
     display: flex;
     flex-direction: row;
+    margin-top: 15px;
 }
 
 .infoComment{
@@ -157,5 +158,5 @@
     background-color: white;
     padding: 10px;
     border-radius: 10px;
-    margin-top: 15px;
+    margin-top: 5px;
 }

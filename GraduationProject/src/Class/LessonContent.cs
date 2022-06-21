@@ -7,12 +7,12 @@ namespace Class
     public class LessonContent
     {
         [Required]
-        public Guid SectionId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string LessonTitle { get; set; }
 
-        [Required]
+        
         [DataType(DataType.Upload)]
         public IFormFile File { get; set; }
 

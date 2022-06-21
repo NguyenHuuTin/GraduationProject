@@ -20,15 +20,15 @@ function Menu(props) {
             </Link>
           </div>
           <div className={styles.itemMenu}>
-            <Link to={"createCourse"}>
+            <Link to={"createNewCourse"}>
               <i className="fa-solid fa-circle-plus"></i>
               <p className={styles.contentItem}>Create Course</p>
             </Link>
           </div>
           <div className={styles.itemMenu}>
-            <Link to={"."}>
+            <Link to={"comment"}>
               <i className="fa-brands fa-facebook-messenger"></i>
-              <p className={styles.contentItem}>Messages</p>
+              <p className={styles.contentItem}>Comment</p>
             </Link>
           </div>
           <div className={styles.itemMenu}>

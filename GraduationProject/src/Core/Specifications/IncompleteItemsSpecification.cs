@@ -22,6 +22,46 @@ namespace Core.Specifications
         }
     }
 
+    public class GetDetailSection : Specification<Section>
+    {
+        public GetDetailSection(Guid id)
+        {
+            Query.Where(item => item.Id == id);
+        }
+    }
+
+    public class GetDetailQuizzByID : Specification<Quizz>
+    {
+        public GetDetailQuizzByID(Guid id)
+        {
+            Query.Where(item => item.Id == id);
+        }
+    }
+
+    public class GetDetailQuestionByID : Specification<QuizzQuestion>
+    {
+        public GetDetailQuestionByID(Guid id)
+        {
+            Query.Where(item => item.Id == id);
+        }
+    }
+
+    public class GetDetailAnswerByID : Specification<QuizzAnswer>
+    {
+        public GetDetailAnswerByID(Guid id)
+        {
+            Query.Where(item => item.QuestionId == id);
+        }
+    }
+
+    public class GetDetailQuizz : Specification<Quizz>
+    {
+        public GetDetailQuizz(Guid id)
+        {
+            Query.Where(item => item.SectionId == id).Include(x => x.QuizzQuestions).ThenInclude(y => y.QuizzAnswers);
+        }
+    }
+
     public class GetAllItem : Specification<Course>
     {
         public GetAllItem()
@@ -30,11 +70,11 @@ namespace Core.Specifications
         }
     }
 
-    public class GetAllComment : Specification<Comment>
+    public class GetAllComment : Specification<QuestionAndAnswer>
     {
-        public GetAllComment()
+        public GetAllComment(Guid id)
         {
-            Query.Where(item => true).Include(item => item.User);
+            Query.Where(item => item.CourseId.Equals(id)).Include(item => item.User);
         }
     }
 

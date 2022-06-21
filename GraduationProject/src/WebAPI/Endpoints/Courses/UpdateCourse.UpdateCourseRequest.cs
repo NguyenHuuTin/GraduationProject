@@ -22,4 +22,18 @@ namespace WebAPI.Endpoints.Courses
         public IFormFile Image { get; set; }
         public IFormFile Video { get; set; }
     }
+
+    public class UpdateSectionRequast
+    {
+        public Guid id { get; set; }
+        public string title { get; set; }
+    }
+
+    public class UpdateLectureRequest
+    {
+        public Guid id { get; set; }
+        public string title { get; set; }
+        public float duration { get; set; }
+        public IFormFile Video { get; set; }
+    }
 }

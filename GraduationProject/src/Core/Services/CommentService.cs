@@ -19,18 +19,35 @@ namespace Core.Services
             _repository = repository;
         }
 
-        public async Task<List<Comment>> GetListComment()
+        public async Task<bool> AddComment(QuestionAndAnswer questionAndAnswer)
         {
-            var incompleteSpec = new GetAllComment();
             try
             {
-                return await _repository.ListAsync<Comment>(incompleteSpec);
+               var result = await _repository.AddAsync<QuestionAndAnswer>(questionAndAnswer);
+                if (result != null)
+                {
+                    return true;
+                }
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<QuestionAndAnswer>> GetListComment(Guid id)
+        {
+            var incompleteSpec = new GetAllComment(id);
+            try
+            {
+                return await _repository.ListAsync<QuestionAndAnswer>(incompleteSpec);
 
             }
             catch (Exception ex)
             {
                 // TODO: Log details here
-                return Result<List<Comment>>.Error(new[] { ex.Message });
+                return Result<List<QuestionAndAnswer>>.Error(new[] { ex.Message });
             }
         }
     }

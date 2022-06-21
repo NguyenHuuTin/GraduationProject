@@ -8,6 +8,8 @@ namespace Core.Interfaces
 {
     public interface ICommentService
     {
-        Task<List<Comment>> GetListComment();
+        Task<List<QuestionAndAnswer>> GetListComment(Guid id);
+
+        Task<bool> AddComment(QuestionAndAnswer questionAndAnswer);
     }
 }

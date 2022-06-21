@@ -190,7 +190,7 @@ function MyCourse(props) {
                 <div className={styles.itemUpdate}>{element.updateAt}</div>
                 {element.status === "Block" ? (
                   <div className={styles.itemAction}>
-                    <Link to={`.`}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
 
@@ -206,7 +206,7 @@ function MyCourse(props) {
                   </div>
                 ) : element.status === "Active" ? (
                   <div className={styles.itemAction}>
-                    <Link to={`.`}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
                     <button
@@ -221,7 +221,7 @@ function MyCourse(props) {
                   </div>
                 ) : (
                   <div className={styles.itemAction}>
-                    <Link to={`.`}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
                     <button className={styles.buttonActionReject} onClick={()=>{

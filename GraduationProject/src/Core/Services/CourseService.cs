@@ -580,12 +580,13 @@ namespace Core.Services
         // add one lesson
         public async Task<bool> AddLesson(LessonContent lessonContent)
         {
+            
             try
             {
                 Lesson lesson = new Lesson();
 
                 //Set value for element in Lesson list
-                lesson.SectionId = lessonContent.SectionId;
+                lesson.SectionId = lessonContent.Id;
                 lesson.Title = lessonContent.LessonTitle;
                 lesson.CreateAt = DateTime.Now;
                 lesson.VideoUrl = await UploadFile(lessonContent.File);
@@ -620,6 +621,20 @@ namespace Core.Services
             }
         }
 
+        public async Task<bool> DeleteLeture(Guid Id)
+        {
+            try
+            {
+                await _repository.DeleteByIdAsync<Lesson>(Id);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         public async Task<bool> DeleteCourse(Guid Id)
         {
@@ -642,6 +657,45 @@ namespace Core.Services
             }
         }
 
+
+        public async Task<bool> DeleteQuestion(Guid Id)
+        {
+            var incompleteSpec = new GetDetailQuestionByID(Id);
+            try
+            {
+                var question = await _repository.ListAsync<QuizzQuestion>(incompleteSpec);
+                foreach (var item in question)
+                {
+                    await _repository.DeleteListAsync<QuizzAnswer>(x => x.QuestionId == item.Id);
+                }
+                await _repository.DeleteByIdAsync<QuizzQuestion>(Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public async Task<bool> DeleteQuizz(Guid Id)
+        {
+            var incompleteSpec = new GetDetailQuizzByID(Id);
+            try
+            {
+                var quizz = await _repository.ListAsync<Quizz>(incompleteSpec);
+                foreach (var item in quizz)
+                {
+                    var result = DeleteQuestion(item.Id);
+                }
+                await _repository.DeleteByIdAsync<Quizz>(Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// Get UserId by SectionId
         /// </summary>
@@ -741,7 +795,7 @@ namespace Core.Services
                 var existingItem = await _repository.GetByIdAsync<Section>(request.Id);
 
                 existingItem.Title = request.Title;
-                existingItem.TotalTime = request.TotalTime;
+                //existingItem.TotalTime = request.TotalTime;
                 existingItem.UpdateAt = DateTime.Now;
 
                 await _repository.UpdateAsync(existingItem);
@@ -752,24 +806,34 @@ namespace Core.Services
             }
         }
 
-        public async Task UpdateLesson(Lesson request, IFormFile file)
+        public async Task<bool> UpdateLesson(LessonContent request)
         {
             try
             {
                 var existingItem = await _repository.GetByIdAsync<Lesson>(request.Id);
-
-                existingItem.Title = request.Title;
-                existingItem.TotalTime = request.TotalTime;
+                if(request.LessonTitle != "")
+                {
+                    existingItem.Title = request.LessonTitle;
+                }
+                if(request.Duration != 0)
+                {
+                    existingItem.Duration = request.Duration;
+                }
                 existingItem.UpdateAt = DateTime.Now;
-                existingItem.Volume = request.Volume;
-                existingItem.Duration = request.Duration;
-                existingItem.VideoUrl = await UploadFile(file); ;
+               
+                if(request.File != null)
+                {
+                    existingItem.VideoUrl = await UploadFile(request.File);
+                }
 
                 await _repository.UpdateAsync(existingItem);
+
+                return true;
             }
             catch (Exception ex)
             {
                 Result<Course>.Error(new[] { ex.Message });
+                return false;
             }
         }
 
@@ -892,6 +956,167 @@ namespace Core.Services
                                                            .Where(c => c.Course.UserId.Equals(id))
                                                            .ToListAsync();
             return lstOrder;
+        }
+
+        public async Task<Section> GetSection(Guid id)
+        {
+            var incompleteSpec = new GetDetailSection(id);
+
+            try
+            {
+                var items = await _repository.ListAsync<Section>(incompleteSpec);
+
+                return items.First();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<Section>.Error(new[] { ex.Message });
+            }
+        }
+
+        public Quizz GetQuizz(Guid SectionId)
+        {
+            var incompleteSpec = new GetDetailQuizz(SectionId);
+
+            try
+            {
+                var items = _repository.List<Quizz>(incompleteSpec);
+
+                return items.First();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<Quizz>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<bool> AddQuizz(Quizz quizz)
+        {
+            try
+            {
+                await _repository.AddAsync<Quizz>(quizz);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<Guid> AddQuestion(QuizzQuestion quizz)
+        {
+            try
+            {
+                return (await _repository.AddAsync<QuizzQuestion>(quizz)).Id;
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<Guid> AddAnswer(QuizzAnswer quizz)
+        {
+            try
+            {
+                return (await _repository.AddAsync<QuizzAnswer>(quizz)).Id;
+            }
+            catch (Exception ex)
+            {
+                return Result<Guid>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<Quizz> GetQuizzById(Guid Id)
+        {
+            var incompleteSpec = new GetDetailQuizzByID(Id);
+
+            try
+            {
+                var items = await _repository.ListAsync<Quizz>(incompleteSpec);
+
+                return items.First();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<Quizz>.Error(new[] { ex.Message });
+            }
+        }
+
+
+        public async Task<QuizzQuestion> GetQuestionById(Guid Id)
+        {
+            var incompleteSpec = new GetDetailQuestionByID(Id);
+            try
+            {
+                var items = await _repository.ListAsync<QuizzQuestion>(incompleteSpec);
+
+                return items.First();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<QuizzQuestion>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<QuizzAnswer> GetAnswerById(Guid Id)
+        {
+            var incompleteSpec = new GetDetailAnswerByID(Id);
+
+            try
+            {
+                var items = await _repository.ListAsync<QuizzAnswer>(incompleteSpec);
+
+                return items.First();
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<QuizzAnswer>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<bool> UpdateQuizz(Quizz quizz)
+        {
+            try
+            {
+                await _repository.UpdateAsync<Quizz>(quizz);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateQuestion(QuizzQuestion quizz)
+        {
+            try
+            {
+                await _repository.UpdateAsync<QuizzQuestion>(quizz);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateAnswer(QuizzAnswer quizz)
+        {
+            try
+            {
+                await _repository.UpdateAsync<QuizzAnswer>(quizz);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

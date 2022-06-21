@@ -35,10 +35,17 @@ namespace Infrastructure.Data
             return _dbContext.Set<T>().ToListAsync();
         }
 
+
         public async Task<List<T>> ListAsync<T>(ISpecification<T> spec) where T : BaseEntity
         {
             var specificationResult = ApplySpecification(spec);
             return await specificationResult.ToListAsync();
+        }
+
+        public List<T> List<T>(ISpecification<T> spec) where T : BaseEntity
+        {
+            var specificationResult = ApplySpecification(spec);
+            return specificationResult.ToList();
         }
 
         public async Task<T> AddAsync<T>(T entity) where T : BaseEntity

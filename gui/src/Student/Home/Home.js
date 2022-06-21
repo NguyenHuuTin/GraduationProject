@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { SliderData } from "./SlideData";
 
@@ -8,7 +8,6 @@ function Home(props) {
   const [course, setCourse] = useState([]);
   const [myCourse, setMyCourse] = useState([]);
   const [filter, setFilter] = useState([]);
-  const navigate = useNavigate();
   const token = localStorage.token;
   useEffect(() => {
     axios
@@ -62,7 +61,7 @@ function Home(props) {
       });
       setFilter(filterList);
     }
-  })
+  },[course, myCourse])
 
   const [current, setCurrent] = useState(0);
   const length = props.slides.length;

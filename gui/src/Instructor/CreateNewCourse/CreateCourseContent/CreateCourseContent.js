@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./EditCourse.module.css";
+import styles from "./CreateCourseContent.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -9,9 +9,9 @@ import {
   NotificationManager,
 } from "react-notifications";
 import "react-notifications/lib/notifications.css";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
-function EditCourse(props) {
+function CreateCourseContent(props) {
   const { id } = useParams();
   const [course, setCourse] = useState();
   const [lectureTitle, setLectureTitle] = useState("");
@@ -342,16 +342,7 @@ function EditCourse(props) {
     }
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <div className={styles.textTitle}>
-          <i className="fa-solid fa-circle-plus"></i>
-        </div>
-        <div className={styles.textTitle}>Edit Course</div>
-      </div>
-
-      <div className={styles.body}>
-        <div className={styles.containerEdit}>
+    <div className={styles.containerEdit}>
           {course &&
             course.section.map((element, index) => {
               return (
@@ -890,9 +881,7 @@ function EditCourse(props) {
           </button>
           <NotificationContainer />
         </div>
-      </div>
-    </div>
   );
 }
 
-export default EditCourse;
+export default CreateCourseContent;

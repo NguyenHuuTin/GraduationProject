@@ -1,0 +1,27 @@
+.container{
+    background-color: transparent;
+    width: 500px;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textTitle{
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.body{
+    margin-top: 30px;
+}

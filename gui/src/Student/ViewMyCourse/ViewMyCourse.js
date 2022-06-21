@@ -10,6 +10,9 @@ function ViewMyCourse(props) {
   const [video, setVideo] = useState("");
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const [comment, setComment] = useState([]);
+  const [inputComment, setInputComment] = useState("");
+  const [trueComment, setTrueComment] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,27 +27,66 @@ function ViewMyCourse(props) {
       });
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     course && setVideo(course.section[x].lessons[y].videoUrl);
-  },[x, y])
+  }, [x, y]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:57678/Comment/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        setComment(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setComment([]);
+      });
+  },[trueComment]);
+
+  const token = localStorage.token;
+
+  const handleSendComment = (e)=>{
+    if(inputComment !==""){
+      if(e.key ==="Enter"){
+        axios.post(`http://localhost:57678/Comment`, {
+          id : id,
+          comment: inputComment
+        },{
+          headers:{
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then((res)=>{
+          console.log(res.data);
+          setInputComment("");
+          setTrueComment(prev => !prev)
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+        
+      }
+    }
+  }
   return (
     <div className={styles.container}>
       <div className={styles.bodyVideo}>
         <iframe
           className={styles.video}
           src={course && video}
-          title="YouTube video player"
+          title="Course video"
           frameBorder={"0"}
           allow="accelerometer; control; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
         <div className={styles.describe}>
           <h2>{course && course.section[x].lessons[y].title}</h2>
-          <p>
-            {course && parse(course.description)}
-          </p>
+          <p>{course && parse(course.description)}</p>
           <div className={styles.comment}>
-            <h4>6 comments</h4>
+            <h4>{comment && comment.length} comments</h4>
             <div className={styles.myComment}>
               <img
                 className={styles.imgUser}
@@ -55,23 +97,31 @@ function ViewMyCourse(props) {
                 type={"text"}
                 className={styles.inputComment}
                 placeholder="Do you have any questions about this lesson?"
+                value={inputComment}
+                onChange={(e)=>{setInputComment(e.target.value)}}
+                onKeyDown={handleSendComment}
               ></input>
             </div>
             <div className={styles.listComment}>
-              <div className={styles.itemComment}>
-                <img
-                  className={styles.imgUser}
-                  alt="img_user"
-                  src="https://www.kindpng.com/picc/m/24-248442_female-user-avatar-woman-profile-member-user-profile.png"
-                ></img>
-                <div className={styles.infoComment}>
-                  <div className={styles.nameUser}>Hữu tin</div>
-                  <div className={styles.dateComment}>21 june 2022</div>
-                  <div className={styles.contentComment}>
-                    this course is very good
-                  </div>
-                </div>
-              </div>
+              {comment &&
+                comment.map((element) => {
+                  return (
+                    <div className={styles.itemComment} key={element.id}>
+                      <img
+                        className={styles.imgUser}
+                        alt="img_user"
+                        src={element.avatar}
+                      ></img>
+                      <div className={styles.infoComment}>
+                        <div className={styles.nameUser}>{element.user}</div>
+                        <div className={styles.dateComment}>{element.createAt}</div>
+                        <div className={styles.contentComment}>
+                          {element.comment}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -99,7 +149,11 @@ function ViewMyCourse(props) {
                       >
                         <i
                           className="fa-solid fa-circle-play"
-                          style={{ marginRight: 10, color: "#F9B9A7" , marginLeft: 20}}
+                          style={{
+                            marginRight: 10,
+                            color: "#F9B9A7",
+                            marginLeft: 20,
+                          }}
                         ></i>
                         {i + 1}. {item.title}
                       </div>

@@ -63,7 +63,6 @@ namespace Infrastructure.Data
         public DbSet<Payout> Payouts { get; set; }
         public override DbSet<User> Users { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
         #endregion
@@ -101,7 +100,6 @@ namespace Infrastructure.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserQuizzAnswerConfiguration());
             modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new ComentConfiguration());
             #endregion
 
             // Remove AspNet prefix of tables: by default, tables in IdentityDbContext have

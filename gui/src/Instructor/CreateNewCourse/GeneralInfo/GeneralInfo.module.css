@@ -1,0 +1,178 @@
+.container{
+    background-color: transparent;
+    width: 100%;
+    border: 1px;
+    right: 0px;
+    flex: 1;
+    border: 0px solid #052a5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.title{
+    padding: 20px;
+    border-bottom: 2px solid #efefef;
+    border-top: 2px solid #efefef;
+}
+
+.main{
+    background-color: white;
+    min-height: 450px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.courseTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.inputTitle{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    border-radius: 5px;
+}
+
+.inputID{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-radius: 5px;
+}
+
+.inputPrice{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border-radius: 5px;
+}
+
+.inputIsFree{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    border-radius: 5px;
+}
+
+.name{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.inputText{
+    height: 35px;
+    width: 100%;
+    box-shadow: thistle 10px;
+}
+
+.inputDes{
+    width: 99%;
+    min-height: 100px;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.coursePriceInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+
+.coursePrice{
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #efefef;
+}
+
+
+.priceTitle{
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    padding: 10px;
+    line-height: 30px;
+}
+.textPriceTitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.buttonNext{
+    text-align: left;
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+
+.btn{
+    background-color: #75307E;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+.mainBackGround{
+    background-color: white;
+    min-height: 350px;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.image{
+    width: 460px;
+    height: 260px;
+    margin-right: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.contentTitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contentBody{
+    font-size: 15px;
+    padding-top: 20px;
+}
+
+.inputFile{
+    z-index: 2;
+    height: calc(1.5em + .75rem + 2px);
+    overflow: hidden;
+    text-align: left;
+}
+
+
+.customFile{
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-weight: 400;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    text-align: left;
+    padding-top: 20px;
+}

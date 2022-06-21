@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./DraftCourse.module.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function MyCourse(props) {
   const [CourseList, setCourseList] = useState([]);
+  const [status, setStatus] = useState(false);
+  const navigate = useNavigate();
+  const token = localStorage.token
+
   useEffect(() => {
     axios
       .get("http://localhost:57678/Course")
@@ -15,7 +24,7 @@ function MyCourse(props) {
       .catch(() => {
         setCourseList([]);
       });
-  }, []);
+  }, [status]);
 
   // Hook action Search
   const [search, setSearch] = useState("");
@@ -63,6 +72,36 @@ function MyCourse(props) {
     setLastIndex(currentPage * count);
     setFirstIndex(lastIndex - count);
   }, [filter.length, currentPage, lastIndex]);
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:57678/Course/${id}`,{
+        headers:{
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        if(res.data){
+          console.log(res.data)
+          setStatus((prev) => !prev);
+          NotificationManager.success("Delete course successfully!");
+        }
+        else{
+          NotificationManager.error("Delete course failed!");
+        }
+      })
+      .catch((error) => {
+        if(error.response.status === 500){
+          navigate("/login/signin")
+        }
+        else{
+          NotificationManager.error("Delete course failed!");
+        }
+        
+      });
+  };
   return (
     <div className={styles.cardCourseList}>
       <div className={styles.CourseListTitle}>Course List</div>
@@ -122,7 +161,7 @@ function MyCourse(props) {
                 <div className={styles.itemUpdate}>{element.updateAt}</div>
                 {element.status === "Block" ? (
                   <div className={styles.itemAction}>
-                    <Link to={``}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
 
@@ -132,7 +171,7 @@ function MyCourse(props) {
                   </div>
                 ) : element.status === "Active" ? (
                   <div className={styles.itemAction}>
-                    <Link to={``}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
                     <button className={styles.buttonActionBlock}>Block</button>
@@ -140,12 +179,15 @@ function MyCourse(props) {
                 )
                 : (
                   <div className={styles.itemAction}>
-                    <Link to={``}>
+                    <Link to={`edit/${element.id}`}>
                       <button className={styles.buttonActionView}>Edit</button>
                     </Link>
-                    <button className={styles.buttonActionReject}>
+                    <button className={styles.buttonActionReject} onClick={()=>{
+                      handleDelete(element.id)
+                    }}>
                       Delete
                     </button>
+                    <NotificationContainer />
                   </div>
                 )
               }

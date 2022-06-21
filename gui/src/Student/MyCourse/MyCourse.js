@@ -42,7 +42,7 @@ function MyCourse(props) {
       });
       setFilter(filterList);
     }
-  })
+  },[course])
 
 
   return (

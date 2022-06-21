@@ -30,8 +30,8 @@ namespace WebAPI.Endpoints.Courses
         ]
         public override async Task<ActionResult<List<ListResponse>>> HandleAsync(CancellationToken cancellationToken)
         {
-            var items = (await _courseService.GetAllCourse<Course>())
-                .Select(item => new ListResponse
+            var items = (await _courseService.GetAllCourse<Course>()).OrderByDescending(x => x.CreateAt);
+            var result = items.Select(item => new ListResponse
                 {
                     Id = item.Id,
                     Price = item.OriginPrice,
@@ -41,7 +41,7 @@ namespace WebAPI.Endpoints.Courses
                     Category = item.SubCategory.Name
                 });
 
-            return Ok(items);
+            return Ok(result);
         } 
     }
 }

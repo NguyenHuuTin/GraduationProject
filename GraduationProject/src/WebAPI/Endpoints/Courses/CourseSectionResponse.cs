@@ -12,4 +12,22 @@ namespace WebAPI.Endpoints.Courses
         [Required]
         public string CourseContentTitle { get; set; }
     }
+
+    public class QuizzRequest
+    {
+        public Guid id { get; set; }
+        public string title { get; set; }
+    }
+
+    public class QuestionRequest
+    {
+        public Guid id { get; set; }
+        public string htmlContent { get; set; }
+    }
+
+    public class AnswerRequest
+    {
+        public Guid id { get; set; }
+        public string answer { get; set; }
+    }
 }

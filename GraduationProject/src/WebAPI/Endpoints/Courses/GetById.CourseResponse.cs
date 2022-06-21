@@ -12,6 +12,7 @@ namespace WebAPI.Endpoints.Courses
         public string Title { get; set; }
         public decimal Price { get; set; }
         public ICollection<Section> Section { get; set; }
+        public List<Quizz> Quizzs { get; set; }
     }
 
     public class CourseStudentResponse
@@ -21,6 +22,7 @@ namespace WebAPI.Endpoints.Courses
         public decimal Price { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
+        public List<Quizz> Quizzs { get; set; }
         public ICollection<Section> Section { get; set; }
     }
 }

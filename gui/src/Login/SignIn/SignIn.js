@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./SignIn.module.css";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 function SignIn(props) {
   const [email, setEmail] = useState("");
@@ -23,7 +26,7 @@ function SignIn(props) {
       })
       .catch((error) => {
         console.log(error);
-        NotificationManager.error('Email or password is incorrect!');
+        NotificationManager.error("Email or password is incorrect!");
       });
   };
 
@@ -32,34 +35,37 @@ function SignIn(props) {
     payload: userObj,
   });
 
-  const handleRole = (formData)=>{
-    axios.post('http://localhost:57678/GetRole',{
-      Email: email,
-      Password: pass
-    })
-    .then((res)=>{
-      if(res.data === "Instructor"){
-        navigate("/instructorpage")
-      }
-      if(res.data === "Admin"){
-        navigate("/admin")
-      }
-      if(res.data === "Student"){
-        navigate("/")
-      }
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
+  const handleRole = (formData) => {
+    axios
+      .post("http://localhost:57678/GetRole", {
+        Email: email,
+        Password: pass,
+      })
+      .then((res) => {
+        if (res.data === "Instructor") {
+          navigate("/instructorpage");
+        }
+        if (res.data === "Admin") {
+          navigate("/admin");
+        }
+        if (res.data === "Student") {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
-    <div className={styles.body} >
+    <div className={styles.body}>
       <div className={styles.container}>
         <div className={styles.welCom}>Welcome Back</div>
         <div className={styles.subTitle}>Log In to Your Account!</div>
         <div className={styles.google}>
-          <button className={styles.google}>Continue with google</button>
+          <button className={styles.google}>
+            <i className="fa-brands fa-google" style={{marginRight: 10}}></i>Continue with google
+          </button>
         </div>
         <div>
           <input
@@ -91,7 +97,7 @@ function SignIn(props) {
           <button className={styles.btnLogin} onClick={handleLogin}>
             Sign In
           </button>
-          <NotificationContainer/>
+          <NotificationContainer />
         </div>
         <p>
           Or{" "}
@@ -108,8 +114,6 @@ function SignIn(props) {
         </p>
       </div>
     </div>
-
-   
   );
 }
 

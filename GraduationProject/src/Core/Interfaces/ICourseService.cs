@@ -33,11 +33,14 @@ namespace Core.Interfaces
         Task<List<Course>> GetActiveCourseStudent<Course>();
         Task UpdateCourse(Course request, IFormFile image, IFormFile trailer);
         Task UpdateSection(Section request);
-        Task UpdateLesson(Lesson request, IFormFile file);
+        Task<bool> UpdateLesson(LessonContent request);
         Task<bool> CreateCourseContent(CourseContent courseContent);
         Task<Guid> CreateCourseSection(Section section);
         Task<bool> DeleteSection(Guid sectionId);
+        Task<bool> DeleteLeture(Guid Id);
         Task<bool> DeleteCourse(Guid Id);
+        Task<bool> DeleteQuestion(Guid Id);
+        Task<bool> DeleteQuizz(Guid Id);
         Task<Guid> GetUserIdBySectionId(Guid sectionId);
         Task<Guid> GetUserIdByCourseId(Guid Id);
         Task<bool> UpdateExtra(Guid courseId, string status);
@@ -45,5 +48,27 @@ namespace Core.Interfaces
         Task<bool> AddLesson(LessonContent lessonContent);
 
         Task<List<OrderDetail>> GetTopCourse(Guid id);
+
+        Task<Section> GetSection(Guid id);
+
+        Quizz GetQuizz(Guid SectionId);
+
+        Task<bool> AddQuizz(Quizz quizz);
+
+        Task<Guid> AddQuestion(QuizzQuestion quizz);
+
+        Task<Guid> AddAnswer(QuizzAnswer quizz);
+
+        Task<Quizz> GetQuizzById(Guid Id);
+
+        Task<QuizzQuestion> GetQuestionById(Guid Id);
+
+        Task<QuizzAnswer> GetAnswerById(Guid Id);
+
+        Task<bool> UpdateQuizz (Quizz quizz);
+
+        Task<bool> UpdateQuestion (QuizzQuestion quizz);
+
+        Task<bool> UpdateAnswer (QuizzAnswer quizz);
     }
 }

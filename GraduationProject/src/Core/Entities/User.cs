@@ -82,7 +82,5 @@ namespace Core.Entities
         public virtual ICollection<DiscussionVote> DiscussionVotes { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

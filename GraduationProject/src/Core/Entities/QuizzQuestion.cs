@@ -10,7 +10,7 @@ namespace Core.Entities
 
         public string HtmlContent { get; set; }
 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         public DateTime CreateAt { get; set; }
 
