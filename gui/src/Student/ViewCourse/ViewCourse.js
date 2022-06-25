@@ -9,7 +9,6 @@ function ViewCourse(props) {
   const { id } = useParams();
   const [course, setCourse] = useState();
   const [ip, setIP] = useState("");
-  const [url, setUrl] = useState("");
   const navigate = useNavigate();
   const token = localStorage.token;
 
@@ -23,7 +22,7 @@ function ViewCourse(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   //creating function to load ip address from the API
   const getData = async () => {
@@ -44,7 +43,6 @@ function ViewCourse(props) {
     axios
       .post("http://localhost:57678/Payment", formData)
       .then((res) => {
-        setUrl(res.data);
         handleAddOrder()
         window.location = res.data;
       })
@@ -54,26 +52,29 @@ function ViewCourse(props) {
   };
 
   const handleAddOrder = async ()=>{
-    if(token){
-      await axios.post('http://localhost:57678/AddOrdeDetail',{
-      courseId: id,
-      price: course.price
-    },{
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res)=>{
-      console.log(res.data);
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-    }
-    else{
-      navigate("/login/signin")
+    if(window.confirm('Are you sure you want to buy this course?')){
+      if(token){
+        await axios.post('http://localhost:57678/AddOrdeDetail',{
+        courseId: id,
+        price: course.price
+      },{
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res)=>{
+        console.log(res.data);
+        course.price === 0 && navigate("/myCourse")
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+      }
+      else{
+        navigate("/login/signin")
+      }
     }
   }
   return (
@@ -89,7 +90,7 @@ function ViewCourse(props) {
             return (
               <div key={element.id} className={styles.sectionCourse}>
                 <div className={styles.titleSection}>
-                  {index + 1}. {element.title}
+                  {element.title}
                 </div>
                 <div className={styles.lectureCourse}>
                   {element.lessons.map((item, i) => {
@@ -99,7 +100,7 @@ function ViewCourse(props) {
                           className="fa-solid fa-circle-play"
                           style={{ marginRight: 10, color: "#F9B9A7" }}
                         ></i>
-                        {i + 1}. {item.title}
+                        {item.title}
                       </div>
                     );
                   })}
@@ -119,7 +120,7 @@ function ViewCourse(props) {
           <i className="fa-solid fa-dollar-sign" style={{ marginLeft: 10 }}></i>
         </div>
         <div className={styles.btnBuy}>
-          <button className={styles.btnBuyCourse} onClick={handleBuy}>
+          <button className={styles.btnBuyCourse} onClick={course && (course.price === 0 ? handleAddOrder : handleBuy)}>
             Buy Course
           </button>
         </div>

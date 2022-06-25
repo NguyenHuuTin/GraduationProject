@@ -18,7 +18,7 @@ function ViewCourse(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.container}>
@@ -33,7 +33,7 @@ function ViewCourse(props) {
             return (
               <div key={element.id} className={styles.sectionCourse}>
                 <div className={styles.titleSection}>
-                  {index + 1}. {element.title}
+                  {element.title}
                 </div>
                 <div className={styles.lectureCourse}>
                   {element.lessons.map((item, i) => {
@@ -43,7 +43,7 @@ function ViewCourse(props) {
                           className="fa-solid fa-circle-play"
                           style={{ marginRight: 10, color: "#F9B9A7" }}
                         ></i>
-                        {i + 1}. {item.title}
+                        {item.title}
                       </div>
                     );
                   })}

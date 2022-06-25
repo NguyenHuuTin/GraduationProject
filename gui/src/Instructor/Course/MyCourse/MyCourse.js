@@ -51,7 +51,8 @@ function MyCourse(props) {
 
   
   const handleDelete = (id) => {
-    axios
+    if(window.confirm("Are you sure delete this course?")){
+      axios
       .delete(`http://localhost:57678/Course/${id}`,{
         headers:{
           'Content-Type': 'application/json',
@@ -78,6 +79,7 @@ function MyCourse(props) {
         }
         
       });
+    }
   };
 
   // Hook action Search

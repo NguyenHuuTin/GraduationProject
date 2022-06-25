@@ -55,16 +55,17 @@ namespace WebAPI.Endpoints.Courses
         public async Task<ActionResult<CourseStudentResponse>> GetCourseByIdStudentAsync(Guid id, CancellationToken cancellationToken)
         {
             var item = (await _courseService.GetDetailCourse(id));
-           
-            List<Quizz> resultQuizz = new List<Quizz>();
-            List<Section> x = item.Sections.ToList();
-            foreach (var section in x)
-            {
-                if (_courseService.GetQuizz(section.Id) != null)
-                {
-                    resultQuizz.Add(_courseService.GetQuizz(section.Id));
-                }
-            }
+
+            /* List<Quizz> resultQuizz = new List<Quizz>();
+             List<Section> x = item.Sections.ToList();
+             foreach (var section in x)
+             {
+                 if (_courseService.GetQuizz(section.Id) != null)
+                 {
+                     resultQuizz.Add(_courseService.GetQuizz(section.Id));
+                 }
+             }*/
+            List<Quizz> resultQuizz = item.Sections.Select(x => _courseService.GetQuizz(x.Id)).ToList();
             var response = new CourseStudentResponse
             {
                 Id = item.Id,

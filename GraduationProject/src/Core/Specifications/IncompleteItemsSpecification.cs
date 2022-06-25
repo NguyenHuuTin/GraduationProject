@@ -54,6 +54,23 @@ namespace Core.Specifications
         }
     }
 
+
+    public class GetAllDetailAnswerByID : Specification<UserQuizzAnswer>
+    {
+        public GetAllDetailAnswerByID(Guid id)
+        {
+            Query.Where(item => item.UserId == id);
+        }
+    }
+
+    public class GetQuizzComplete : Specification<QuizzCompletion>
+    {
+        public GetQuizzComplete(Guid userId, Guid quizzId)
+        {
+            Query.Where(item => item.UserId == userId && item.QuizzId == quizzId);
+        }
+    }
+
     public class GetDetailQuizz : Specification<Quizz>
     {
         public GetDetailQuizz(Guid id)
@@ -248,6 +265,15 @@ namespace Core.Specifications
         public GetOrderDetail(Guid id)
         {
             Query.Where(item => true).Where(x => x.UserId == id).Include(item => item.Course).ThenInclude(item => item.User);
+        }
+    }
+
+
+    public class GetOrderDetailWithCourse : Specification<OrderDetail>
+    {
+        public GetOrderDetailWithCourse(Guid id)
+        {
+            Query.Where(item => true).Where(x => x.CourseId == id).Include(item => item.User).ThenInclude(x => x.QuizzCompletions);
         }
     }
 

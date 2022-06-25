@@ -4,12 +4,13 @@ import Dashboard from "../../Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
 import Course from "../../Course/Course";
 import Analytic from "../../Analytic/Analytic";
-import CreateCourse from "../../CreateCourse/CreateCourse";
+// import CreateCourse from "../../CreateCourse/CreateCourse";
 import Earning from "../../Earning/Earning";
 import Payout from "../../Payout/Payout";
 import EditCourse from "../../EditCourse/EditCourse";
 import Comment from "../../Comment/Comment";
 import CreateNewCourse from "../../CreateNewCourse/CreateNewCourse";
+import Students from "../../Students/Students";
 
 function Content(props) {
   return (
@@ -23,6 +24,7 @@ function Content(props) {
         <Route path="earning/*" element={<Earning/>}/>
         <Route path="payout/*" element={<Payout/>}/>
         <Route path="comment/*" element={<Comment/>}/>
+        <Route path="students/*" element={<Students/>}/>
       </Routes>
         
     </div>

@@ -156,7 +156,7 @@ function CreateCourseContent(props) {
         })
         .then((res) => {
           console.log(res.data);
-          navigate("/instructorpage");
+          navigate("/instructorpage/course");
         })
         .catch((error) => {
           console.log(error);

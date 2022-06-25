@@ -19,12 +19,12 @@ function Menu(props) {
               <p className={styles.contentItem}>Instructor</p>
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Link to={"topic"} className={styles.itemMenu}>
               <i className="fa-solid fa-layer-group"></i>
               <p className={styles.contentItem}>Topic</p>
             </Link>
-          </div>
+          </div> */}
           
         </div>
       </aside>

@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import styles from "./Payment.module.css";
-import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 function Payment(props) {
   const { vnp_Amount } = useParams(0);
@@ -28,6 +26,7 @@ function Payment(props) {
           </div>
         </div>
         <img
+          alt="payment"
           className={styles.img}
           src="https://res.cloudinary.com/dlurdcc6c/image/upload/v1655393991/samples/Course/image/paymentcomfirm_sw6yaz.png"
         ></img>

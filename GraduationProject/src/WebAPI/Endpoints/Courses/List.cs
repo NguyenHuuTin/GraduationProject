@@ -30,7 +30,7 @@ namespace WebAPI.Endpoints.Courses
         ]
         public override async Task<ActionResult<List<ListResponse>>> HandleAsync(CancellationToken cancellationToken)
         {
-            var items = (await _courseService.GetAllCourse<Course>()).OrderByDescending(x => x.CreateAt);
+            var items = (await _courseService.GetAllCourse<Course>()).OrderByDescending(x => x.UpdateAt);
             var result = items.Select(item => new ListResponse
                 {
                     Id = item.Id,

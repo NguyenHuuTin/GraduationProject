@@ -27,7 +27,7 @@ namespace Core.Services
                 model.UserId = userId;
                 model.CourseId = courseId;
                 model.CompleteDate = DateTime.UtcNow;
-                var item = await _courseCompletionRepository.AddCourseCompletionAsync<CourseCompletion>(model);
+                var item = await _courseCompletionRepository.AddQuizzAsync<CourseCompletion>(model);
 
                 if (item == null)
                 {

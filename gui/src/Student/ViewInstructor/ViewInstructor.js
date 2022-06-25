@@ -38,21 +38,21 @@ function ViewInstructor(props) {
           <div className={styles.count}>
             <div className={styles.itemCount}>
               <div className={styles.itemName}>Enroll Students</div>
-              <div className={styles.itemNumber}>611</div>
+              <div className={styles.itemNumber}>5</div>
             </div>
 
             <div className={styles.itemCount}>
               <div className={styles.itemName}>Courses</div>
-              <div className={styles.itemNumber}>8</div>
+              <div className={styles.itemNumber}>16</div>
             </div>
-            <div className={styles.itemCount}>
+            {/* <div className={styles.itemCount}>
               <div className={styles.itemName}>Reviews</div>
-              <div className={styles.itemNumber}>115</div>
+              <div className={styles.itemNumber}>1</div>
             </div>
             <div className={styles.itemCount}>
               <div className={styles.itemName}>Subscribers</div>
               <div className={styles.itemNumber}>452</div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.link}>
@@ -86,7 +86,7 @@ function ViewInstructor(props) {
               ></i>
             </Link>
           </div>
-          <div className={styles.subscript}>Subscript</div>
+          {/* <div className={styles.subscript}>Subscript</div> */}
         </div>
       </div>
       <div className={styles.listCourse}>

@@ -136,6 +136,8 @@ namespace Infrastructure
 
             builder.RegisterType<PayoutService>().As<IPayoutService>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<QuizzService>().As<IQuizzService>()
+                 .InstancePerLifetimeScope();
             builder.RegisterType<ReviewService>().As<IReviewService>()
                .InstancePerLifetimeScope();
 

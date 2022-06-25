@@ -28,6 +28,7 @@ namespace Core.Services
                 item.Price = price;
                 item.UserId = userID;
                 item.Type = "Sales";
+                item.PurchasedDay = DateTime.Now;
                 var result = await _repository.AddAsync<OrderDetail>(item);
                 return true;
             }
@@ -55,6 +56,20 @@ namespace Core.Services
         public async Task<List<OrderDetail>> GetAllOrderDetailWithStudent(Guid id)
         {
             var incompleteSpec = new GetOrderDetail(id);
+            try
+            {
+                return await _repository.ListAsync<OrderDetail>(incompleteSpec);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log details here
+                return Result<List<OrderDetail>>.Error(new[] { ex.Message });
+            }
+        }
+
+        public async Task<List<OrderDetail>> GetAllOrderDetailWithCourse(Guid id)
+        {
+            var incompleteSpec = new GetOrderDetailWithCourse(id);
             try
             {
                 return await _repository.ListAsync<OrderDetail>(incompleteSpec);
