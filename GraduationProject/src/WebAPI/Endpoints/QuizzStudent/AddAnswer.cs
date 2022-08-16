@@ -27,17 +27,17 @@ namespace WebAPI.Endpoints.QuizzStudent
             OperationId = "Quizz.add",
             Tags = new[] { "QuizzStudentEndpoints" })
         ]
-        public async Task<ActionResult<bool>> AddAnswerStudentAsync([FromBody] AnswerRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<bool>> AddAnswerStudentAsync([FromBody] AddAnswerRequest request, CancellationToken cancellationToken)
         {
             var userId = GetLoggedUserId();
             QuizzAnswer quizzAnswer = await _quizzService.GetQuizzAnswer(request.questionId);
             if (quizzAnswer.Content.Equals(request.answer))
             {
-                bool result = await _quizzService.AddUserAnswer(userId, quizzAnswer.Id);
+                var result = await _quizzService.AddUserAnswer(userId, quizzAnswer.Id);
                 return Ok(result);
             }
            return Ok(false);
-            
+
         }
 
        [HttpGet("/Quizz/Checkcompletequizz/{quizzId}")]

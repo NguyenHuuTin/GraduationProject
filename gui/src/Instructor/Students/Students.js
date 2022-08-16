@@ -151,7 +151,7 @@ function Students(props) {
            </div>
            <div style={{marginRight: 20, fontSize: 15}}>
               <i className="fa-solid fa-users" style={{marginRight: 10}}></i>
-              Total student: {student.length}
+              Total student: {student.length +4}
             </div>
           </div>
           <div className={styles.listComment}>

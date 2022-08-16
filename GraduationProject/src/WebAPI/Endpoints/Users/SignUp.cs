@@ -50,7 +50,7 @@ namespace WebAPI.Endpoints.Users
                 SecurityStamp = "Student",
                 NormalizedEmail = request.Email,
                 FirstName = request.UserName,
-                LastName = request.LastName,
+                LastName = request.UserName,
                 PasswordHash = request.Password,
                 CreateAt = DateTime.Now,
                 EmailConfirmed = false,

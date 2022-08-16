@@ -2,7 +2,7 @@
 
 namespace WebAPI.Endpoints.QuizzStudent
 {
-    public class AnswerRequest
+    public class AddAnswerRequest
     {
         public Guid questionId { get; set; }
 

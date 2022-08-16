@@ -3,7 +3,7 @@ import styles from "./Payment.module.css";
 import {useParams } from "react-router-dom";
 
 function Payment(props) {
-  const { vnp_Amount } = useParams(0);
+  const {vnp_Amount} = useParams(0);
   console.log(vnp_Amount);
 
   return (
@@ -18,7 +18,7 @@ function Payment(props) {
           <div className={styles.number}>Transaction Number: 149538292359</div>
           <div className={styles.itemPay}>
             <div style={{ fontWeight: 500 }}>Amount Price:</div>
-            <div>$ 250</div>
+            <div>$ 50</div>
           </div>
           <div className={styles.itemPay}>
             <div style={{ fontWeight: 500 }}>Bank:</div>

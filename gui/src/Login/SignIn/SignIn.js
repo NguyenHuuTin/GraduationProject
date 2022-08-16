@@ -108,7 +108,7 @@ function SignIn(props) {
         </p>
         <p>
           Don`t have an account?{" "}
-          <Link to={"/signup"} className={styles.redText}>
+          <Link to={"/login/signup"} className={styles.redText}>
             Sign Up
           </Link>
         </p>

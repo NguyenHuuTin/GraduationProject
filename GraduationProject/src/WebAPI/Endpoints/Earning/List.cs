@@ -104,10 +104,10 @@ namespace WebAPI.Endpoints.Earning
                 .GroupBy(p => p.CourseId)
                 .Select(g => new ListTopCourseResponse
                 {
-                    Title = g.Select(x => x.Course.Title).SingleOrDefault(),
+                    Title = g.Select(x => x.Course.Title).FirstOrDefault(),
                     Count = g.Count(),
                     Price = g.Sum(x => x.Price),
-                });
+                }).OrderByDescending(x => x.Price).Take(5);
             return Ok(items);
         }
     }

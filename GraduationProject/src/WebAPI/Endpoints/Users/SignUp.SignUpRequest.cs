@@ -13,7 +13,7 @@ namespace WebAPI.Endpoints.Users
         [Required]
         [StringLength(100, ErrorMessage = "{0} fron {2} to {1} chracter.", MinimumLength = 3)]
         public string UserName { set; get; }
-        [Required]
+
         [StringLength(100, ErrorMessage = "{0} fron {2} to {1} chracter.", MinimumLength = 3)]
         public string LastName { get; set; }
         [Required]
